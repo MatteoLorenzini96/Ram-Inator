@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6520099052508898118
+--- !u!1001 &7878726947270033577
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: cc4ab4847eb0a824eb2c671eab1452ff, type: 2}
     - target: {fileID: 919132149155446097, guid: a10de2ba8358d084b8d1c333d5b3957d, type: 3}
       propertyPath: m_Name
-      value: BrokenGlassWallTest+Reference
+      value: broken glass wall
       objectReference: {fileID: 0}
     - target: {fileID: 1741506042474426101, guid: a10de2ba8358d084b8d1c333d5b3957d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -89,7 +89,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: cc4ab4847eb0a824eb2c671eab1452ff, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -5873765931867575472, guid: a10de2ba8358d084b8d1c333d5b3957d, type: 3}
+    - {fileID: -80796838390250655, guid: a10de2ba8358d084b8d1c333d5b3957d, type: 3}
+    - {fileID: -6554458113972422046, guid: a10de2ba8358d084b8d1c333d5b3957d, type: 3}
+    - {fileID: 3021780583470790795, guid: a10de2ba8358d084b8d1c333d5b3957d, type: 3}
+    - {fileID: 8704484798943859418, guid: a10de2ba8358d084b8d1c333d5b3957d, type: 3}
+    - {fileID: -8917703946959959745, guid: a10de2ba8358d084b8d1c333d5b3957d, type: 3}
+    - {fileID: -2995828229661691052, guid: a10de2ba8358d084b8d1c333d5b3957d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10de2ba8358d084b8d1c333d5b3957d, type: 3}

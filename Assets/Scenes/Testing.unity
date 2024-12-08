@@ -490,9 +490,11 @@ GameObject:
   - component: {fileID: 1395520311}
   - component: {fileID: 1395520312}
   - component: {fileID: 1395520314}
+  - component: {fileID: 1395520315}
+  - component: {fileID: 1395520316}
   - component: {fileID: 1395520313}
   m_Layer: 0
-  m_Name: WreakingBallHolder
+  m_Name: WrekingBallHolder
   m_TagString: Palla
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,7 +549,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -694,6 +696,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 1395520313}
   pivot: {fileID: 842189398}
+--- !u!114 &1395520315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395520308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db634138d97f2042a4a78f26cb599ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1395520316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395520308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8d46726091ff074896a31a67b4c364c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  releaseForceMultiplier: 1.5
 --- !u!1 &1478355484
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,7 +1004,7 @@ Transform:
   m_GameObject: {fileID: 1875506165}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -3}
+  m_LocalPosition: {x: 0, y: 2.87, z: -11.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1050,7 +1077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6617116274341904410, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.71
+      value: 9.4
       objectReference: {fileID: 0}
     - target: {fileID: 6617116274341904410, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: m_LocalPosition.y

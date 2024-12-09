@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 8937193284391916063}
   - component: {fileID: 406531531506650339}
   - component: {fileID: 7205066111260360766}
+  - component: {fileID: -5502450617996656479}
   m_Layer: 0
   m_Name: NormalSwitchHeadHolder
   m_TagString: Untagged
@@ -154,3 +155,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indiceFiglioDaAttivare: 0
+--- !u!114 &-5502450617996656479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7590307738706420016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f63c8c0db24708499669e9fbdc96705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: {x: 0, y: 10, z: 0}
+  speed: 5

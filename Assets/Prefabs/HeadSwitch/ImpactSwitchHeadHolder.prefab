@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2568796936394998826}
   - component: {fileID: 1207630643419906235}
   - component: {fileID: 1316788327951180983}
+  - component: {fileID: -5886863127725775837}
   m_Layer: 0
   m_Name: ImpactSwitchHeadHolder
   m_TagString: Untagged
@@ -68,6 +69,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indiceFiglioDaAttivare: 2
+--- !u!114 &-5886863127725775837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4230835812403425001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f63c8c0db24708499669e9fbdc96705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: {x: 0, y: 10, z: 0}
+  speed: 5
 --- !u!1 &8197721595938504832
 GameObject:
   m_ObjectHideFlags: 0

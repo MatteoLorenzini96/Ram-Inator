@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 2376262076199560801}
   - component: {fileID: 8670683028836087325}
   - component: {fileID: 8371628128626255847}
+  - component: {fileID: 3410150256187503374}
   m_Layer: 0
   m_Name: SpikeSwitchHeadHolder
   m_TagString: Untagged
@@ -154,3 +155,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indiceFiglioDaAttivare: 1
+--- !u!114 &3410150256187503374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8689187533906810029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f63c8c0db24708499669e9fbdc96705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: {x: 0, y: 10, z: 0}
+  speed: 5

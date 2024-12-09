@@ -764,7 +764,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 72
   m_CollisionDetection: 0
 --- !u!114 &1395520312
 MonoBehaviour:
@@ -1410,12 +1410,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 957028558763787392, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: 'destroyableHeads.Array.data[0]'
-      value: NormalHead
+      value: ImpactHead
       objectReference: {fileID: 0}
     - target: {fileID: 3221808563429290959, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: m_Name
       value: TestOggettoDaRompere
       objectReference: {fileID: 0}
+    - target: {fileID: 4186290800781622724, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8917b91b1f56d0142a26fd241cd3bd7e, type: 2}
     - target: {fileID: 6617116274341904410, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.4

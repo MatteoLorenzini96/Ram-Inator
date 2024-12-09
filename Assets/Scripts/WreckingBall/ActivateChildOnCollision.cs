@@ -39,6 +39,13 @@ public class AttivaFiglioOnCollision : MonoBehaviour
                     figli[indiceFiglioDaAttivare].SetActive(true);
                 }
 
+                if (figli[3] != null)
+                {
+                    // Lascia sempre attivo il quarto figlio
+                    Debug.Log("Lasciando attivo il figlio con indice 4");
+                    figli[3].SetActive(true);
+                }
+
                 // Distrugge l'oggetto a cui è assegnato lo script
                 Destroy(gameObject); // Distrugge l'oggetto corrente
             }

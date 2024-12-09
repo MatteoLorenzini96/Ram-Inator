@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 056d79484fff9e84dafaa83f1d7ccbb1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 446
+  packageName: Ball Pack
+  packageVersion: 1.0
+  assetPath: Assets/Ball Pack/Models/Materials/SpikeBall.mat
+  uploadId: 24549

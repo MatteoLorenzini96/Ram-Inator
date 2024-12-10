@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6617116274341904410}
   - component: {fileID: 6124420887601192130}
   - component: {fileID: 4186290800781622724}
-  - component: {fileID: 957028558763787392}
   - component: {fileID: 3055768989094932960}
+  - component: {fileID: 7245966533233146840}
   m_Layer: 0
   m_Name: TestOggettoDaRompere
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3221808563429290959}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.71, y: 1.016, z: 0}
+  m_LocalPosition: {x: 3.07, y: 1.016, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8917b91b1f56d0142a26fd241cd3bd7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,21 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &957028558763787392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3221808563429290959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a01a0d781cd4eb478bec4509d8f40ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  replacementPrefab: {fileID: 6981999594600332121, guid: b2db71c6717a9fd4c95e13d456fea275, type: 3}
-  destroyableHeads:
-  - SpikeHead
 --- !u!65 &3055768989094932960
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124,3 +109,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7245966533233146840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221808563429290959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c6952b32244ad4ca060ef1516e467d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowSpeedThreshold: 5
+  highSpeedThreshold: 8
+  viteoggetto: 2
+  replacementPrefab: {fileID: 6981999594600332121, guid: b2db71c6717a9fd4c95e13d456fea275, type: 3}
+  destroyableHeads:
+  - ImpactHead
+  currentState: 0

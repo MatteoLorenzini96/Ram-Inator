@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Testing.unity
+    path: Assets/Scenes/Testing/Testing.unity
     guid: cc61881503102d94599ca1947e62a31c
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 13e04c0c29fd7064d946ba8a30c4bc82, type: 2}

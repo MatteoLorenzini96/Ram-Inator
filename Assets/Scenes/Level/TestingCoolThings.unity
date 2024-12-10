@@ -780,6 +780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joint: {fileID: 1395520313}
   distance: 4
+  distanceSlider: {fileID: 0}
 --- !u!153 &1395520313
 ConfigurableJoint:
   m_ObjectHideFlags: 0

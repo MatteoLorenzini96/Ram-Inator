@@ -3,8 +3,9 @@ using UnityEngine;
 public class WreckingBallController : MonoBehaviour
 {
     [Header("Riferimenti")]
-    public ConfigurableJoint joint; // Il ConfigurableJoint già configurato
+    public ConfigurableJoint joint; // Il ConfigurableJoint giï¿½ configurato
     public float distance = 5f; // Distanza desiderata tra pivot e palla
+    
 
     void Start()
     {
@@ -23,7 +24,6 @@ public class WreckingBallController : MonoBehaviour
         // Modifica la distanza del joint in tempo reale
         UpdateJointDistance();
     }
-
     void UpdateJointDistance()
     {
         if (joint != null)

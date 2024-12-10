@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7437281315236982680, guid: 7f13f38bea91f5f4fa78d75442a46e51, type: 3}
+      propertyPath: Priority
+      value: 127
+      objectReference: {fileID: 0}
     - target: {fileID: 8689187533906810029, guid: 7f13f38bea91f5f4fa78d75442a46e51, type: 3}
       propertyPath: m_Name
       value: SpikeSwitchHeadHolder

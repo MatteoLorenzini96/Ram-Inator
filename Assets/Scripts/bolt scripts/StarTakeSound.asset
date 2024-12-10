@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: StarTakeSound
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":149.6,"y":4.000038},"zoom":1.0,"elements":[{"chainable":false,"parameterNames":["tag"],"member":{"name":"CompareTag","parameterTypes":["System.String"],"targetType":"UnityEngine.Component","targetTypeName":"UnityEngine.Component","$version":"A"},"defaultValues":{"target":null,"%tag":{"$content":"Palla","$type":"System.String"}},"position":{"x":-35.0,"y":-17.0},"guid":"97b57e5d-40cf-4dea-9ff2-5caabd8338c2","$version":"A","$type":"Unity.VisualScripting.InvokeMember"},{"defaultValues":{},"position":{"x":198.0,"y":-92.0},"guid":"a616f495-b3bd-454c-b9d8-23a720bd1e11","$version":"A","$type":"Unity.VisualScripting.If"},{"coroutine":false,"defaultValues":{},"position":{"x":-202.0,"y":-88.0},"guid":"6ae44c45-4687-4904-a802-6a9ca8dbda84","$version":"A","$type":"Unity.VisualScripting.OnDestroy","$id":"15"},{"chainable":false,"parameterNames":["clip"],"member":{"name":"PlayOneShot","parameterTypes":["UnityEngine.AudioClip"],"targetType":"UnityEngine.AudioSource","targetTypeName":"UnityEngine.AudioSource","$version":"A"},"defaultValues":{"target":null,"%clip":{"$content":0,"$type":"UnityEngine.Object"}},"position":{"x":273.0,"y":-97.0},"guid":"f2a5d75a-4c90-4490-95e5-0a0d54ff99fe","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"17"},{"sourceUnit":{"$ref":"15"},"sourceKey":"trigger","destinationUnit":{"$ref":"17"},"destinationKey":"enter","guid":"35ab5509-7a35-4c34-9309-ce7b74fd5aa7","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 8300000, guid: 8644850827850ff4eafabcef5b71d0b8, type: 3}

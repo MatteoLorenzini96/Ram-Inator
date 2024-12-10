@@ -1,61 +1,90 @@
 using UnityEngine;
 
-public class DragObject : MonoBehaviour
+public class SlideAncor : MonoBehaviour
 {
-    // Limiti per il movimento lungo l'asse X
-    public GameObject puntoA;
-    public GameObject puntoB;
+    // Riferimenti agli oggetti che definiscono i limiti
+    public Transform puntoAObject; // Oggetto per il limite sinistro
+    public Transform puntoBObject; // Oggetto per il limite destro
 
-    // Variabili per la gestione del trascinamento
-    private bool isDragging = false;
-    private float offsetX;
+    private float puntoA;          // Valore calcolato della posizione X di puntoAObject
+    private float puntoB;          // Valore calcolato della posizione X di puntoBObject
+    private Transform selectedObject; // Oggetto selezionato
+    private float offsetX;         // Offset tra il tocco/mouse e l'oggetto
+    private Camera mainCamera;     // Riferimento alla camera principale
+
+    void Start()
+    {
+        // Cache della camera principale
+        mainCamera = Camera.main;
+
+        // Calcola i limiti iniziali basati sulle posizioni degli oggetti
+        if (puntoAObject != null && puntoBObject != null)
+        {
+            puntoA = puntoAObject.position.x;
+            puntoB = puntoBObject.position.x;
+        }
+        else
+        {
+            Debug.LogError("Assicurati di assegnare i riferimenti a PuntoAObject e PuntoBObject.");
+        }
+    }
 
     void Update()
     {
-        // Controlla se il mouse è premuto
-        if (Input.GetMouseButtonDown(0)) // 0 = Click sinistro del mouse
+        // Controlla input mouse o touch
+        if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
-            // Verifica se il mouse è sopra l'oggetto
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            // Lancia un raycast per selezionare l'oggetto
+            Vector3 inputPosition = GetInputPosition();
+            Ray ray = mainCamera.ScreenPointToRay(inputPosition);
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                // Se l'oggetto è stato colpito, inizia il trascinamento
-                if (hit.transform == transform)
+                // Controlla se l'oggetto colpito è trascinabile
+                if (hit.transform.GetComponent<SlideAncor>() != null)
                 {
-                    isDragging = true;
-                    offsetX = hit.point.x - transform.position.x; // Calcola l'offset tra il mouse e l'oggetto
+                    selectedObject = hit.transform;
 
-                    Debug.Log("Oggetto Preso");
+                    // Calcola l'offset tra la posizione del tocco/mouse e l'oggetto
+                    Vector3 worldInputPosition = mainCamera.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, mainCamera.WorldToScreenPoint(selectedObject.position).z));
+                    offsetX = selectedObject.position.x - worldInputPosition.x;
                 }
             }
         }
 
-        // Se il mouse è tenuto premuto, trascina l'oggetto
-        if (isDragging)
+        // Controlla trascinamento
+        if (selectedObject != null && (Input.GetMouseButton(0) || Input.touchCount > 0))
         {
-            // Ottieni la posizione del mouse nel mondo
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            Vector3 inputPosition = GetInputPosition();
+            Vector3 worldInputPosition = mainCamera.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, mainCamera.WorldToScreenPoint(selectedObject.position).z));
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                // Calcola la nuova posizione lungo l'asse X, mantenendo gli altri assi invariati
-                float newX = hit.point.x - offsetX;
+            // Calcola la nuova posizione lungo l'asse X
+            float newX = worldInputPosition.x + offsetX;
 
-                // Limita la posizione X tra i valori min e max
-                newX = Mathf.Clamp(newX, puntoA.transform.position.x, puntoB.transform.position.x);
+            // Limita la posizione tra puntoA e puntoB
+            newX = Mathf.Clamp(newX, puntoA, puntoB);
 
-                // Imposta la nuova posizione dell'oggetto
-                transform.position = new Vector3(newX, transform.position.y, transform.position.z);
-            }
+            // Aggiorna la posizione dell'oggetto
+            selectedObject.position = new Vector3(newX, selectedObject.position.y, selectedObject.position.z);
         }
 
-        // Se il mouse viene rilasciato, termina il trascinamento
-        if (Input.GetMouseButtonUp(0))
+        // Rilascia l'oggetto
+        if (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended))
         {
-            isDragging = false;
+            selectedObject = null;
+        }
+    }
+
+    // Metodo per ottenere la posizione dell'input (mouse o touch)
+    private Vector3 GetInputPosition()
+    {
+        if (Input.touchCount > 0)
+        {
+            return Input.GetTouch(0).position;
+        }
+        else
+        {
+            return Input.mousePosition;
         }
     }
 }

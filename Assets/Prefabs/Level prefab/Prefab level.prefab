@@ -554,6 +554,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7471751352102114813}
     m_Modifications:
+    - target: {fileID: 3404416647223233437, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: startPoint
+      value: 
+      objectReference: {fileID: 7657297758542834822}
+    - target: {fileID: 5780090640153959816, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: pivot
+      value: 
+      objectReference: {fileID: 7657297758542834822}
     - target: {fileID: 5945715059981181714, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: m_Name
       value: WrekingBallHolder

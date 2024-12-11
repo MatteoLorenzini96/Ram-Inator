@@ -32,7 +32,7 @@ public class WreckingBallPhysics : MonoBehaviour
         {
             // Applica la velocità al Rigidbody
             rb.isKinematic = false;
-            Debug.Log($"Release Velocity: {releaseVelocity}");
+            //Debug.Log($"Release Velocity: {releaseVelocity}");
             rb.linearVelocity = releaseVelocity * releaseForceMultiplier; // Imposta la velocità direttamente
         }
     }

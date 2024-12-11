@@ -3,7 +3,7 @@ using UnityEngine;
 public class ImpactHeadScript : MonoBehaviour
 {
     [SerializeField] private Transform parentObject; // Il parent che contiene i child
-    public int impactHeadIndex = 3; // L'indice del child da controllare
+    private int impactHeadIndex = 3; // L'indice del child da controllare
     public float lowImpactSpeed = 5f; // Soglia per impatti a bassa velocità
     public float highImpactSpeed = 10f; // Soglia per impatti ad alta velocità
     public GameObject objectToSpawn; // Prefab da spawnare al momento dell'impatto

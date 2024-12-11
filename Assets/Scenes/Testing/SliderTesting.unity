@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestOggettoDaRompere (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3221808563429290959, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
+      propertyPath: m_TagString
+      value: DestroyOnImpact
+      objectReference: {fileID: 0}
     - target: {fileID: 6617116274341904410, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7
@@ -188,6 +192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestOggettoDaRompere (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3221808563429290959, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
+      propertyPath: m_TagString
+      value: DestroyOnImpact
+      objectReference: {fileID: 0}
     - target: {fileID: 6617116274341904410, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.25
@@ -241,10 +249,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1625755836260327272, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2122092215797407647, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
       propertyPath: m_Name
       value: Prefab level
@@ -289,17 +293,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7853914322311771686, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2402642200943316768, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 734208256}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
 --- !u!1001 &656309499
 PrefabInstance:
@@ -312,6 +309,10 @@ PrefabInstance:
     - target: {fileID: 3221808563429290959, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: m_Name
       value: TestOggettoDaRompere (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3221808563429290959, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
+      propertyPath: m_TagString
+      value: DestroyOnImpact
       objectReference: {fileID: 0}
     - target: {fileID: 6617116274341904410, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -370,6 +371,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestOggettoDaRompere
       objectReference: {fileID: 0}
+    - target: {fileID: 3221808563429290959, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
+      propertyPath: m_TagString
+      value: DestroyOnImpact
+      objectReference: {fileID: 0}
     - target: {fileID: 6617116274341904410, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.48
@@ -415,34 +420,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
---- !u!1 &734208247 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2402642200943316768, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-  m_PrefabInstance: {fileID: 535993668}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &734208248 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3074925276384649827, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-  m_PrefabInstance: {fileID: 535993668}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &734208256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734208247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a75c7179709584548a24b13be460d454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentObject: {fileID: 734208248}
-  impactHeadIndex: 2
-  lowImpactSpeed: 5
-  highImpactSpeed: 10
-  objectToSpawn: {fileID: 1883021650381340479, guid: 675369171bd2af54db778704452356a4, type: 3}
-  spawnDistance: -2
 --- !u!1001 &938482357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -624,6 +601,10 @@ PrefabInstance:
     - target: {fileID: 4230835812403425001, guid: 370a6cb79082af043ad748809e6b4dd0, type: 3}
       propertyPath: m_Name
       value: ImpactSwitchHeadHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230835812403425001, guid: 370a6cb79082af043ad748809e6b4dd0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

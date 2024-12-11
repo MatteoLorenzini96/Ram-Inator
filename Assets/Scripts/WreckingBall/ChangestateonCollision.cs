@@ -61,14 +61,20 @@ public class CollisionStateChanger : MonoBehaviour
                     Debug.Log($"Velocità relativa: {relativeSpeed}, Nuovo stato: {currentState}, vite: {viteoggetto}");
                     if (replacementPrefab != null && viteoggetto <= 0)
                         {
-                            Instantiate(replacementPrefab, transform.position, transform.rotation);
-                            Destroy(gameObject); // Distruggi l'oggetto attuale
+                            Explode();
                         }
                         return;
                     }
                 }
             }
         }
+    }
+
+
+    public void Explode()
+    {
+        Instantiate(replacementPrefab, transform.position, transform.rotation);
+        Destroy(gameObject); // Distruggi l'oggetto attuale
     }
 
     // Metodo per cambiare lo stato

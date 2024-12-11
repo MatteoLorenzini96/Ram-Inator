@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class WreckingBall : MonoBehaviour
+public class ImpactHeadScript : MonoBehaviour
 {
     [SerializeField] private Transform parentObject; // Il parent che contiene i child
     public int impactHeadIndex = 3; // L'indice del child da controllare
     public float lowImpactSpeed = 5f; // Soglia per impatti a bassa velocità
     public float highImpactSpeed = 10f; // Soglia per impatti ad alta velocità
+    public GameObject objectToSpawn; // Prefab da spawnare al momento dell'impatto
+    public float spawnDistance = -2f; // Distanza dal punto di impatto
     private Transform impactHead;
+    private bool isScriptActive = false; // Stato attivazione script
 
     private void Start()
     {
@@ -28,10 +31,39 @@ public class WreckingBall : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (impactHead != null)
+        {
+            bool isImpactHeadActive = impactHead.gameObject.activeSelf;
+            bool isParentActive = impactHead.parent != null ? impactHead.parent.gameObject.activeSelf : false;
+
+            // Log dello stato di ImpactHead e del suo parent
+            Debug.Log($"ImpactHead ActiveSelf: {isImpactHeadActive}, Parent ActiveSelf: {isParentActive}");
+
+            if (isImpactHeadActive && !isScriptActive)
+            {
+                isScriptActive = true;
+                this.enabled = true; // Attiva lo script
+                Debug.Log("Script attivato.");
+            }
+            else if (!isImpactHeadActive && isScriptActive)
+            {
+                isScriptActive = false;
+                this.enabled = false; // Disattiva lo script
+                Debug.Log("Script disattivato.");
+            }
+        }
+        else
+        {
+            Debug.Log("ImpactHead non trovato o è null.");
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        // Controlla se l'oggetto ImpactHead è attivo
-        if (impactHead != null && impactHead.gameObject.activeSelf)
+        // Esegui il codice solo se lo script è attivo
+        if (isScriptActive)
         {
             // Calcola la velocità dell'impatto
             float relativeSpeed = collision.relativeVelocity.magnitude;
@@ -44,88 +76,44 @@ public class WreckingBall : MonoBehaviour
                 Vector3 impactPoint = contact.point;
                 Vector3 impactNormal = contact.normal;
 
-                // Sposta il punto di impatto di 1 unità lungo l'asse X
-                Vector3 adjustedImpactPoint = impactPoint + (impactNormal * 1f); // Aggiungi offset di 1 lungo l'asse X
+                // Calcola il punto di spawn basandoti sull'angolazione e sulla distanza
+                Vector3 spawnPoint = impactPoint + impactNormal * spawnDistance;
 
-                // Crea un nuovo oggetto con un CapsuleCollider (come un conico)
-                GameObject colliderObject = new GameObject("GeneratedCollider");
-                colliderObject.transform.position = adjustedImpactPoint;
-                colliderObject.transform.rotation = Quaternion.LookRotation(impactNormal);
+                // Calcola l'orientamento basato sulla normale e sulla velocità relativa dell'impatto
+                Quaternion spawnRotation = Quaternion.LookRotation(collision.relativeVelocity.normalized, impactNormal);
 
-                // Aggiungi un CapsuleCollider (conico)
-                CapsuleCollider capsuleCollider = colliderObject.AddComponent<CapsuleCollider>();
-
-                // Imposta le dimensioni del collider in base alla velocità
-                if (relativeSpeed <= lowImpactSpeed)
+                // Crea l'oggetto 3D al punto di impatto con offset
+                if (objectToSpawn != null)
                 {
-                    capsuleCollider.height = 1f; // Piccolo collider
-                    capsuleCollider.radius = 0.5f;
-                }
-                else if (relativeSpeed >= highImpactSpeed)
-                {
-                    capsuleCollider.height = 3f; // Grande collider
-                    capsuleCollider.radius = 1f;
+                    GameObject spawnedObject = Instantiate(objectToSpawn, spawnPoint, spawnRotation);
+
+                    // Modifica la scala dell'oggetto in base alla velocità
+                    if (relativeSpeed <= lowImpactSpeed)
+                    {
+                        // Scala normale
+                        spawnedObject.transform.localScale = Vector3.one;
+                    }
+                    else if (relativeSpeed >= highImpactSpeed)
+                    {
+                        // Scala aumentata di 4x
+                        spawnedObject.transform.localScale = Vector3.one * 4f;
+                    }
+                    else
+                    {
+                        // Scala intermedia (calcolo lineare)
+                        float scaleFactor = 1 + (relativeSpeed - lowImpactSpeed) / (highImpactSpeed - lowImpactSpeed) * 0.5f;
+                        spawnedObject.transform.localScale = Vector3.one * scaleFactor;
+                    }
                 }
                 else
                 {
-                    capsuleCollider.height = 2f; // Dimensione media
-                    capsuleCollider.radius = 0.75f;
+                    Debug.LogError("Nessun prefab assegnato a 'objectToSpawn'.");
                 }
-
-                // (Opzionale) Aggiungi un Rigidbody per stabilità
-                capsuleCollider.gameObject.AddComponent<Rigidbody>().isKinematic = true;
-
-                // Imposta viteoggetto a 0 per distruggere l'oggetto
-                CollisionStateChanger collisionStateChanger = collision.gameObject.GetComponent<CollisionStateChanger>();
-                if (collisionStateChanger != null)
-                {
-                    collisionStateChanger.viteoggetto = 0;
-                    Debug.Log("Viteoggetto settato a 0.");
-                }
-
-                Debug.Log("Collider conico creato al punto di impatto con offset!");
             }
         }
         else
         {
-            Debug.Log("Il child specificato non è attivo. Nessuna azione eseguita.");
-        }
-    }
-
-    // Visualizza i Gizmos per il Collider
-    private void OnDrawGizmos()
-    {
-        if (impactHead != null && impactHead.gameObject.activeSelf)
-        {
-            // Simula il punto di impatto e applica l'offset di 1 unità lungo l'asse X
-            Vector3 adjustedImpactPoint = impactHead.position + Vector3.right; // Aggiungi l'offset sull'asse X
-
-            // Imposta una velocità di esempio per il collider
-            float relativeSpeed = 7f;
-
-            // Determina la dimensione del collider in base alla velocità
-            float colliderHeight = 2f;
-            float colliderRadius = 0.75f;
-
-            if (relativeSpeed <= lowImpactSpeed)
-            {
-                colliderHeight = 1f; // Piccolo collider
-                colliderRadius = 0.5f;
-            }
-            else if (relativeSpeed >= highImpactSpeed)
-            {
-                colliderHeight = 3f; // Grande collider
-                colliderRadius = 1f;
-            }
-
-            // Disegna il collider con Gizmos
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(adjustedImpactPoint, colliderRadius); // Mostra una sfera per visualizzare la base
-            Gizmos.DrawLine(adjustedImpactPoint, adjustedImpactPoint + (Vector3.up * colliderHeight)); // Mostra l'asse del collider
-
-            // Disegna la capsula/cono
-            Gizmos.DrawLine(adjustedImpactPoint, adjustedImpactPoint + (Vector3.right * colliderRadius)); // Linea orizzontale
-            Gizmos.DrawLine(adjustedImpactPoint + (Vector3.up * colliderHeight), adjustedImpactPoint + (Vector3.right * colliderRadius)); // Linea verticale
+            Debug.Log("Lo script è disattivato, nessuna azione eseguita.");
         }
     }
 }

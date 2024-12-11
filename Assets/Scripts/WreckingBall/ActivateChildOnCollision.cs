@@ -19,7 +19,7 @@ public class AttivaFiglioOnCollision : MonoBehaviour
                 figli[i] = oggettoColliso.GetChild(i).gameObject;
             }
 
-            Debug.Log($"Figli trovati nell'oggetto colliso: {figli.Length}");
+            //Debug.Log($"Figli trovati nell'oggetto colliso: {figli.Length}");
 
             // Assicurati che l'indice sia valido
             if (indiceFiglioDaAttivare >= 0 && indiceFiglioDaAttivare < figli.Length)
@@ -27,7 +27,7 @@ public class AttivaFiglioOnCollision : MonoBehaviour
                 // Disattiva tutti i figli
                 foreach (GameObject figlio in figli)
                 {
-                    Debug.Log("Spenti tutti i figli dell'oggetto colliso");
+                    //Debug.Log("Spenti tutti i figli dell'oggetto colliso");
                     if (figlio != null)
                         figlio.SetActive(false);
                 }
@@ -35,14 +35,14 @@ public class AttivaFiglioOnCollision : MonoBehaviour
                 // Attiva il figlio specificato
                 if (figli[indiceFiglioDaAttivare] != null)
                 {
-                    Debug.Log("Accendo il figlio corretto dell'oggetto colliso");
+                    //Debug.Log("Accendo il figlio corretto dell'oggetto colliso");
                     figli[indiceFiglioDaAttivare].SetActive(true);
                 }
 
                 if (figli[3] != null)
                 {
                     // Lascia sempre attivo il quarto figlio
-                    Debug.Log("Lasciando attivo il figlio con indice 4");
+                    //Debug.Log("Lasciando attivo il figlio con indice 4");
                     figli[3].SetActive(true);
                 }
 

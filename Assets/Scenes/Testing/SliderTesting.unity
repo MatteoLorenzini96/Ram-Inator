@@ -131,10 +131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestOggettoDaRompere (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 3221808563429290959, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
-      propertyPath: m_TagString
-      value: DestroyOnImpact
-      objectReference: {fileID: 0}
     - target: {fileID: 6617116274341904410, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7

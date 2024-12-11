@@ -9,20 +9,19 @@ public class WreckingBallController : MonoBehaviour
 
     void Start()
     {
-        if (joint == null)
-        {
-            Debug.LogError("Devi assegnare un ConfigurableJoint nello script.");
-            return;
-        }
-
         UpdateJointDistance();
     }
 
- 
+    private void Update()
+    {
+        UpdateJointDistance();
+    }
+
     void UpdateJointDistance()
     {
         if (joint != null)
         {
+            // Aggiorna il limite lineare del Hoint
             SoftJointLimit limit = new SoftJointLimit
             {
                 limit = distance

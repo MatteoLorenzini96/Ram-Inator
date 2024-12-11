@@ -1,58 +1,86 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Crank : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+public class Crank : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
-    public float rotationSpeed = 200f; // Velocità di rotazione
-    private bool isDragging = false;
+    private RectTransform parentRectTransform; // Il RectTransform del padre.
+    private Vector2 previousDragPosition; // Per memorizzare la posizione precedente del mouse/touch.
+    private WreckingBallController wreckingBallController;
+    private float previousRotationStep = 0f; // Per tenere traccia dei cambi di -30°.
+    private float currentRotationZ = 0f; // Rotazione attuale del padre.
+    private Vector2 initialMousePosition; // Posizione iniziale del mouse.
 
-    private float currentRotation = 0f; // Rotazione attuale dell'oggetto
-    private float startingDistance; // Valore iniziale di "distance"
-
-    private WreckingBallController wreckingBallController; // Riferimento allo script WreckingBallController
-
-    private void Start()
+    void Start()
     {
-        // Trova lo script WreckingBallController in scena
-        wreckingBallController = FindObjectOfType<WreckingBallController>();
+        // Trova automaticamente il RectTransform del padre.
+        parentRectTransform = transform.parent.GetComponent<RectTransform>();
 
-        if (wreckingBallController == null)
+        if (parentRectTransform == null)
         {
-            Debug.LogError("WreckingBallController non trovato nella scena.");
-            return;
+            Debug.LogError("Il padre non ha un RectTransform!");
         }
 
-        // Salva il valore iniziale di "distance"
-        startingDistance = wreckingBallController.distance;
+        // Trova lo script WreckingBallController nella scena.
+        wreckingBallController = FindFirstObjectByType<WreckingBallController>();
+        if (wreckingBallController == null)
+        {
+            Debug.LogError("WreckingBallController non trovato nella scena!");
+        }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        // Inizia il drag
-        isDragging = true;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        // Termina il drag
-        isDragging = false;
+        // Memorizza la posizione iniziale quando inizia il drag.
+        previousDragPosition = eventData.position;
+        initialMousePosition = eventData.position;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (wreckingBallController == null)
+        if (parentRectTransform == null)
             return;
 
-        // Calcola la rotazione in base al movimento del mouse o del touch
-        float rotationDelta = eventData.delta.x * rotationSpeed * Time.deltaTime;
+        // Calcola la differenza tra la posizione iniziale e quella attuale del mouse.
+        Vector2 currentMousePosition = eventData.position;
 
-        // Aggiorna la rotazione dell'immagine UI
-        currentRotation += rotationDelta;
-        currentRotation = Mathf.Clamp(currentRotation, 0, 360); // Limita la rotazione tra 0 e 360 gradi
-        transform.rotation = Quaternion.Euler(0, 0, currentRotation);
+        // Estrai solo la parte 2D della posizione dell'oggetto (x, y), ignorando il componente Z.
+        Vector2 currentRectPosition = parentRectTransform.position; // Questa è un Vector3, quindi ne estraiamo solo la parte 2D
+        Vector2 initialRectPosition = initialMousePosition; // Anche questa è un Vector2 (già corretta per il calcolo)
 
-        // Aggiorna la variabile "distance" a intervalli di 30 gradi
-        int steps = Mathf.FloorToInt(currentRotation / 30);
-        wreckingBallController.distance = startingDistance + steps * 0.5f;
+        // Calcoliamo l'angolo tra la posizione iniziale e la posizione attuale del mouse rispetto al centro dell'oggetto.
+        Vector2 direction = currentMousePosition - currentRectPosition; // Direzione dal centro dell'oggetto alla posizione corrente del mouse
+        Vector2 initialDirection = initialMousePosition - currentRectPosition; // Direzione dal centro dell'oggetto alla posizione iniziale del mouse
+
+        float angle = Vector2.SignedAngle(initialDirection, direction); // Calcoliamo l'angolo tra le due direzioni
+
+        // Applichiamo l'angolo alla rotazione dell'oggetto.
+        currentRotationZ += angle;
+
+        // Limita la rotazione tra 0° e -360°.
+        currentRotationZ = Mathf.Clamp(currentRotationZ, -360f, 0f);
+
+        // Aggiorna la rotazione del padre.
+        parentRectTransform.rotation = Quaternion.Euler(0, 0, currentRotationZ);
+
+        // Aggiorna il valore di `distance` ogni -30°.
+        float step = Mathf.Floor(currentRotationZ / -30f) * -30f;
+
+        if (step < previousRotationStep)
+        {
+            // Aumenta distance di 0.5.
+            if (wreckingBallController != null)
+                wreckingBallController.distance += 0.5f;
+        }
+        else if (step > previousRotationStep)
+        {
+            // Diminuisci distance di 0.5.
+            if (wreckingBallController != null && wreckingBallController.distance > 0)
+                wreckingBallController.distance -= 0.5f;
+        }
+
+        previousRotationStep = step; // Aggiorna il passo precedente.
+        previousDragPosition = currentMousePosition; // Aggiorna la posizione precedente.
+        initialMousePosition = currentMousePosition; // Aggiorna la posizione iniziale del mouse.
     }
 }

@@ -78,7 +78,7 @@ public class WreckingBallDrag : MonoBehaviour
         lastPosition = transform.position; // Inizia a tracciare la posizione
     }
 
-    private void StopDragging()
+    public void StopDragging()
     {
         if (rb != null)
         {

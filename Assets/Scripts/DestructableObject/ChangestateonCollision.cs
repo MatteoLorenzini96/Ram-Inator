@@ -58,7 +58,7 @@ public class CollisionStateChanger : MonoBehaviour
                     viteoggetto = viteoggetto - 2;
                     }
 
-                    Debug.Log($"Velocità relativa: {relativeSpeed}, Nuovo stato: {currentState}, vite: {viteoggetto}");
+                    //Debug.Log($"Velocità relativa: {relativeSpeed}, Nuovo stato: {currentState}, vite: {viteoggetto}");
                     if (replacementPrefab != null && viteoggetto <= 0)
                         {
                             Explode();
@@ -84,7 +84,7 @@ public class CollisionStateChanger : MonoBehaviour
         {
             currentState = newState;
             // Puoi aggiungere qui il codice per gestire i cambiamenti di stato
-            Debug.Log($"Lo stato è cambiato a: {currentState} e ha vite: {viteoggetto}");
+            //Debug.Log($"Lo stato è cambiato a: {currentState} e ha vite: {viteoggetto}");
         }
     }
 }

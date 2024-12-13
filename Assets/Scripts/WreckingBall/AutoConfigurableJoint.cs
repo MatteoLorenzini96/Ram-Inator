@@ -32,6 +32,6 @@ public class AutoConfigurableJoint : MonoBehaviour
         // Imposta il Connected Anchor alla posizione del pivot
         joint.connectedAnchor = pivot.position;
 
-        Debug.Log("Connected Anchor configurato automaticamente in posizione: " + pivot.position);
+        //Debug.Log("Connected Anchor configurato automaticamente in posizione: " + pivot.position);
     }
 }

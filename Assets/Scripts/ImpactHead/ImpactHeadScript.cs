@@ -124,7 +124,7 @@ public class ImpactHeadScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Lo script è disattivato, nessuna azione eseguita.");
+            //Debug.Log("Lo script è disattivato, nessuna azione eseguita.");
         }
     }
 }

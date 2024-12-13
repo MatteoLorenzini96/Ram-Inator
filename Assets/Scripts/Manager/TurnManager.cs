@@ -86,7 +86,7 @@ public class TurnManager : MonoBehaviour
         timer = timerDuration;
         timerRunning = true;
 
-        Debug.Log("Timer Partito");
+        //Debug.Log("Timer Partito");
 
         // Nascondi inizialmente il testo del timer
         if (timerText != null)

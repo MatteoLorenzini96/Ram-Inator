@@ -18,7 +18,7 @@ public class ImpactHead : MonoBehaviour
                 collisionStateChanger.Explode();
 
                 // Puoi aggiungere altre logiche, come effetti visivi o suoni
-                Debug.Log($"Oggetto {other.gameObject.name} ha avuto impatto, vite ora: {collisionStateChanger.viteoggetto}");
+                //Debug.Log($"Oggetto {other.gameObject.name} ha avuto impatto, vite ora: {collisionStateChanger.viteoggetto}");
             }
         }
     }

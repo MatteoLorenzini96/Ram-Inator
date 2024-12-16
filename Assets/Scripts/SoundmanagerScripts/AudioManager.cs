@@ -56,7 +56,12 @@ public class AudioManager : MonoBehaviour
 
         else
         {
+            float randomPitch = 1f + UnityEngine.Random.Range(-0.3f, +0.3f);
+            sfxSource.pitch = randomPitch;
+
             sfxSource.PlayOneShot(s.clip);
+
+            sfxSource.pitch = 1f;
         }
     }
 }

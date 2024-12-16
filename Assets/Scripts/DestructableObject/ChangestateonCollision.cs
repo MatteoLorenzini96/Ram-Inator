@@ -1,4 +1,5 @@
 using UnityEngine;
+using EZCameraShake;
 
 public class CollisionStateChanger : MonoBehaviour
 {
@@ -94,6 +95,7 @@ public class CollisionStateChanger : MonoBehaviour
     public void Explode()
     {
         timeManager.DoSlowmotion();  //Applica l'effetto SlowMotion
+        CameraShaker.Instance.ShakeOnce(1.5f, 1.5f, .1f, 1f);  //Applica il CameraShake
 
         Instantiate(replacementPrefab, transform.position, transform.rotation);
         Destroy(gameObject); // Distruggi l'oggetto attuale

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class CollisionStateChanger : MonoBehaviour
 {
+
+    private TimeManager timeManager;
+
     [Header("Nome del SoundEffect da riprodurre")]
     public string soundEffectName = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
 
@@ -29,6 +32,18 @@ public class CollisionStateChanger : MonoBehaviour
     }
 
     public ObjectState currentState = ObjectState.Idle;
+
+    private void Awake()
+    {
+        if (timeManager == null)
+        {
+            timeManager = FindFirstObjectByType<TimeManager>();
+            if (timeManager == null)
+            {
+                Debug.LogError("Non è stato trovato un oggetto con TimeManager nella scena!");
+            }
+        }
+    }
 
     // Metodo chiamato al momento della collisione
     private void OnCollisionEnter(Collision collision)
@@ -78,6 +93,8 @@ public class CollisionStateChanger : MonoBehaviour
 
     public void Explode()
     {
+        timeManager.DoSlowmotion();  //Applica l'effetto SlowMotion
+
         Instantiate(replacementPrefab, transform.position, transform.rotation);
         Destroy(gameObject); // Distruggi l'oggetto attuale
         AudioManager.Instance.PlaySFX(soundEffectName); // Usa la variabile per chiamare il metodo

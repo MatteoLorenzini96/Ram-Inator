@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class CollisionStateChanger : MonoBehaviour
 {
+    [Header("Nome del SoundEffect da riprodurre")]
+    public string soundEffectName = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+
+    [Header("Soglie di velocità")]
     // Soglie di velocità per cambiare stato
     public float lowSpeedThreshold = 5f;  // Velocità bassa
     public float highSpeedThreshold = 10f; // Velocità alta
 
+    [Header("Numero di Vite")]
     // Numero di vite dell'oggetto
     public float viteoggetto = 2f;
 
@@ -75,6 +80,7 @@ public class CollisionStateChanger : MonoBehaviour
     {
         Instantiate(replacementPrefab, transform.position, transform.rotation);
         Destroy(gameObject); // Distruggi l'oggetto attuale
+        AudioManager.Instance.PlaySFX(soundEffectName); // Usa la variabile per chiamare il metodo
     }
 
     // Metodo per cambiare lo stato

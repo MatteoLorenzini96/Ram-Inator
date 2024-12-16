@@ -47,6 +47,7 @@ public class AttivaFiglioOnCollision : MonoBehaviour
                 }
 
                 // Distrugge l'oggetto a cui è assegnato lo script
+                AudioManager.Instance.PlaySFX("SpikeStar");
                 Destroy(gameObject); // Distrugge l'oggetto corrente
             }
             else

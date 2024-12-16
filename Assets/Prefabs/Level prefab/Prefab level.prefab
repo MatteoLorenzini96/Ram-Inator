@@ -2936,6 +2936,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8644850827850ff4eafabcef5b71d0b8, type: 3}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[1].name
+      value: SpikeStar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

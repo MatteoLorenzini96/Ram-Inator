@@ -53,30 +53,45 @@ public class AudioManager : MonoBehaviour
         {
             Debug.Log("Sound Not Found");
         }
-
         else
         {
-            float randomPitch = 1f + UnityEngine.Random.Range(-0.3f, +0.3f);
-            sfxSource.pitch = randomPitch;
+            // Calcola un pitch casuale tra -0.3 e +0.3
+            float randomPitch = 1 + UnityEngine.Random.Range(-0.3f, +0.3f);
 
+            // Moltiplica il pitch casuale per il volume corrente
+            sfxSource.pitch = randomPitch * sfxSource.volume;
+
+            // Riproduce il suono
             sfxSource.PlayOneShot(s.clip);
-
-            sfxSource.pitch = 1f;
         }
     }
+
 
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
+        if (musicSource.mute)
+        {
+            musicSource.Stop();  // Ferma la musica quando viene mutata
+        }
+        //Debug.Log("Musica Mutata");
     }
+
     public void ToggleSFX()
     {
         sfxSource.mute = !sfxSource.mute;
+        if (sfxSource.mute)
+        {
+            sfxSource.Stop();  // Ferma gli effetti sonori quando vengono mutati
+        }
+        //Debug.Log("SFX Mutati");
     }
+
     public void MusicVolume(float volume)
     {
         musicSource.volume = volume;
     }
+
     public void SFXVolume(float volume)
     {
         sfxSource.volume = volume;

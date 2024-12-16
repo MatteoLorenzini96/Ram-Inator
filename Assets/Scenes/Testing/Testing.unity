@@ -554,6 +554,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1316788327951180983, guid: 370a6cb79082af043ad748809e6b4dd0, type: 3}
+      propertyPath: soundEffectName
+      value: SpikeStar
+      objectReference: {fileID: 0}
     - target: {fileID: 2568796936394998826, guid: 370a6cb79082af043ad748809e6b4dd0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4580162

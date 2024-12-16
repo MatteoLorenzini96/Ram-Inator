@@ -14,6 +14,7 @@ public class TurnManager : MonoBehaviour
     private int initialObjectCount;
     private float timer;
     private bool timerRunning = false;
+    private bool isFirstTimerStarted = false; // Nuova variabile per controllare il primo avvio
 
     void Start()
     {
@@ -82,11 +83,16 @@ public class TurnManager : MonoBehaviour
 
     private void OnStopDragging(Vector3 releaseVelocity)
     {
+        // Controlla se il timer è già stato avviato
+        if (isFirstTimerStarted)
+        {
+            return; // Non fare nulla se il timer è già partito
+        }
+
         // Fa partire il timer
         timer = timerDuration;
         timerRunning = true;
-
-        //Debug.Log("Timer Partito");
+        isFirstTimerStarted = true; // Imposta il flag per indicare che il timer è partito
 
         // Nascondi inizialmente il testo del timer
         if (timerText != null)

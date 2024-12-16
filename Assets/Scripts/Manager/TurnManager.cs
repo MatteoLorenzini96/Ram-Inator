@@ -69,7 +69,7 @@ public class TurnManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"Numero di oggetti nella lista: {objectsWithCollisionStateChanger.Count}");
+        //Debug.Log($"Numero di oggetti nella lista: {objectsWithCollisionStateChanger.Count}");
 
         if (objectsWithCollisionStateChanger.Count > 0)
         {
@@ -80,7 +80,7 @@ public class TurnManager : MonoBehaviour
             if (objectsWithCollisionStateChanger.Count > 0)
             {
                 lastHitPosition = objectsWithCollisionStateChanger[0].transform.position;
-                Debug.Log($"Ultima posizione aggiornata: {lastHitPosition}");
+                //Debug.Log($"Ultima posizione aggiornata: {lastHitPosition}");
             }
         }
 
@@ -89,7 +89,7 @@ public class TurnManager : MonoBehaviour
             if (lastHitPosition != Vector3.zero)
             {
                 FocusOnLastPosition();
-                Debug.Log("Sposto la camera sulla posizione salvata.");
+                //Debug.Log("Sposto la camera sulla posizione salvata.");
             }
             else
             {
@@ -169,7 +169,7 @@ public class TurnManager : MonoBehaviour
     {
         if (cameraParent != null)
         {
-            Debug.Log($"Muovo la telecamera verso la posizione salvata: {lastHitPosition}");
+            //Debug.Log($"Muovo la telecamera verso la posizione salvata: {lastHitPosition}");
 
             // Muove il parent della telecamera verso l'ultima posizione salvata
             cameraParent.position = new Vector3(
@@ -181,10 +181,10 @@ public class TurnManager : MonoBehaviour
             // (Facoltativo) Riorienta la telecamera verso la posizione
             Camera.main.transform.LookAt(lastHitPosition);
 
-            Debug.Log("Telecamera spostata sulla posizione salvata.");
+            //Debug.Log("Telecamera spostata sulla posizione salvata.");
 
             timeManager.slowdownFactor = 0.01f;
-            timeManager.slowdownLength = 4f;
+            //timeManager.slowdownLength = 4f;           //Non è necessario aumentare il tempo
             timeManager.DoSlowmotion();  //Applica l'effetto SlowMotion
 
         }

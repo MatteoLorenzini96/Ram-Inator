@@ -3,6 +3,10 @@ using UnityEngine;
 public class AttivaFiglioOnCollision : MonoBehaviour
 {
     public int indiceFiglioDaAttivare = 0; // Indice del figlio da attivare (modificabile nell'Inspector)
+
+    [Header("Nome del SoundEffect da riprodurre")]
+    public string soundEffectName = "SpikeStar"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+
     private GameObject[] figli; // Lista dinamica dei figli dell'oggetto con cui si collide
 
     private void OnTriggerEnter(Collider other)
@@ -47,7 +51,7 @@ public class AttivaFiglioOnCollision : MonoBehaviour
                 }
 
                 // Distrugge l'oggetto a cui è assegnato lo script
-                AudioManager.Instance.PlaySFX("SpikeStar");
+                AudioManager.Instance.PlaySFX(soundEffectName); // Usa la variabile per chiamare il metodo
                 Destroy(gameObject); // Distrugge l'oggetto corrente
             }
             else

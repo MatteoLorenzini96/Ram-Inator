@@ -75,6 +75,7 @@ public class CollisionStateChanger : MonoBehaviour
     {
         Instantiate(replacementPrefab, transform.position, transform.rotation);
         Destroy(gameObject); // Distruggi l'oggetto attuale
+        AudioManager.Instance.PlaySFX("DestroyGlass");
     }
 
     // Metodo per cambiare lo stato

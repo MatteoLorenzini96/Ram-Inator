@@ -11,11 +11,17 @@ public class WreckingBallDrag : MonoBehaviour
     private Rigidbody rb;
     private Transform pivot;
     private bool noTouch =false;
+    private Vector3 initialPosition; // Posizione iniziale della palla
+    private Vector3 initialAnchorPosition; // Posizione iniziale del pivot
+    private bool isSwinging = false;
 
     public event Action<Vector3> OnRelease;
+    [Header("Tiper Per il reset")]
+    public float resetTime = 2.0f;
 
     [Header("Impostazioni di Velocità")]
     public float minVelocityToDrag = 1.0f; // Velocità minima per consentire il trascinamento
+    public float minVelocityToReset = 0.5f; // Velocità minima per considerare il reset
 
     void Start()
     {
@@ -33,6 +39,8 @@ public class WreckingBallDrag : MonoBehaviour
         }
 
         lastPosition = transform.position;
+        initialPosition = transform.position; // Salva la posizione iniziale della palla
+        initialAnchorPosition = pivot.position; // Salva la posizione iniziale del pivot
     }
 
     void Update()
@@ -52,6 +60,11 @@ public class WreckingBallDrag : MonoBehaviour
             currentVelocity = (transform.position - lastPosition) / Time.deltaTime;
 
             lastPosition = transform.position;
+        }
+
+        else if (rb != null && rb.linearVelocity.magnitude < minVelocityToReset && isSwinging == true)
+        {
+             Invoke("ResetPosition", resetTime);
         }
     }
 
@@ -93,6 +106,7 @@ public class WreckingBallDrag : MonoBehaviour
             OnRelease?.Invoke(currentVelocity);
         }
         isDragging = false;
+        isSwinging = true;
     }
 
     private Vector3 GetTouchWorldPosition()
@@ -115,4 +129,16 @@ public class WreckingBallDrag : MonoBehaviour
         inputPosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
         return Camera.main.ScreenToWorldPoint(inputPosition);
     }
+
+    private void ResetPosition()
+    {
+        transform.position = initialPosition; // Resetta la posizione della palla
+        pivot.position = initialAnchorPosition; // Resetta la posizione dell'anchor
+        rb.linearVelocity = Vector3.zero; // Resetta la velocità
+        rb.angularVelocity = Vector3.zero; // Resetta la velocità angolare
+        Debug.Log("Palla resettata alla posizione iniziale.");
+
+        isSwinging = false;
+    }
+
 }

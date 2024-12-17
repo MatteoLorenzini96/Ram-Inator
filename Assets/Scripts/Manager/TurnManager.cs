@@ -5,20 +5,23 @@ using TMPro;
 
 public class TurnManager : MonoBehaviour
 {
-    public float timerDuration = 10f;
-    public TextMeshProUGUI timerText;
-
     private TimeManager timeManager;
+    public int maxAttempts = 5; // Numero massimo di tentativi impostabile dall'inspector
+    public TextMeshProUGUI attemptsText;
+
     private Transform cameraParent; // Variabile per il parent della telecamera
     private List<GameObject> objectsWithCollisionStateChanger;
     private int initialObjectCount;
-    private float timer;
-    private bool timerRunning = false;
-    private bool isFirstTimerStarted = false; // Nuova variabile per controllare il primo avvio
+    private int remainingAttempts;
     private Vector3 lastHitPosition; // Posizione dell'ultimo oggetto colpito
 
     void Start()
     {
+        remainingAttempts = maxAttempts;
+
+        // Aggiorna il testo UI con il numero di tentativi
+        UpdateAttemptsText();
+
         // Cerca il parent della telecamera per nome
         GameObject cameraHolderObject = GameObject.Find("CameraHolder");
         if (cameraHolderObject != null)
@@ -59,86 +62,61 @@ public class TurnManager : MonoBehaviour
         {
             wreckingBallDrag.OnRelease += OnStopDragging;
         }
-
-        // Assicurati che il testo del timer sia inizialmente nascosto
-        if (timerText != null)
-        {
-            timerText.gameObject.SetActive(false);
-        }
     }
 
-    void Update()
+    private void Update()
     {
-        //Debug.Log($"Numero di oggetti nella lista: {objectsWithCollisionStateChanger.Count}");
-
-        if (objectsWithCollisionStateChanger.Count > 0)
         {
-            // Rimuove gli oggetti distrutti
-            objectsWithCollisionStateChanger.RemoveAll(obj => obj == null);
+            //Debug.Log($"Numero di oggetti nella lista: {objectsWithCollisionStateChanger.Count}");
 
-            // Aggiorna la posizione dell'ultimo oggetto
             if (objectsWithCollisionStateChanger.Count > 0)
             {
-                lastHitPosition = objectsWithCollisionStateChanger[0].transform.position;
-                //Debug.Log($"Ultima posizione aggiornata: {lastHitPosition}");
-            }
-        }
+                // Rimuove gli oggetti distrutti
+                objectsWithCollisionStateChanger.RemoveAll(obj => obj == null);
 
-        if (objectsWithCollisionStateChanger.Count == 0)
-        {
-            if (lastHitPosition != Vector3.zero)
-            {
-                FocusOnLastPosition();
-                //Debug.Log("Sposto la camera sulla posizione salvata.");
-            }
-            else
-            {
-                Debug.LogWarning("Lista vuota e nessuna posizione salvata.");
-            }
-        }
-
-        TimerManager();
-    }
-
-    private void TimerManager()
-    {
-        if (timerRunning)
-        {
-            timer -= Time.deltaTime;
-
-            if (timerText != null)
-            {
-                timerText.text = Mathf.Ceil(timer).ToString();
-
-                if (timer <= timerDuration / 2f)
+                // Aggiorna la posizione dell'ultimo oggetto
+                if (objectsWithCollisionStateChanger.Count > 0)
                 {
-                    timerText.gameObject.SetActive(true);
+                    lastHitPosition = objectsWithCollisionStateChanger[0].transform.position;
+                    //Debug.Log($"Ultima posizione aggiornata: {lastHitPosition}");
                 }
             }
 
-            if (timer <= 0f)
+            if (objectsWithCollisionStateChanger.Count == 0)
             {
-                timerRunning = false;
-                EvaluateObjects();
+                if (lastHitPosition != Vector3.zero)
+                {
+                    FocusOnLastPosition();
+                    //Debug.Log("Sposto la camera sulla posizione salvata.");
+                }
+                else
+                {
+                    Debug.LogWarning("Lista vuota e nessuna posizione salvata.");
+                }
             }
+
+            UpdateAttemptsText();
+        }
+    }
+
+    private void UpdateAttemptsText()
+    {
+        if (attemptsText != null)
+        {
+            attemptsText.text = "Tentativi: " + remainingAttempts;
         }
     }
 
     private void OnStopDragging(Vector3 releaseVelocity)
     {
-        if (isFirstTimerStarted)
-        {
-            return;
-        }
+        // Sottrai un tentativo e aggiorna il testo
+        remainingAttempts--;
+        UpdateAttemptsText();
 
-        timer = timerDuration;
-        timerRunning = true;
-        isFirstTimerStarted = true;
-
-        if (timerText != null)
+        // Se i tentativi sono finiti, valuta gli oggetti rimasti
+        if (remainingAttempts <= 0)
         {
-            timerText.gameObject.SetActive(false);
-            timerText.text = timerDuration.ToString();
+            EvaluateObjects();
         }
     }
 

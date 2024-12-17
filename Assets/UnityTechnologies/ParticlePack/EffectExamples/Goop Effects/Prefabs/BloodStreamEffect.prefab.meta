@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 59dd8dc912223e9418e1edffe86d2c9f
+timeCreated: 1473933328
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 4.0
+  assetPath: Assets/UnityTechnologies/ParticlePack/EffectExamples/Goop Effects/Prefabs/BloodStreamEffect.prefab
+  uploadId: 684565

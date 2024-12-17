@@ -10,10 +10,11 @@ public class WreckingBallDrag : MonoBehaviour
     private bool isDragging = false;
     private Rigidbody rb;
     private Transform pivot;
-    private bool noTouch =false;
+    private bool noTouch = false;
     private Vector3 initialPosition; // Posizione iniziale della palla
     private Vector3 initialAnchorPosition; // Posizione iniziale del pivot
     private bool isSwinging = false;
+    private GameObject filter;
 
     public event Action<Vector3> OnRelease;
     [Header("Tiper Per il reset")]
@@ -25,6 +26,13 @@ public class WreckingBallDrag : MonoBehaviour
 
     void Start()
     {
+        // Cerca il GameObject "Filtro", anche se è disattivato
+        filter = GameObject.Find("Filtro") ?? FindInactiveObjectByName("Filtro");
+        if (filter == null)
+        {
+            Debug.LogError("Filtro non trovato. Assicurati che esista un oggetto chiamato 'Filtro'.");
+        }
+
         controller = GetComponent<WreckingBallController>();
         if (controller == null)
         {
@@ -61,10 +69,9 @@ public class WreckingBallDrag : MonoBehaviour
 
             lastPosition = transform.position;
         }
-
         else if (rb != null && rb.linearVelocity.magnitude < minVelocityToReset && isSwinging == true)
         {
-             Invoke("ResetPosition", resetTime);
+            Invoke("ResetPosition", resetTime);
         }
     }
 
@@ -93,6 +100,16 @@ public class WreckingBallDrag : MonoBehaviour
             rb.isKinematic = true; // Disabilita la fisica per il trascinamento
             noTouch = false;
         }
+        
+        // Cambia il layer dell'oggetto in "NoContact"
+        gameObject.layer = LayerMask.NameToLayer("NoContact");
+
+        // Attiva il filtro
+        if (filter != null)
+        {
+            filter.SetActive(true);
+        }
+
         isDragging = true;
         lastPosition = transform.position;
     }
@@ -105,6 +122,16 @@ public class WreckingBallDrag : MonoBehaviour
 
             OnRelease?.Invoke(currentVelocity);
         }
+
+        // Riporta il layer dell'oggetto a "Default"
+        gameObject.layer = LayerMask.NameToLayer("Default");
+
+        // Disattiva il filtro
+        if (filter != null)
+        {
+            filter.SetActive(false);
+        }
+
         isDragging = false;
         isSwinging = true;
     }
@@ -141,4 +168,17 @@ public class WreckingBallDrag : MonoBehaviour
         isSwinging = false;
     }
 
+    // Metodo per trovare un oggetto disattivato per nome
+    private GameObject FindInactiveObjectByName(string name)
+    {
+        Transform[] allTransforms = Resources.FindObjectsOfTypeAll<Transform>();
+        foreach (Transform t in allTransforms)
+        {
+            if (t.gameObject.name == name)
+            {
+                return t.gameObject;
+            }
+        }
+        return null;
+    }
 }

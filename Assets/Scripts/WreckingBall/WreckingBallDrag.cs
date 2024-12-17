@@ -97,7 +97,7 @@ public class WreckingBallDrag : MonoBehaviour
 
         if (rb != null)
         {
-            rb.isKinematic = true; // Disabilita la fisica per il trascinamento
+            //rb.isKinematic = true; // Disabilita la fisica per il trascinamento
             noTouch = false;
         }
         
@@ -118,7 +118,7 @@ public class WreckingBallDrag : MonoBehaviour
     {
         if (rb != null && noTouch == false)
         {
-            rb.isKinematic = false;
+            //rb.isKinematic = false;
 
             OnRelease?.Invoke(currentVelocity);
         }

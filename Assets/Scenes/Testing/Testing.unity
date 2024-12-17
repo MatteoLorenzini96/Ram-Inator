@@ -429,6 +429,10 @@ PrefabInstance:
       value: Metal
       objectReference: {fileID: 0}
     - target: {fileID: 5586934934530356814, guid: 7237f54bf262d2c4db70e1bc12584247, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586934934530356814, guid: 7237f54bf262d2c4db70e1bc12584247, type: 3}
       propertyPath: m_TagString
       value: Metallo
       objectReference: {fileID: 0}

@@ -588,8 +588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00d5f9f165cb4b49acf0180f12533ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDuration: 10
-  timerText: {fileID: 5436785137748911084}
+  maxAttempts: 5
+  attemptsText: {fileID: 5436785137748911084}
 --- !u!1 &4712629691915282946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,12 +2174,12 @@ GameObject:
   - component: {fileID: 4323161471297942420}
   - component: {fileID: 5436785137748911084}
   m_Layer: 5
-  m_Name: Timer
+  m_Name: ConteggioTry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6497944526213576610
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2227,7 +2227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Timer Fine Turno
+  m_text: N
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2974,6 +2974,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7471751352102114813}
     m_Modifications:
+    - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: minVelocityToDrag
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: minVelocityToReset
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 3404416647223233437, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: startPoint
       value: 

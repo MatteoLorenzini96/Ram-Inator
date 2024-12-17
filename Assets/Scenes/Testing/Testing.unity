@@ -176,17 +176,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97d6cc18b0308b84f8915e1a7b60ca13, type: 3}
---- !u!114 &185153881 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5436785137748911084, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-  m_PrefabInstance: {fileID: 535993668}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &206557275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -260,10 +249,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab level
       objectReference: {fileID: 0}
-    - target: {fileID: 5436785137748911084, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-      propertyPath: m_text
-      value: N
-      objectReference: {fileID: 0}
     - target: {fileID: 7471751352102114813, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -303,26 +288,6 @@ PrefabInstance:
     - target: {fileID: 7471751352102114813, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8004145779967205496, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-      propertyPath: m_Name
-      value: ConteggioTry
-      objectReference: {fileID: 0}
-    - target: {fileID: 8004145779967205496, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8128557981379640676, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-      propertyPath: attemptsText
-      value: 
-      objectReference: {fileID: 185153881}
-    - target: {fileID: 9094845976590909555, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-      propertyPath: minVelocityToDrag
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094845976590909555, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
-      propertyPath: minVelocityToReset
-      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

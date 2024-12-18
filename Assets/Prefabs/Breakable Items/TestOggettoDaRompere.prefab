@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4186290800781622724}
   - component: {fileID: 3055768989094932960}
   - component: {fileID: 7245966533233146840}
+  - component: {fileID: -358092688193558308}
   m_Layer: 0
   m_Name: TestOggettoDaRompere
   m_TagString: DestroyOnImpact
@@ -121,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c6952b32244ad4ca060ef1516e467d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundEffectName: DestroyGlass
   lowSpeedThreshold: 5
   highSpeedThreshold: 8
   viteoggetto: 2
@@ -128,3 +130,16 @@ MonoBehaviour:
   destroyableHeads:
   - ImpactHead
   currentState: 0
+--- !u!114 &-358092688193558308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221808563429290959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12f9bd8027361245bf488c2279e14a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opacityWhenDragging: 0.5

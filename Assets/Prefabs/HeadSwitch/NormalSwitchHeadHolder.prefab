@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6169944688419149435}
   - component: {fileID: 9150172810053961488}
   - component: {fileID: 4404975650038348818}
+  - component: {fileID: 5364893084497656057}
   m_Layer: 0
   m_Name: NormalHeadSwitchModel
   m_TagString: Untagged
@@ -86,6 +87,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5364893084497656057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471617047703164959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12f9bd8027361245bf488c2279e14a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opacityWhenDragging: 0.5
 --- !u!1 &7590307738706420016
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indiceFiglioDaAttivare: 0
+  soundEffectName: DestroyGlass
 --- !u!114 &-5502450617996656479
 MonoBehaviour:
   m_ObjectHideFlags: 0

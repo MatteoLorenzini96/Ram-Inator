@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indiceFiglioDaAttivare: 2
+  soundEffectName: DestroyGlass
 --- !u!114 &-5886863127725775837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +95,7 @@ GameObject:
   - component: {fileID: 1077370812400781054}
   - component: {fileID: 7265333991026743391}
   - component: {fileID: 8025928198850693640}
+  - component: {fileID: 4186594688606621717}
   m_Layer: 0
   m_Name: ImpactHeadSwitchModel
   m_TagString: Untagged
@@ -169,3 +171,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4186594688606621717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197721595938504832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12f9bd8027361245bf488c2279e14a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opacityWhenDragging: 0.5

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1743378518017992184}
   - component: {fileID: 3361057402118739521}
   - component: {fileID: 6851218654832453806}
+  - component: {fileID: 4068583193285536078}
   m_Layer: 0
   m_Name: SpikeHeadSwitchModel
   m_TagString: Untagged
@@ -86,6 +87,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4068583193285536078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026586903025874963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12f9bd8027361245bf488c2279e14a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opacityWhenDragging: 0.5
 --- !u!1 &8689187533906810029
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +112,6 @@ GameObject:
   - component: {fileID: 8670683028836087325}
   - component: {fileID: 8371628128626255847}
   - component: {fileID: 3410150256187503374}
-  - component: {fileID: 1054069836213453980}
   m_Layer: 0
   m_Name: SpikeSwitchHeadHolder
   m_TagString: Untagged
@@ -156,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indiceFiglioDaAttivare: 1
+  soundEffectName: DestroyGlass
 --- !u!114 &3410150256187503374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,18 +184,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation: {x: 0, y: 10, z: 0}
   speed: 5
---- !u!114 &1054069836213453980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8689187533906810029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []

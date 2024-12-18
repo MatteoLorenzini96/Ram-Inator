@@ -50,12 +50,9 @@ public class WreckingBallDrag : MonoBehaviour
                 touchPosition = pivot.position + direction.normalized * controller.distance;
             }
 
-            Vector3 targetVelocity = (touchPosition - transform.position) / Time.deltaTime;
-            Vector3 force = rb.mass * (targetVelocity - rb.linearVelocity) / Time.deltaTime;
+            transform.position = touchPosition;
 
-            rb.AddForce(force, ForceMode.Force);
-
-            currentVelocity = rb.linearVelocity; // Aggiorna la velocità corrente
+            currentVelocity = (transform.position - lastPosition) / Time.deltaTime;
 
             lastPosition = transform.position;
         }
@@ -64,7 +61,6 @@ public class WreckingBallDrag : MonoBehaviour
             Invoke("ResetPosition", resetTime);
         }
     }
-
 
     void OnMouseDown()
     {
@@ -88,7 +84,7 @@ public class WreckingBallDrag : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("NoContact");
 
         isDragging = true;
-        
+
         lastPosition = transform.position;
         initialPosition = transform.position; // Salva la posizione iniziale della palla
         initialAnchorPosition = pivot.position; // Salva la posizione iniziale del pivot

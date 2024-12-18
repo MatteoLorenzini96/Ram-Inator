@@ -45,6 +45,7 @@ public class TurnManager : MonoBehaviour
 
         // Trova tutti gli oggetti con lo script "CollisionStateChanger" e crea l'indice
         objectsWithCollisionStateChanger = new List<GameObject>();
+#pragma warning disable CS0618 // Il tipo o il membro è obsoleto
         foreach (var obj in FindObjectsOfType<MonoBehaviour>())
         {
             if (obj.GetComponent<CollisionStateChanger>() != null)
@@ -52,6 +53,7 @@ public class TurnManager : MonoBehaviour
                 objectsWithCollisionStateChanger.Add(obj.gameObject);
             }
         }
+#pragma warning restore CS0618 // Il tipo o il membro è obsoleto
 
         // Salva il numero iniziale di oggetti
         initialObjectCount = objectsWithCollisionStateChanger.Count;

@@ -21,6 +21,9 @@ public class WreckingBallDrag : MonoBehaviour
     [Header("Impostazioni di Velocità")]
     public float minVelocityToReset = 0.5f; // Velocità minima per considerare il reset
 
+    [Header("Layer per le collisioni")]
+    public LayerMask collisionLayer; // Definisce quale layer il raycast deve rilevare
+
     void Start()
     {
         controller = GetComponent<WreckingBallController>();
@@ -35,6 +38,9 @@ public class WreckingBallDrag : MonoBehaviour
         {
             Debug.LogError("Pivot non trovato, assicurati che AutoConfigurableJoint sia configurato correttamente.");
         }
+
+        // Imposta il LayerMask per il raycast, che in questo caso è "Muro"
+        collisionLayer = LayerMask.GetMask("Muro"); // Assicurati che il layer "Muro" esista e sia configurato in Unity
     }
 
     void Update()
@@ -43,17 +49,23 @@ public class WreckingBallDrag : MonoBehaviour
         {
             Vector3 touchPosition = GetTouchWorldPosition();
 
-            Vector3 direction = touchPosition - pivot.position;
-            if (direction.magnitude > controller.distance)
+            Vector3 direction = touchPosition - rb.position;
+            float distance = direction.magnitude;
+
+            // Controlla se c'è un ostacolo nella direzione del movimento solo nei layer specificati
+            if (Physics.Raycast(rb.position, direction.normalized, out RaycastHit hit, distance, collisionLayer))
             {
-                touchPosition = pivot.position + direction.normalized * controller.distance;
+                // Se il raycast trova un ostacolo, limita la posizione al punto di collisione
+                touchPosition = hit.point - direction.normalized * 0.1f; // Aggiungi un margine di distanza
             }
 
-            transform.position = touchPosition;
+            // Muove il rigidbody verso la nuova posizione
+            rb.MovePosition(touchPosition);
 
-            currentVelocity = (transform.position - lastPosition) / Time.deltaTime;
+            // Calcola la velocità corrente
+            currentVelocity = (rb.position - lastPosition) / Time.deltaTime;
 
-            lastPosition = transform.position;
+            lastPosition = rb.position;
         }
         else if (rb != null && rb.linearVelocity.magnitude < minVelocityToReset && isSwinging == true)
         {

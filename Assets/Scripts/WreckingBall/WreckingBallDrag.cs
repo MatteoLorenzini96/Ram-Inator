@@ -20,6 +20,7 @@ public class WreckingBallDrag : MonoBehaviour
 
     [Header("Impostazioni di Velocità")]
     public float minVelocityToReset = 0.5f; // Velocità minima per considerare il reset
+    public float minVelocityToDrag = 0.01f; // Velocità minima per consentire il trascinamento
 
     void Start()
     {
@@ -49,9 +50,12 @@ public class WreckingBallDrag : MonoBehaviour
                 touchPosition = pivot.position + direction.normalized * controller.distance;
             }
 
-            transform.position = touchPosition;
+            Vector3 targetVelocity = (touchPosition - transform.position) / Time.deltaTime;
+            Vector3 force = rb.mass * (targetVelocity - rb.linearVelocity) / Time.deltaTime;
 
-            currentVelocity = (transform.position - lastPosition) / Time.deltaTime;
+            rb.AddForce(force, ForceMode.Force);
+
+            currentVelocity = rb.linearVelocity; // Aggiorna la velocità corrente
 
             lastPosition = transform.position;
         }
@@ -60,6 +64,7 @@ public class WreckingBallDrag : MonoBehaviour
             Invoke("ResetPosition", resetTime);
         }
     }
+
 
     void OnMouseDown()
     {
@@ -73,6 +78,12 @@ public class WreckingBallDrag : MonoBehaviour
 
     private void StartDragging()
     {
+        if (rb != null && rb.linearVelocity.magnitude > minVelocityToDrag)
+        {
+            //Debug.Log("La palla si sta muovendo troppo velocemente per essere trascinata.");
+            return; // Esci dalla funzione senza attivare il trascinamento
+        }
+
         // Cambia il layer dell'oggetto in "NoContact"
         gameObject.layer = LayerMask.NameToLayer("NoContact");
 

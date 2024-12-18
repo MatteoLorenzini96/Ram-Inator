@@ -3058,6 +3058,10 @@ PrefabInstance:
       propertyPath: minVelocityToReset
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: collisionLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 3404416647223233437, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: startPoint
       value: 

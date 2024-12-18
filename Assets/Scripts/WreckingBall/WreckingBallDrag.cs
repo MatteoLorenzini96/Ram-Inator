@@ -10,29 +10,19 @@ public class WreckingBallDrag : MonoBehaviour
     private bool isDragging = false;
     private Rigidbody rb;
     private Transform pivot;
-    private bool noTouch = false;
     private Vector3 initialPosition; // Posizione iniziale della palla
     private Vector3 initialAnchorPosition; // Posizione iniziale del pivot
     private bool isSwinging = false;
-    private GameObject filter;
 
     public event Action<Vector3> OnRelease;
     [Header("Tiper Per il reset")]
     public float resetTime = 2.0f;
 
     [Header("Impostazioni di Velocità")]
-    public float minVelocityToDrag = 1.0f; // Velocità minima per consentire il trascinamento
     public float minVelocityToReset = 0.5f; // Velocità minima per considerare il reset
 
     void Start()
     {
-        // Cerca il GameObject "Filtro", anche se è disattivato
-        filter = GameObject.Find("Filtro") ?? FindInactiveObjectByName("Filtro");
-        if (filter == null)
-        {
-            Debug.LogError("Filtro non trovato. Assicurati che esista un oggetto chiamato 'Filtro'.");
-        }
-
         controller = GetComponent<WreckingBallController>();
         if (controller == null)
         {
@@ -45,10 +35,6 @@ public class WreckingBallDrag : MonoBehaviour
         {
             Debug.LogError("Pivot non trovato, assicurati che AutoConfigurableJoint sia configurato correttamente.");
         }
-
-        lastPosition = transform.position;
-        initialPosition = transform.position; // Salva la posizione iniziale della palla
-        initialAnchorPosition = pivot.position; // Salva la posizione iniziale del pivot
     }
 
     void Update()
@@ -87,50 +73,22 @@ public class WreckingBallDrag : MonoBehaviour
 
     private void StartDragging()
     {
-        // Controlla se la velocità attuale supera il limite
-        if (rb != null && rb.linearVelocity.magnitude > minVelocityToDrag)
-        {
-            noTouch = true;
-            Debug.Log("La palla si sta muovendo troppo velocemente per essere trascinata.");
-            return; // Esci dalla funzione senza attivare il trascinamento
-        }
-
-        if (rb != null)
-        {
-            //rb.isKinematic = true; // Disabilita la fisica per il trascinamento
-            noTouch = false;
-        }
-        
         // Cambia il layer dell'oggetto in "NoContact"
         gameObject.layer = LayerMask.NameToLayer("NoContact");
 
-        // Attiva il filtro
-        if (filter != null)
-        {
-            filter.SetActive(true);
-        }
-
         isDragging = true;
+        
         lastPosition = transform.position;
+        initialPosition = transform.position; // Salva la posizione iniziale della palla
+        initialAnchorPosition = pivot.position; // Salva la posizione iniziale del pivot
     }
 
     public void StopDragging()
     {
-        if (rb != null && noTouch == false)
-        {
-            //rb.isKinematic = false;
-
-            OnRelease?.Invoke(currentVelocity);
-        }
+        OnRelease?.Invoke(currentVelocity);
 
         // Riporta il layer dell'oggetto a "Default"
         gameObject.layer = LayerMask.NameToLayer("Default");
-
-        // Disattiva il filtro
-        if (filter != null)
-        {
-            filter.SetActive(false);
-        }
 
         isDragging = false;
         isSwinging = true;
@@ -166,19 +124,5 @@ public class WreckingBallDrag : MonoBehaviour
         Debug.Log("Palla resettata alla posizione iniziale.");
 
         isSwinging = false;
-    }
-
-    // Metodo per trovare un oggetto disattivato per nome
-    private GameObject FindInactiveObjectByName(string name)
-    {
-        Transform[] allTransforms = Resources.FindObjectsOfTypeAll<Transform>();
-        foreach (Transform t in allTransforms)
-        {
-            if (t.gameObject.name == name)
-            {
-                return t.gameObject;
-            }
-        }
-        return null;
     }
 }

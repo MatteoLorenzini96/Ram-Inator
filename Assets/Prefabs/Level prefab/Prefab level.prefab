@@ -3070,6 +3070,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WrekingBallHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 5945715059981181714, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6447147220986646097, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

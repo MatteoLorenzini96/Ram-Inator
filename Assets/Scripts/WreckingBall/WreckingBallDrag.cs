@@ -12,7 +12,7 @@ public class WreckingBallDrag : MonoBehaviour
     private Transform pivot;
     private Vector3 initialPosition; // Posizione iniziale della palla
     private Vector3 initialAnchorPosition; // Posizione iniziale del pivot
-    private bool isSwinging = false;
+    public bool isSwinging = false;
 
     public event Action<Vector3> OnRelease;
     [Header("Tiper Per il reset")]

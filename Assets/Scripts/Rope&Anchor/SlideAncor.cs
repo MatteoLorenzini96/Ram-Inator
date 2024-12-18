@@ -11,10 +11,19 @@ public class SlideAncor : MonoBehaviour
     private Transform selectedObject; // Oggetto selezionato
     private float offsetX;         // Offset tra il tocco/mouse e l'oggetto
     private Camera mainCamera;     // Riferimento alla camera principale
+    private WreckingBallDrag wreckingBallDrag;    // Riferimento al componente WreckingBallDrag
 
     public bool anchorMoving = false;
     void Start()
     {
+        // Cerca automaticamente lo script WreckingBallDrag
+        wreckingBallDrag = FindFirstObjectByType<WreckingBallDrag>();
+        if (wreckingBallDrag == null)
+        {
+            Debug.LogError("WreckingBallDrag non trovato");
+            return;
+        }
+
         // Cache della camera principale
         mainCamera = Camera.main;
 
@@ -32,6 +41,8 @@ public class SlideAncor : MonoBehaviour
 
     void Update()
     {
+        if (!wreckingBallDrag.isSwinging) 
+        { 
         // Controlla input mouse o touch
         if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
@@ -77,6 +88,7 @@ public class SlideAncor : MonoBehaviour
             selectedObject = null;
 
             anchorMoving = false;                     // Imposta anchorMoving a false
+        }
         }
     }
 

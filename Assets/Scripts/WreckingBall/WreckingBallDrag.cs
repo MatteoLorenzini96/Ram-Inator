@@ -7,7 +7,7 @@ public class WreckingBallDrag : MonoBehaviour
 
     private Vector3 lastPosition; // Ultima posizione aggiornata
     private Vector3 currentVelocity; // Velocità attuale
-    private bool isDragging = false;
+    public bool isDragging = false;
     private Rigidbody rb;
     private Transform pivot;
     private Vector3 initialPosition; // Posizione iniziale della palla
@@ -136,6 +136,8 @@ public class WreckingBallDrag : MonoBehaviour
         pivot.position = initialAnchorPosition; // Resetta la posizione dell'anchor
         rb.linearVelocity = Vector3.zero; // Resetta la velocità
         rb.angularVelocity = Vector3.zero; // Resetta la velocità angolare
+        gameObject.layer = LayerMask.NameToLayer("NoContact");
+
         Debug.Log("Palla resettata alla posizione iniziale.");
 
         isSwinging = false;

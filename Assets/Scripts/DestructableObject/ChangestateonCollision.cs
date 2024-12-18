@@ -6,8 +6,11 @@ public class CollisionStateChanger : MonoBehaviour
 
     private TimeManager timeManager;
 
-    [Header("Nome del SoundEffect da riprodurre")]
-    public string soundEffectName = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+    [Header("SoundEffect da riprodurre al cambio di stato")]
+    public string soundEffectIntegro = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+    public string soundEffectDanneggiato = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+    public string soundEffectDestroy = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+
 
     [Header("Soglie di velocità")]
     // Soglie di velocità per cambiare stato
@@ -67,12 +70,16 @@ public class CollisionStateChanger : MonoBehaviour
                     if (relativeSpeed < lowSpeedThreshold)
                     {
                         ChangeState(ObjectState.Idle);
+                        AudioManager.Instance.PlaySFX(soundEffectIntegro); // Usa la variabile per chiamare il metodo
                     }
+
                     else if (relativeSpeed >= lowSpeedThreshold && relativeSpeed < highSpeedThreshold)
                     {
                         ChangeState(ObjectState.LowImpact);
                         viteoggetto = viteoggetto - 1;
+                        AudioManager.Instance.PlaySFX(soundEffectDanneggiato); // Usa la variabile per chiamare il metodo
                     }
+
                     else if (relativeSpeed >= highSpeedThreshold)
                     {
                     ChangeState(ObjectState.HighImpact);
@@ -99,7 +106,7 @@ public class CollisionStateChanger : MonoBehaviour
 
         Instantiate(replacementPrefab, transform.position, transform.rotation);
         Destroy(gameObject); // Distruggi l'oggetto attuale
-        AudioManager.Instance.PlaySFX(soundEffectName); // Usa la variabile per chiamare il metodo
+        AudioManager.Instance.PlaySFX(soundEffectDestroy); // Usa la variabile per chiamare il metodo
     }
 
     // Metodo per cambiare lo stato

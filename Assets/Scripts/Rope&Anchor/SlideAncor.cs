@@ -12,6 +12,7 @@ public class SlideAncor : MonoBehaviour
     private float offsetX;         // Offset tra il tocco/mouse e l'oggetto
     private Camera mainCamera;     // Riferimento alla camera principale
 
+    public bool anchorMoving = false;
     void Start()
     {
         // Cache della camera principale
@@ -48,6 +49,8 @@ public class SlideAncor : MonoBehaviour
                     // Calcola l'offset tra la posizione del tocco/mouse e l'oggetto
                     Vector3 worldInputPosition = mainCamera.ScreenToWorldPoint(new Vector3(inputPosition.x, inputPosition.y, mainCamera.WorldToScreenPoint(selectedObject.position).z));
                     offsetX = selectedObject.position.x - worldInputPosition.x;
+
+                    anchorMoving = true;                     // Imposta anchorMoving a true
                 }
             }
         }
@@ -72,6 +75,8 @@ public class SlideAncor : MonoBehaviour
         if (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended))
         {
             selectedObject = null;
+
+            anchorMoving = false;                     // Imposta anchorMoving a false
         }
     }
 

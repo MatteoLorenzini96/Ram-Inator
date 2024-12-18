@@ -7,6 +7,7 @@ public class MaterialOpacityController : MonoBehaviour
 
     // Riferimento al componente WreckingBallDrag
     private WreckingBallDrag wreckingBallDrag;
+    private SlideAncor slideAncor;
 
     // Materiale originale e colore iniziale
     private Material objectMaterial;
@@ -14,11 +15,19 @@ public class MaterialOpacityController : MonoBehaviour
 
     void Start()
     {
+        // Cerca automaticamente lo script SlideAncor
+        slideAncor = FindFirstObjectByType<SlideAncor>();
+        if (slideAncor == null)
+        {
+            Debug.LogError("SlideAncor non trovato");
+            return;
+        }
+
         // Cerca automaticamente lo script WreckingBallDrag
         wreckingBallDrag = FindFirstObjectByType<WreckingBallDrag>();
         if (wreckingBallDrag == null)
         {
-            Debug.LogError("WreckingBallDrag non trovato su " + gameObject.name);
+            Debug.LogError("WreckingBallDrag non trovato");
             return;
         }
 
@@ -37,10 +46,10 @@ public class MaterialOpacityController : MonoBehaviour
 
     void Update()
     {
-        if (wreckingBallDrag == null || objectMaterial == null) return;
+        if (wreckingBallDrag == null || objectMaterial == null || slideAncor ==null) return;
 
-        // Controlla lo stato di isDragging e modifica il colore
-        if (wreckingBallDrag.isDragging)
+        // Controlla lo stato di isDragging e slideAncor e modifica il colore
+        if (wreckingBallDrag.isDragging || slideAncor.anchorMoving == true)
         {
             // Imposta il colore con l'opacità ridotta
             objectMaterial.color = new Color(originalColor.r * 0.5f, originalColor.g * 0.5f, originalColor.b * 0.5f, opacityWhenDragging);

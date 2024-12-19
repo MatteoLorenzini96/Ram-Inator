@@ -58,6 +58,8 @@ public class CollisionStateChanger : MonoBehaviour
         // Controlla se l'oggetto che ha colpito ha il tag corretto
         if (collision.gameObject.CompareTag("Palla")){
 
+            AudioManager.Instance.PlaySFX(soundEffectIntegro); // Usa la variabile per chiamare il metodo
+
             // Cerca nei figli dell'oggetto con il tag "Palla"
             foreach (Transform child in collision.transform){
 
@@ -70,7 +72,6 @@ public class CollisionStateChanger : MonoBehaviour
                     if (relativeSpeed < lowSpeedThreshold)
                     {
                         ChangeState(ObjectState.Idle);
-                        AudioManager.Instance.PlaySFX(soundEffectIntegro); // Usa la variabile per chiamare il metodo
                     }
 
                     else if (relativeSpeed >= lowSpeedThreshold && relativeSpeed < highSpeedThreshold)

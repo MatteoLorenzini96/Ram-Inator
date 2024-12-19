@@ -3399,6 +3399,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d0b2a16bf54e0048b68b0a4629ddf2d, type: 3}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[1].clip
       value: 
       objectReference: {fileID: 8300000, guid: 8644850827850ff4eafabcef5b71d0b8, type: 3}
@@ -3417,26 +3421,26 @@ PrefabInstance:
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[3].clip
       value: 
-      objectReference: {fileID: 8300000, guid: a81d5b558e4246647b688dd1eac2cb4b, type: 3}
+      objectReference: {fileID: 8300000, guid: 2a2abfe62dfdcdf4284a7b392499bd68, type: 3}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[3].name
-      value: DestroyWood
+      value: WoodTap
       objectReference: {fileID: 0}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[4].clip
       value: 
-      objectReference: {fileID: 8300000, guid: a9206595e138540479f66045a4526daa, type: 3}
+      objectReference: {fileID: 8300000, guid: 1239615a43ea7214796edeac9a1b19cb, type: 3}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[4].name
-      value: WoodTap
+      value: WoodDamaged
       objectReference: {fileID: 0}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[5].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 2a2abfe62dfdcdf4284a7b392499bd68, type: 3}
+      objectReference: {fileID: 8300000, guid: a81d5b558e4246647b688dd1eac2cb4b, type: 3}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[5].name
-      value: WoodDamaged
+      value: DestroyWood
       objectReference: {fileID: 0}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[6].clip

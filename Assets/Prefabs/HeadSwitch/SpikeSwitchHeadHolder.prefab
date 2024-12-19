@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indiceFiglioDaAttivare: 1
-  soundEffectName: DestroyGlass
+  soundEffectName: SpikeStar
 --- !u!114 &3410150256187503374
 MonoBehaviour:
   m_ObjectHideFlags: 0

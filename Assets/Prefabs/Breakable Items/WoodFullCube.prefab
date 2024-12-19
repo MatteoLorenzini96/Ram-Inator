@@ -101,7 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c6952b32244ad4ca060ef1516e467d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffectName: DestroyWood
+  soundEffectIntegro: WoodTap
+  soundEffectDanneggiato: WoodDamaged
+  soundEffectDestroy: DestroyGlass
   lowSpeedThreshold: 4
   highSpeedThreshold: 8
   viteoggetto: 2

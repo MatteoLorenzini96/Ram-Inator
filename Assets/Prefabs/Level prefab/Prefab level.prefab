@@ -3340,7 +3340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[1].clip
@@ -3414,6 +3414,14 @@ PrefabInstance:
       propertyPath: sfxSounds.Array.data[9].name
       value: NormalStar
       objectReference: {fileID: 0}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ca39aa1b1d80bc54697b64ee5a8915c1, type: 3}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[10].name
+      value: MetalWiggle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3444,6 +3452,10 @@ PrefabInstance:
       propertyPath: collisionLayer.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 1814656833695752560, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ce4b77858ec6c0f469b07b034c21a85f, type: 2}
     - target: {fileID: 3404416647223233437, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: startPoint
       value: 

@@ -121,6 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b31d128e1d426341aff2b42aca70d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffectNormalHeadHit: 
-  soundEffectSpikeHeadHit: 
-  soundEffectImpactHeadHit: 
+  soundEffectNormalHeadHit: MetalTap
+  soundEffectSpikeHeadHit: MetalCrash
+  soundEffectImpactHeadHit: MetalWiggle

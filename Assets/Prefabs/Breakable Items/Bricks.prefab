@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3306323690472837593}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2461147, y: 4.036195, z: -0.53730625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -142,10 +142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c6952b32244ad4ca060ef1516e467d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffectName: DestroyGlass
+  soundEffectIntegro: DestroyGlass
+  soundEffectDanneggiato: DestroyGlass
+  soundEffectDestroy: DestroyGlass
   lowSpeedThreshold: 5
   highSpeedThreshold: 10
   viteoggetto: 2
-  replacementPrefab: {fileID: 0}
-  destroyableHeads: []
+  replacementPrefab: {fileID: 4540458313395115963, guid: 9057eb7baeb1ba14f919b4b6294ca950, type: 3}
+  destroyableHeads:
+  - SpikeHead
   currentState: 0

@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffectIntegro: BrickTap
-  soundEffectDanneggiato: DestroyGlass
-  soundEffectDestroy: DestroyGlass
+  soundEffectDanneggiato: BrickDamaged
+  soundEffectDestroy: BrickDestroy
   lowSpeedThreshold: 5
   highSpeedThreshold: 10
   viteoggetto: 2

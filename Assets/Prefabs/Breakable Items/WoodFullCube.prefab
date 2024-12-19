@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffectIntegro: WoodTap
   soundEffectDanneggiato: WoodDamaged
-  soundEffectDestroy: DestroyGlass
+  soundEffectDestroy: DestroyWood
   lowSpeedThreshold: 4
   highSpeedThreshold: 8
   viteoggetto: 2

@@ -3340,7 +3340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[1].clip
@@ -3353,26 +3353,66 @@ PrefabInstance:
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[2].clip
       value: 
-      objectReference: {fileID: 8300000, guid: a81d5b558e4246647b688dd1eac2cb4b, type: 3}
+      objectReference: {fileID: 8300000, guid: 4166b9893b9ceb0408175c977c9d6ce4, type: 3}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[2].name
-      value: DestroyWood
+      value: ImpactStar
       objectReference: {fileID: 0}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[3].clip
       value: 
-      objectReference: {fileID: 8300000, guid: a9206595e138540479f66045a4526daa, type: 3}
+      objectReference: {fileID: 8300000, guid: a81d5b558e4246647b688dd1eac2cb4b, type: 3}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[3].name
-      value: WoodTap
+      value: DestroyWood
       objectReference: {fileID: 0}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[4].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 2a2abfe62dfdcdf4284a7b392499bd68, type: 3}
+      objectReference: {fileID: 8300000, guid: a9206595e138540479f66045a4526daa, type: 3}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[4].name
+      value: WoodTap
+      objectReference: {fileID: 0}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a2abfe62dfdcdf4284a7b392499bd68, type: 3}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[5].name
       value: WoodDamaged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fc18d1c68f430c243be8877a178eec6b, type: 3}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[6].name
+      value: MetalTap
+      objectReference: {fileID: 0}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f3557730a3fb664b9031d34178994bb, type: 3}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[7].name
+      value: MetalCrash
+      objectReference: {fileID: 0}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 94050ecd5b01383469163279fe16a223, type: 3}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[8].name
+      value: GlassTap
+      objectReference: {fileID: 0}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b64cdfd357813c24f9cd188083dac907, type: 3}
+    - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
+      propertyPath: sfxSounds.Array.data[9].name
+      value: NormalStar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

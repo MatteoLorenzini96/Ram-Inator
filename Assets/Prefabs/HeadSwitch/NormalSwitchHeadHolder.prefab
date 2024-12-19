@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indiceFiglioDaAttivare: 0
-  soundEffectName: DestroyGlass
+  soundEffectName: NormalStar
 --- !u!114 &-5502450617996656479
 MonoBehaviour:
   m_ObjectHideFlags: 0

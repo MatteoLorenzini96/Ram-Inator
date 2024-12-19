@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu/MainMenu.unity
+    guid: ded5e93b22e6784408c9341f7d8649ab
+  - enabled: 1
     path: Assets/Scenes/Testing/Testing.unity
-    guid: cc61881503102d94599ca1947e62a31c
+    guid: e16e6f10d6dd06545a9b137b8dbbfdcf
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 13e04c0c29fd7064d946ba8a30c4bc82, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

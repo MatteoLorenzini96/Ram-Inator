@@ -3,6 +3,46 @@ using UnityEngine.SceneManagement; // Necessario per gestire le scene
 
 public class MenuController : MonoBehaviour
 {
+
+    public GameObject soundPanel;
+    public GameObject backgroundPanel;
+
+    public void TogglePlayPanel()
+    {
+        // Se il riferimento non è assegnato, cerca automaticamente
+        if (backgroundPanel == null)
+        {
+            backgroundPanel = GameObject.Find("BackgroundPanel");
+            if (backgroundPanel == null)
+            {
+                Debug.LogError("BackgroundPanel non trovato nella scena. Assicurati che l'oggetto sia chiamato 'BackgroundPanel' o assegnalo manualmente.");
+                return;
+            }
+        }
+
+        backgroundPanel.SetActive(true);
+        soundPanel.SetActive(false);
+
+    }
+
+    public void ToggleSoundPanel()
+    {
+        // Se il riferimento non è assegnato, cerca automaticamente
+        if (soundPanel == null)
+        {
+            soundPanel = GameObject.Find("SoundPanel");
+            if (soundPanel == null)
+            {
+                Debug.LogError("SoundPanel non trovato nella scena. Assicurati che l'oggetto sia chiamato 'SoundPanel' o assegnalo manualmente.");
+                return;
+            }
+        }
+
+        backgroundPanel.SetActive(false);
+        soundPanel.SetActive(true);
+    }
+
+
     // Metodo per caricare la scena successiva
     public void NextScene()
     {

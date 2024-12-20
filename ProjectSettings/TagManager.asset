@@ -8,6 +8,7 @@ TagManager:
   - Palla
   - Metallo
   - DestroyOnImpact
+  - Fragment
   layers:
   - Default
   - TransparentFX

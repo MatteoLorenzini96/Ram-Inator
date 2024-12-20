@@ -54,6 +54,7 @@ public class SpikeCollision : MonoBehaviour
                 if (child.gameObject.activeSelf && child.name == spikeHeadName)
                 {
                     isSpikeHeadActive = true;
+                    //Debug.Log("SpikeHead attiva");
                     break;
                 }
             }

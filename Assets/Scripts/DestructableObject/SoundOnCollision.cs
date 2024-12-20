@@ -7,11 +7,17 @@ public class SoundOnCollision : MonoBehaviour
     public string soundEffectSpikeHeadHit;
     public string soundEffectImpactHeadHit;
 
+    // Controlla se la collisione è già stata gestita per evitare duplicazioni
+    private bool collisionHandled = false;
+
     private void OnCollisionEnter(Collision collision)
     {
         // Controlla se l'oggetto in collisione ha il tag "Palla"
-        if (collision.gameObject.CompareTag("Palla"))
+        if (collision.gameObject.CompareTag("Palla") && !collisionHandled)
         {
+            // Flag per indicare che la collisione è gestita
+            collisionHandled = true;
+
             // Itera tra i figli dell'oggetto per verificare quale è attivo
             foreach (Transform child in collision.gameObject.transform)
             {
@@ -41,6 +47,15 @@ public class SoundOnCollision : MonoBehaviour
                     break;
                 }
             }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        // Reset il flag quando la collisione termina
+        if (collision.gameObject.CompareTag("Palla"))
+        {
+            collisionHandled = false;
         }
     }
 }

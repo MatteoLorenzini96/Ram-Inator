@@ -14,12 +14,17 @@ public class WreckingBallDrag : MonoBehaviour
     private Vector3 initialAnchorPosition; // Posizione iniziale del pivot
     public bool isSwinging = false;
 
-    public event Action<Vector3> OnRelease;
-    [Header("Tiper Per il reset")]
-    public float resetTime = 2.0f;
+    private Vector3 resetCheckStartPosition; // Posizione all'inizio del controllo di spostamento
+    private float resetCheckStartTime; // Tempo all'inizio del controllo di spostamento
 
-    [Header("Impostazioni di Velocità")]
-    public float minVelocityToReset = 0.5f; // Velocità minima per considerare il reset
+    public event Action<Vector3> OnRelease;
+
+    [Header("Timer Per il reset")]
+    public float resetTime = 2.0f; // Tempo di delay per il reset dopo il controllo
+
+    [Header("Impostazioni di Spostamento")]
+    public float minMovementToReset = 0.2f; // Spostamento minimo per evitare il reset
+    public float movementCheckInterval = 1.0f; // Intervallo di tempo per il controllo dello spostamento
 
     [Header("Layer per le collisioni")]
     public LayerMask collisionLayer; // Definisce quale layer il raycast deve rilevare
@@ -39,7 +44,6 @@ public class WreckingBallDrag : MonoBehaviour
             Debug.LogError("Pivot non trovato, assicurati che AutoConfigurableJoint sia configurato correttamente.");
         }
 
-        // Imposta il LayerMask per il raycast, che in questo caso è "Muro"
         collisionLayer = LayerMask.GetMask("Muro"); // Assicurati che il layer "Muro" esista e sia configurato in Unity
     }
 
@@ -52,24 +56,35 @@ public class WreckingBallDrag : MonoBehaviour
             Vector3 direction = touchPosition - rb.position;
             float distance = direction.magnitude;
 
-            // Controlla se c'è un ostacolo nella direzione del movimento solo nei layer specificati
             if (Physics.Raycast(rb.position, direction.normalized, out RaycastHit hit, distance, collisionLayer))
             {
-                // Se il raycast trova un ostacolo, limita la posizione al punto di collisione
                 touchPosition = hit.point - direction.normalized * 0.1f; // Aggiungi un margine di distanza
             }
 
-            // Muove il rigidbody verso la nuova posizione
             rb.MovePosition(touchPosition);
-
-            // Calcola la velocità corrente
             currentVelocity = (rb.position - lastPosition) / Time.deltaTime;
-
             lastPosition = rb.position;
         }
-        else if (rb != null && rb.linearVelocity.magnitude < minVelocityToReset && isSwinging == true)
+        else if (isSwinging)
         {
-            Invoke("ResetPosition", resetTime);
+            // Controllo dello spostamento
+            if (Time.time - resetCheckStartTime > movementCheckInterval)
+            {
+                float distanceMoved = Vector3.Distance(rb.position, resetCheckStartPosition);
+
+                if (distanceMoved < minMovementToReset)
+                {
+                    //Debug.Log($"Resetting because moved only {distanceMoved} in {movementCheckInterval} seconds");
+                    isSwinging = false; // Evita ulteriori reset
+                    Invoke("ResetPosition", resetTime);
+                }
+                else
+                {
+                    // Aggiorna i valori per un nuovo controllo
+                    resetCheckStartPosition = rb.position;
+                    resetCheckStartTime = Time.time;
+                }
+            }
         }
     }
 
@@ -87,26 +102,27 @@ public class WreckingBallDrag : MonoBehaviour
     {
         if (!isSwinging)
         {
-            // Cambia il layer dell'oggetto in "NoContact"
             gameObject.layer = LayerMask.NameToLayer("NoContact");
-
             isDragging = true;
-
             lastPosition = transform.position;
-            initialPosition = transform.position; // Salva la posizione iniziale della palla
-            initialAnchorPosition = pivot.position; // Salva la posizione iniziale del pivot
+            initialPosition = transform.position;
+            initialAnchorPosition = pivot.position;
         }
     }
 
     public void StopDragging()
     {
-        OnRelease?.Invoke(currentVelocity);
+        if (isDragging)
+        {
+            OnRelease?.Invoke(currentVelocity);
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            isDragging = false;
+            isSwinging = true;
 
-        // Riporta il layer dell'oggetto a "Default"
-        gameObject.layer = LayerMask.NameToLayer("Default");
-
-        isDragging = false;
-        isSwinging = true;
+            // Inizia il controllo di spostamento
+            resetCheckStartPosition = rb.position;
+            resetCheckStartTime = Time.time;
+        }
     }
 
     private Vector3 GetTouchWorldPosition()
@@ -132,14 +148,12 @@ public class WreckingBallDrag : MonoBehaviour
 
     private void ResetPosition()
     {
-        transform.position = initialPosition; // Resetta la posizione della palla
-        pivot.position = initialAnchorPosition; // Resetta la posizione dell'anchor
-        rb.linearVelocity = Vector3.zero; // Resetta la velocità
-        rb.angularVelocity = Vector3.zero; // Resetta la velocità angolare
+        transform.position = initialPosition;
+        pivot.position = initialAnchorPosition;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         gameObject.layer = LayerMask.NameToLayer("NoContact");
-
-        Debug.Log("Palla resettata alla posizione iniziale.");
-
+        //Debug.Log("Palla resettata alla posizione iniziale.");
         isSwinging = false;
     }
 }

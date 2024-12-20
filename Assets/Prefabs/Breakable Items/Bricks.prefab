@@ -98,6 +98,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f6068281e5df8847873a8c520b43a26, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4627851952824531937}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0f6068281e5df8847873a8c520b43a26, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6393352719617912787}
   m_SourcePrefab: {fileID: 100100000, guid: 0f6068281e5df8847873a8c520b43a26, type: 3}
 --- !u!4 &8580648068450381133 stripped
 Transform:
@@ -152,3 +155,16 @@ MonoBehaviour:
   destroyableHeads:
   - SpikeHead
   currentState: 0
+--- !u!114 &6393352719617912787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8961958028355057655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12f9bd8027361245bf488c2279e14a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opacityWhenDragging: 0.5

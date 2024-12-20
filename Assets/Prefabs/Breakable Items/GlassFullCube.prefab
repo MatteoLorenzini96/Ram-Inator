@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 957028558763787392}
   - component: {fileID: 3055768989094932960}
   - component: {fileID: 1501115687975547485}
+  - component: {fileID: -8374419739802992689}
   m_Layer: 0
   m_Name: GlassFullCube
   m_TagString: Untagged
@@ -147,3 +148,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   opacityWhenDragging: 0.5
+--- !u!114 &-8374419739802992689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221808563429290959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6619b778ab90de94b99f4032399aacb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

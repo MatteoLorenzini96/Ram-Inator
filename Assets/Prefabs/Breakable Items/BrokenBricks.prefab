@@ -41,6 +41,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 4874881353255285649}
     m_Modifications:
     - target: {fileID: -8917703946959959745, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8917703946959959745, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
       propertyPath: m_TagString
       value: Fragment
       objectReference: {fileID: 0}
@@ -85,8 +89,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6554458113972422046, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -6554458113972422046, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
       propertyPath: m_TagString
       value: Fragment
+      objectReference: {fileID: 0}
+    - target: {fileID: -5873765931867575472, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -5873765931867575472, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
       propertyPath: m_TagString
@@ -97,6 +109,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: ec2ce50b600cf7e4db1985d8941c222b, type: 2}
     - target: {fileID: -2995828229661691052, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -2995828229661691052, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
       propertyPath: m_TagString
       value: Fragment
       objectReference: {fileID: 0}
@@ -104,6 +120,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ec2ce50b600cf7e4db1985d8941c222b, type: 2}
+    - target: {fileID: -80796838390250655, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -80796838390250655, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
       propertyPath: m_TagString
       value: Fragment
@@ -116,6 +136,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ec2ce50b600cf7e4db1985d8941c222b, type: 2}
+    - target: {fileID: 3021780583470790795, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3021780583470790795, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
       propertyPath: m_TagString
       value: Fragment
@@ -136,6 +160,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ec2ce50b600cf7e4db1985d8941c222b, type: 2}
+    - target: {fileID: 8704484798943859418, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8704484798943859418, guid: 72dbf12f0a5c1834883693ec564feb6e, type: 3}
       propertyPath: m_TagString
       value: Fragment
@@ -256,7 +284,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -327,7 +355,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -393,7 +421,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -459,7 +487,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -525,7 +553,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -591,7 +619,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -657,7 +685,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

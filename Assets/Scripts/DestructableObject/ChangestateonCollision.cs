@@ -111,7 +111,7 @@ public class CollisionStateChanger : MonoBehaviour
     }
 
     // Metodo per cambiare lo stato
-    private void ChangeState(ObjectState newState)
+    public void ChangeState(ObjectState newState)
     {
     if (currentState != newState)
         {

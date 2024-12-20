@@ -132,12 +132,16 @@ PrefabInstance:
       value: Metal
       objectReference: {fileID: 0}
     - target: {fileID: 7683592792181784718, guid: 7237f54bf262d2c4db70e1bc12584247, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.0379
+      objectReference: {fileID: 0}
+    - target: {fileID: 7683592792181784718, guid: 7237f54bf262d2c4db70e1bc12584247, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.62
       objectReference: {fileID: 0}
     - target: {fileID: 7683592792181784718, guid: 7237f54bf262d2c4db70e1bc12584247, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.19
+      value: 0.151
       objectReference: {fileID: 0}
     - target: {fileID: 7683592792181784718, guid: 7237f54bf262d2c4db70e1bc12584247, type: 3}
       propertyPath: m_LocalPosition.z

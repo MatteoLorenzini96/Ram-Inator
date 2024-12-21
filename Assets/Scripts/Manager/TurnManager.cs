@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TurnManager : MonoBehaviour
 {
@@ -127,22 +128,34 @@ public class TurnManager : MonoBehaviour
         int remainingObjects = objectsWithCollisionStateChanger.Count;
         float percentage = (float)remainingObjects / initialObjectCount * 100f;
 
+        int stars = 0;
+
         if (percentage > 50f)
         {
             Debug.Log("fai schifo");
+            stars = 1;
         }
         else if (percentage <= 50f && percentage > 25f)
         {
             Debug.Log("meh");
+            stars = 2;
         }
         else if (percentage <= 25f && percentage > 0f)
         {
             Debug.Log("Skill Issue");
+            stars = 3;
         }
         else if (percentage == 0f)
         {
             Debug.Log("GG EZ");
+            stars = 4;
         }
+
+        // Salva il punteggio nel GameManager
+        GameManager.Instance.SetLevelStars(SceneManager.GetActiveScene().buildIndex, stars);
+
+        // Carica l'hub dopo il completamento
+        SceneManager.LoadScene("CentralHub");
     }
 
     private void FocusOnLastPosition()

@@ -9,6 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: ded5e93b22e6784408c9341f7d8649ab
   - enabled: 1
+    path: Assets/Scenes/CentralHub/CentralHub.unity
+    guid: 695fa09a6dbfef94f9f0d86149726bae
+  - enabled: 1
+    path: Assets/Scenes/Skillchain/Level 1.unity
+    guid: 13986733dd898ed40a38ac1a89a2f1c2
+  - enabled: 1
+    path: Assets/Scenes/Skillchain/Level 2.unity
+    guid: a0330ad54166f364fa2eb9d9ff378253
+  - enabled: 1
+    path: Assets/Scenes/Skillchain/Level 3.unity
+    guid: 03009971a5edb55429e63f81960121fb
+  - enabled: 1
     path: Assets/Scenes/Testing/Testing.unity
     guid: e16e6f10d6dd06545a9b137b8dbbfdcf
   m_configObjects:

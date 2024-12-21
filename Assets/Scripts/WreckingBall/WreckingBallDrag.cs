@@ -148,6 +148,16 @@ public class WreckingBallDrag : MonoBehaviour
 
     private void ResetPosition()
     {
+        TurnManager turnManager = FindFirstObjectByType<TurnManager>();
+        if (turnManager != null)
+        {
+            turnManager.OnReset();
+        }
+        else
+        {
+            Debug.LogWarning("TurnManager non trovato, impossibile chiamare OnStopDragging.");
+        }
+
         transform.position = initialPosition;
         pivot.position = initialAnchorPosition;
         rb.linearVelocity = Vector3.zero;

@@ -36,6 +36,11 @@ public class SceneReset : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            NextScene();
+        }
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             //Debug.Log("Cambio UI");
@@ -51,6 +56,25 @@ public class SceneReset : MonoBehaviour
 
                 //Debug.Log($"GearAndLevelHolder attivo: {!isGearActive}, Slider attivo: {isGearActive}");
             }
+        }
+    }
+
+    private void NextScene()
+    {
+        // Ottieni l'indice della scena attuale
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        // Calcola l'indice della prossima scena
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        // Controlla se l'indice della prossima scena è valido
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            // Carica la scena successiva
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            Debug.LogWarning("Non ci sono altre scene da caricare!");
         }
     }
 }

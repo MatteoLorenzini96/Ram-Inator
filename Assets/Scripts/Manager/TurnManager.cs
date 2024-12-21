@@ -9,6 +9,8 @@ public class TurnManager : MonoBehaviour
     private TimeManager timeManager;
     public int maxAttempts = 5; // Numero massimo di tentativi impostabile dall'inspector
     public TextMeshProUGUI attemptsText;
+    public GameObject evaluetePanel;
+
 
     private Transform cameraParent; // Variabile per il parent della telecamera
     private List<GameObject> objectsWithCollisionStateChanger;
@@ -125,6 +127,9 @@ public class TurnManager : MonoBehaviour
 
     private void EvaluateObjects()
     {
+
+        evaluetePanel.SetActive(true);
+        
         int remainingObjects = objectsWithCollisionStateChanger.Count;
         float percentage = (float)remainingObjects / initialObjectCount * 100f;
 

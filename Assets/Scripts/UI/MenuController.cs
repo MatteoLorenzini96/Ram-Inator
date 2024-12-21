@@ -63,6 +63,11 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    public void LoadCentralHub()
+    {
+        SceneManager.LoadScene("CentralHub");
+    }
+
     // Metodo per chiudere il gioco
     public void Quit()
     {

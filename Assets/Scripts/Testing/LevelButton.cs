@@ -15,8 +15,17 @@ public class LevelButton : MonoBehaviour
     {
         this.levelIndex = levelIndex; // Salva l'indice del livello per usi successivi
 
-        // Aggiorna il numero di livello
-        levelText.text = "Level " + levelIndex;
+        // Aggiorna il numero di livello, ignorando i primi due (menu e CentralHub)
+        int displayedLevelNumber = levelIndex - 1;
+        if (displayedLevelNumber > 0) // Assicurati di mostrare solo per livelli validi
+        {
+            levelText.text = "Level " + displayedLevelNumber;
+        }
+        else
+        {
+            levelText.text = "Invalid Level";
+            Debug.LogWarning($"Livello con indice {levelIndex} non valido per il display!");
+        }
 
         // Ottieni il numero di stelle dal LevelResultsManager
         int stars = LevelResultsManager.Instance.GetStarsForLevel(levelIndex);

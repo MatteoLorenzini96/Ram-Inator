@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // Per la gestione delle scene
 
 public class LevelButton : MonoBehaviour
 {
@@ -8,8 +9,12 @@ public class LevelButton : MonoBehaviour
     public RawImage star1, star2, star3;
     public RawImage lvShow;
 
+    private int levelIndex; // Salva l'indice del livello associato a questo pulsante
+
     public void Setup(int levelIndex)
     {
+        this.levelIndex = levelIndex; // Salva l'indice del livello per usi successivi
+
         // Aggiorna il numero di livello
         levelText.text = "Level " + levelIndex;
 
@@ -23,5 +28,18 @@ public class LevelButton : MonoBehaviour
 
         // Cambia colore se il livello è completato
         lvShow.color = stars > 0 ? Color.green : Color.white;
+    }
+
+    public void LoadLevel()
+    {
+        if (levelIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            Debug.Log($"Caricamento della scena: {levelIndex}");
+            SceneManager.LoadScene(levelIndex);
+        }
+        else
+        {
+            Debug.LogError($"L'indice del livello {levelIndex} è fuori dai limiti del Build Settings!");
+        }
     }
 }

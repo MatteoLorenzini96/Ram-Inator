@@ -151,9 +151,11 @@ public class TurnManager : MonoBehaviour
             stars = 3;
         }
 
+        // Salva il punteggio nel LevelResultsManager
+
+        LevelResultsManager.Instance.SaveLevelResult(SceneManager.GetActiveScene().buildIndex, stars);
+
         ActivatePanel();
-        // Salva il punteggio nel GameManager
-        //GameManager.Instance.SetLevelStars(SceneManager.GetActiveScene().buildIndex, stars);
     }
 
     private void ActivatePanel()

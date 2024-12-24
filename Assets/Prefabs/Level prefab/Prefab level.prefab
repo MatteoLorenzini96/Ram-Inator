@@ -4719,6 +4719,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5945715059981181714, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8873934355622486461}
+    - targetCorrespondingSourceObject: {fileID: 5945715059981181714, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5824020606269869474}
   m_SourcePrefab: {fileID: 100100000, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
 --- !u!1 &2402642200943316768 stripped
 GameObject:
@@ -4742,6 +4745,21 @@ MonoBehaviour:
   highImpactSpeed: 10
   objectToSpawn: {fileID: 1883021650381340479, guid: 675369171bd2af54db778704452356a4, type: 3}
   spawnDistance: -2
+--- !u!114 &5824020606269869474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402642200943316768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e4f7f5f34a11f43a017b55f517129f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentObject: {fileID: 3074925276384649827}
+  targetTag: Metallo
+  attachDuration: 5
 --- !u!4 &3074925276384649827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6447147220986646097, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}

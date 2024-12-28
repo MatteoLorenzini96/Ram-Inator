@@ -8,7 +8,7 @@ public class Rope : MonoBehaviour
     private List<RopeSegment> ropeSegments = new List<RopeSegment>();
     private float ropeSegLen;
     private int segmentLength;
-    private float lineWidth = 0.1f;
+    public float lineWidth = 0.1f;
 
     public Transform startPoint; // Assegna il punto Start dalla scena
     public Transform endPoint;   // Assegna il punto End dalla scena

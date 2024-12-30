@@ -4521,7 +4521,7 @@ PrefabInstance:
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[3].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 8644850827850ff4eafabcef5b71d0b8, type: 3}
+      objectReference: {fileID: 8300000, guid: cd9c4c42b1183114ba328ed5d9e4aebf, type: 3}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[3].name
       value: SpikeStar
@@ -4561,7 +4561,7 @@ PrefabInstance:
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[8].clip
       value: 
-      objectReference: {fileID: 8300000, guid: fc18d1c68f430c243be8877a178eec6b, type: 3}
+      objectReference: {fileID: 8300000, guid: e102e1d3e8fcf3d4fa2beea0c2718b36, type: 3}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[8].name
       value: MetalTap
@@ -4577,7 +4577,7 @@ PrefabInstance:
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[10].clip
       value: 
-      objectReference: {fileID: 8300000, guid: ca39aa1b1d80bc54697b64ee5a8915c1, type: 3}
+      objectReference: {fileID: 8300000, guid: 21d7b28ad2aa9594189cd6257830acc7, type: 3}
     - target: {fileID: 8397942712018715833, guid: 8d13d6992693b0046b8d173352c25ddc, type: 3}
       propertyPath: sfxSounds.Array.data[10].name
       value: MetalWiggle

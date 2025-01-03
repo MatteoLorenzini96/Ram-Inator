@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SoundOnCollision : MonoBehaviour
 {
@@ -6,6 +7,10 @@ public class SoundOnCollision : MonoBehaviour
     public string soundEffectNormalHeadHit;
     public string soundEffectSpikeHeadHit;
     public string soundEffectImpactHeadHit;
+
+    // Dizionario per gestire i cooldown dei suoni
+    private Dictionary<string, float> soundCooldowns = new Dictionary<string, float>();
+    public float soundCooldown = 0.5f; // Cooldown globale per i suoni
 
     // Controlla se la collisione è già stata gestita per evitare duplicazioni
     private bool collisionHandled = false;
@@ -23,19 +28,19 @@ public class SoundOnCollision : MonoBehaviour
             {
                 if (child.gameObject.activeSelf)
                 {
-                    // Controlla il nome del figlio attivo e riproduci il suono corrispondente
+                    // Controlla il nome del figlio attivo e riproduci il suono corrispondente con cooldown
                     switch (child.gameObject.name)
                     {
                         case "NormalHead":
-                            AudioManager.Instance.PlaySFX(soundEffectNormalHeadHit);
+                            PlaySoundWithCooldown(soundEffectNormalHeadHit);
                             break;
 
                         case "SpikeHead":
-                            AudioManager.Instance.PlaySFX(soundEffectSpikeHeadHit);
+                            PlaySoundWithCooldown(soundEffectSpikeHeadHit);
                             break;
 
                         case "ImpactHead":
-                            AudioManager.Instance.PlaySFX(soundEffectImpactHeadHit);
+                            PlaySoundWithCooldown(soundEffectImpactHeadHit);
                             break;
 
                         default:
@@ -57,5 +62,26 @@ public class SoundOnCollision : MonoBehaviour
         {
             collisionHandled = false;
         }
+    }
+
+    private void PlaySoundWithCooldown(string soundEffect)
+    {
+        float currentTime = Time.time;
+
+        // Controlla se il suono ha un cooldown attivo
+        if (soundCooldowns.ContainsKey(soundEffect))
+        {
+            if (currentTime - soundCooldowns[soundEffect] < soundCooldown)
+            {
+                // Il suono è ancora in cooldown
+                return;
+            }
+        }
+
+        // Aggiorna il tempo di ultima riproduzione
+        soundCooldowns[soundEffect] = currentTime;
+
+        // Riproduce il suono
+        AudioManager.Instance.PlaySFX(soundEffect);
     }
 }

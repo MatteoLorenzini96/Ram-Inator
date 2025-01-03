@@ -1,16 +1,18 @@
 using UnityEngine;
 using EZCameraShake;
+using System.Collections.Generic;
 
 public class CollisionStateChanger : MonoBehaviour
 {
 
     private TimeManager timeManager;
+    private Dictionary<string, float> soundCooldowns = new Dictionary<string, float>();
 
     [Header("SoundEffect da riprodurre al cambio di stato")]
     public string soundEffectIntegro = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
     public string soundEffectDanneggiato = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
     public string soundEffectDestroy = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
-
+    public float soundCooldown = 0.5f; // Tempo minimo tra due riproduzioni di qualsiasi suono
 
     [Header("Soglie di velocità")]
     // Soglie di velocità per cambiare stato
@@ -56,49 +58,42 @@ public class CollisionStateChanger : MonoBehaviour
         float relativeSpeed = collision.relativeVelocity.magnitude;
 
         // Controlla se l'oggetto che ha colpito ha il tag corretto
-        if (collision.gameObject.CompareTag("Palla")){
+        if (collision.gameObject.CompareTag("Palla"))
+        {
+            PlaySoundWithCooldown(soundEffectIntegro);
 
-            AudioManager.Instance.PlaySFX(soundEffectIntegro); // Usa la variabile per chiamare il metodo
-
-            // Cerca nei figli dell'oggetto con il tag "Palla"
-            foreach (Transform child in collision.transform){
-
-                if (child.gameObject.activeSelf){
-
-                    // Controlla se il figlio attivo � nella lista dei tipi distruttivi
-                    if (System.Array.Exists(destroyableHeads, head => head == child.name)){
-
-                    // Cambia stato in base alla velocità
+            foreach (Transform child in collision.transform)
+            {
+                if (child.gameObject.activeSelf &&
+                    System.Array.Exists(destroyableHeads, head => head == child.name))
+                {
                     if (relativeSpeed < lowSpeedThreshold)
                     {
                         ChangeState(ObjectState.Idle);
                     }
-
                     else if (relativeSpeed >= lowSpeedThreshold && relativeSpeed < highSpeedThreshold)
                     {
                         ChangeState(ObjectState.LowImpact);
-                        viteoggetto = viteoggetto - 1;
-                        AudioManager.Instance.PlaySFX(soundEffectDanneggiato); // Usa la variabile per chiamare il metodo
+                        viteoggetto -= 1;
+                        PlaySoundWithCooldown(soundEffectDanneggiato);
                     }
-
                     else if (relativeSpeed >= highSpeedThreshold)
                     {
-                    ChangeState(ObjectState.HighImpact);
-                    viteoggetto = viteoggetto - 2;
+                        ChangeState(ObjectState.HighImpact);
+                        viteoggetto -= 2;
+                        PlaySoundWithCooldown(soundEffectDestroy);
                     }
 
-                    //Debug.Log($"Velocità relativa: {relativeSpeed}, Nuovo stato: {currentState}, vite: {viteoggetto}");
                     if (replacementPrefab != null && viteoggetto <= 0)
-                        {
-                            Explode();
-                        }
-                        return;
+                    {
+                        Explode();
                     }
+                    return;
                 }
             }
         }
-    }
 
+    }
 
     public void Explode()
     {
@@ -120,4 +115,26 @@ public class CollisionStateChanger : MonoBehaviour
             //Debug.Log($"Lo stato è cambiato a: {currentState} e ha vite: {viteoggetto}");
         }
     }
+
+    private void PlaySoundWithCooldown(string soundEffect)
+    {
+        float currentTime = Time.time;
+
+        // Verifica se il suono ha già un tempo di cooldown registrato
+        if (soundCooldowns.ContainsKey(soundEffect))
+        {
+            // Controlla se il cooldown è scaduto
+            if (currentTime - soundCooldowns[soundEffect] < soundCooldown)
+            {
+                return; // Ignora se il cooldown non è scaduto
+            }
+        }
+
+        // Aggiorna il tempo dell'ultima riproduzione del suono
+        soundCooldowns[soundEffect] = currentTime;
+
+        // Riproduce il suono
+        AudioManager.Instance.PlaySFX(soundEffect);
+    }
+
 }

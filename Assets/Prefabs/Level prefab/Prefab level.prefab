@@ -148,7 +148,7 @@ RectTransform:
   m_Father: {fileID: 8027235743519247569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17486,8 +17486,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1014849028749724175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17738,8 +17738,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6550408210546415669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17851,7 +17851,7 @@ RectTransform:
   m_Father: {fileID: 3198865037222836777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -19197,6 +19197,10 @@ PrefabInstance:
       propertyPath: startPoint
       value: 
       objectReference: {fileID: 7657297758542834822}
+    - target: {fileID: 4111379826654058271, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: releaseForceMultiplier
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5780090640153959816, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: pivot
       value: 
@@ -19313,7 +19317,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentObject: {fileID: 3074925276384649827}
   targetTag: Metallo
-  attachDuration: 5
+  attachDuration: 3
+  isSpikeAttached: 0
+  reattachCooldown: 3
 --- !u!4 &3074925276384649827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6447147220986646097, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}

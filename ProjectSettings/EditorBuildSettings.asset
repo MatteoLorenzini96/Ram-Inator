@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Skillchain/Level 8.unity
     guid: 3d8e9eb576b6d7045be7c1ae32589ea4
   m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: fbddbfeb7a812a841bb9f8166970453d, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 0cecbb13897f3c04ab3ee12a7b21a7d3, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 2db15d05506d87a49bd29e7b9b435ce3, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 13e04c0c29fd7064d946ba8a30c4bc82, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

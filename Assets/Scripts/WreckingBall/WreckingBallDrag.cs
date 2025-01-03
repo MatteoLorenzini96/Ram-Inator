@@ -1,5 +1,7 @@
 using UnityEngine;
 using System; // Necessario per gli eventi
+using System.Collections;
+
 
 public class WreckingBallDrag : MonoBehaviour
 {
@@ -54,6 +56,10 @@ public class WreckingBallDrag : MonoBehaviour
             {
                 Debug.LogError("Non è stato trovato un oggetto con SpikeAttached nella scena!");
             }
+            else
+            {
+                spikeAttached.OnDetach += HandleDetach; // Iscriviti all'evento
+            }
         }
 
         collisionLayer = LayerMask.GetMask("Muro"); // Assicurati che il layer "Muro" esista e sia configurato in Unity
@@ -87,8 +93,11 @@ public class WreckingBallDrag : MonoBehaviour
                 if (distanceMoved < minMovementToReset)
                 {
                     //Debug.Log($"Resetting because moved only {distanceMoved} in {movementCheckInterval} seconds");
-                    isSwinging = false; // Evita ulteriori reset
-                    Invoke("ResetPosition", resetTime);
+                    if (!spikeAttached.isSpikeAttached)
+                    {
+                        isSwinging = false; // Evita ulteriori reset
+                        Invoke("ResetPosition", resetTime);
+                    }
                 }
                 else
                 {
@@ -160,7 +169,9 @@ public class WreckingBallDrag : MonoBehaviour
 
     private void ResetPosition()
     {
-        if (spikeAttached == false)
+        //Debug.Log("Chiamato il ResetPosition");
+
+        if (spikeAttached.isSpikeAttached == false)
         {
             TurnManager turnManager = FindFirstObjectByType<TurnManager>();
             if (turnManager != null)
@@ -177,13 +188,39 @@ public class WreckingBallDrag : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             gameObject.layer = LayerMask.NameToLayer("NoContact");
+            
             //Debug.Log("Palla resettata alla posizione iniziale.");
             isSwinging = false;
 
         }
-        else
+
+        if (spikeAttached.isSpikeAttached == true)
         {
-            return;
+            isSwinging = true;
+            //Debug.Log("Palla ancora in movimento");
+
+        }
+
+    }
+
+    // Aggiorna la funzione HandleDetach per non interferire con la logica originale
+    private void HandleDetach()
+    {
+        if (!isSwinging)
+        {
+            StartCoroutine(DelayedReset());
         }
     }
+
+    private IEnumerator DelayedReset()
+    {
+        yield return new WaitForSeconds(3.0f); // Aspetta 3 secondi o il tempo desiderato
+
+        // Solo se la velocità è minima e lo spike non è attaccato, effettua il reset
+        if (!spikeAttached.isSpikeAttached && rb.linearVelocity.magnitude < minMovementToReset)
+        {
+            ResetPosition();
+        }
+    }
+
 }

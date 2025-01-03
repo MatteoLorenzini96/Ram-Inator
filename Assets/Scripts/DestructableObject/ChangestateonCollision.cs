@@ -100,9 +100,20 @@ public class CollisionStateChanger : MonoBehaviour
         timeManager.DoSlowmotion();  //Applica l'effetto SlowMotion
         CameraShaker.Instance.ShakeOnce(1.5f, 1.5f, .1f, 1f);  //Applica il CameraShake
 
+        // Esegui la vibrazione del telefono
+        VibratePhone();
+
         Instantiate(replacementPrefab, transform.position, transform.rotation);
         Destroy(gameObject); // Distruggi l'oggetto attuale
         AudioManager.Instance.PlaySFX(soundEffectDestroy); // Usa la variabile per chiamare il metodo
+    }
+
+    // Metodo per far vibrare il telefono
+    private void VibratePhone()
+    {
+    #if UNITY_IOS || UNITY_ANDROID
+    Handheld.Vibrate();
+    #endif
     }
 
     // Metodo per cambiare lo stato

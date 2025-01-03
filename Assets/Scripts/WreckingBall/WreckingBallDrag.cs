@@ -4,6 +4,7 @@ using System; // Necessario per gli eventi
 public class WreckingBallDrag : MonoBehaviour
 {
     private WreckingBallController controller;
+    private SpikeAttached spikeAttached;
 
     private Vector3 lastPosition; // Ultima posizione aggiornata
     private Vector3 currentVelocity; // Velocità attuale
@@ -42,6 +43,17 @@ public class WreckingBallDrag : MonoBehaviour
         if (pivot == null)
         {
             Debug.LogError("Pivot non trovato, assicurati che AutoConfigurableJoint sia configurato correttamente.");
+        }
+
+
+        // Cerca il SpikeAttached
+        if (spikeAttached == null)
+        {
+            spikeAttached = FindFirstObjectByType<SpikeAttached>();
+            if (spikeAttached == null)
+            {
+                Debug.LogError("Non è stato trovato un oggetto con SpikeAttached nella scena!");
+            }
         }
 
         collisionLayer = LayerMask.GetMask("Muro"); // Assicurati che il layer "Muro" esista e sia configurato in Unity
@@ -148,22 +160,30 @@ public class WreckingBallDrag : MonoBehaviour
 
     private void ResetPosition()
     {
-        TurnManager turnManager = FindFirstObjectByType<TurnManager>();
-        if (turnManager != null)
+        if (spikeAttached == false)
         {
-            turnManager.OnReset();
+            TurnManager turnManager = FindFirstObjectByType<TurnManager>();
+            if (turnManager != null)
+            {
+                turnManager.OnReset();
+            }
+            else
+            {
+                Debug.LogWarning("TurnManager non trovato, impossibile chiamare OnStopDragging.");
+            }
+
+            transform.position = initialPosition;
+            pivot.position = initialAnchorPosition;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            gameObject.layer = LayerMask.NameToLayer("NoContact");
+            //Debug.Log("Palla resettata alla posizione iniziale.");
+            isSwinging = false;
+
         }
         else
         {
-            Debug.LogWarning("TurnManager non trovato, impossibile chiamare OnStopDragging.");
+            return;
         }
-
-        transform.position = initialPosition;
-        pivot.position = initialAnchorPosition;
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        gameObject.layer = LayerMask.NameToLayer("NoContact");
-        //Debug.Log("Palla resettata alla posizione iniziale.");
-        isSwinging = false;
     }
 }

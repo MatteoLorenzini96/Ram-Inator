@@ -10,6 +10,7 @@ public class SpikeAttached : MonoBehaviour
     private Transform activeChild;
     private bool isScriptActive = false; // Stato di attivazione script
     private Coroutine attachCoroutine;
+    public bool isSpikeAttached = false;
 
     private void Start()
     {
@@ -84,6 +85,8 @@ public class SpikeAttached : MonoBehaviour
         float timer = 0f;
         while (timer < attachDuration)
         {
+            isSpikeAttached = true;
+
             // Mantieni la posizione e la rotazione relative durante l'attaccamento
             transform.position = target.transform.position + initialPositionOffset;
             transform.rotation = target.transform.rotation * initialRotationOffset;
@@ -94,5 +97,6 @@ public class SpikeAttached : MonoBehaviour
 
         // Disattiva l'agganciamento dopo il tempo specificato
         attachCoroutine = null;
+        isSpikeAttached = false;
     }
 }

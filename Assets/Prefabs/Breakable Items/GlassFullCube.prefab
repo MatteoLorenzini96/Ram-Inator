@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7603536770958252407}
   m_Layer: 0
   m_Name: GlassFullCube
-  m_TagString: Untagged
+  m_TagString: DestroyOnImpact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   soundEffectIntegro: DestroyTap
   soundEffectDanneggiato: DestroyGlass
   soundEffectDestroy: DestroyGlass
+  soundCooldown: 0.5
   lowSpeedThreshold: 1
   highSpeedThreshold: 5
   viteoggetto: 2

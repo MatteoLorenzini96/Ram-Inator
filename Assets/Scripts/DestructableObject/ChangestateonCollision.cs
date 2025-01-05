@@ -97,7 +97,7 @@ public class CollisionStateChanger : MonoBehaviour
 
     public void Explode()
     {
-        timeManager.DoSlowmotion();  //Applica l'effetto SlowMotion
+        StartCoroutine(timeManager.DoSlowmotionCoroutine());
         CameraShaker.Instance.ShakeOnce(1.5f, 1.5f, .1f, 1f);  //Applica il CameraShake
 
         // Esegui la vibrazione del telefono

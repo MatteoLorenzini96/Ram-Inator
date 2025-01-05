@@ -214,8 +214,8 @@ public class TurnManager : MonoBehaviour
             isFocusDone = true;
 
             timeManager.slowdownFactor = 0.01f;
-            //timeManager.slowdownLength = 4f;           //Non è necessario aumentare il tempo
-            timeManager.DoSlowmotion();  //Applica l'effetto SlowMotion
+            //timeManager.slowdownLength = 2f;           //Non è necessario aumentare il tempo
+            StartCoroutine(timeManager.DoSlowmotionCoroutine());
 
         }
         else

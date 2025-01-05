@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: 03009971a5edb55429e63f81960121fb
   - enabled: 0
     path: Assets/Scenes/Testing/Testing.unity
-    guid: cc61881503102d94599ca1947e62a31c
+    guid: e16e6f10d6dd06545a9b137b8dbbfdcf
   - enabled: 1
     path: Assets/Scenes/Skillchain/SKCH Level 4.unity
     guid: 7a1ccfe8c19f0574da0a1fb9065c8362
@@ -32,12 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Skillchain/SKCH Level 5.unity
     guid: 33233ab625f88ef4481ba22afe2feab0
-  - enabled: 1
-    path: Assets/Scenes/Skillchain/SKCH Level 7.unity
-    guid: 46e91d8eb066ac245bd89897f3169b14
-  - enabled: 1
-    path: Assets/Scenes/Skillchain/Level 8.unity
-    guid: 3d8e9eb576b6d7045be7c1ae32589ea4
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: fbddbfeb7a812a841bb9f8166970453d, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 0cecbb13897f3c04ab3ee12a7b21a7d3, type: 2}

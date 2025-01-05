@@ -103,7 +103,14 @@ public class CollisionStateChanger : MonoBehaviour
         // Esegui la vibrazione del telefono
         VibratePhone();
 
-        Instantiate(replacementPrefab, transform.position, transform.rotation);
+        // Calcola la nuova scala proporzionale
+        float scaleFactor = 0.5f; // La proporzione tra la scala originale (0.7) e quella del prefab (0.35)
+        Vector3 newScale = transform.localScale * scaleFactor;
+
+        // Crea il prefab con la nuova scala
+        GameObject replacement = Instantiate(replacementPrefab, transform.position, transform.rotation);
+        replacement.transform.localScale = newScale;
+
         Destroy(gameObject); // Distruggi l'oggetto attuale
         AudioManager.Instance.PlaySFX(soundEffectDestroy); // Usa la variabile per chiamare il metodo
     }

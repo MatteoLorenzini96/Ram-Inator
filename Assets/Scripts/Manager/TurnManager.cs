@@ -105,11 +105,12 @@ public class TurnManager : MonoBehaviour
 
     private void UpdateAttemptsText()
     {
-        if (attemptsText != null)
+        if (attemptsText != null && attemptsText.text != "Tentativi: " + remainingAttempts)
         {
             attemptsText.text = "Tentativi: " + remainingAttempts;
         }
     }
+
 
     public void OnReset()
     {

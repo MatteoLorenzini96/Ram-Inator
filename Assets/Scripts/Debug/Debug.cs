@@ -6,23 +6,14 @@ public class SceneReset : MonoBehaviour
     private GameObject gearAndLevelHolder;
     private GameObject slider;
 
-    [System.Obsolete]
     void Start()
     {
-        // Cerca gli oggetti nella scena, inclusi quelli disattivati
-        var allTransforms = FindObjectsOfType<Transform>(true);
-
-        foreach (var t in allTransforms)
-        {
-            if (t.name == "GearAndLevelHolder")
-                gearAndLevelHolder = t.gameObject;
-            else if (t.name == "Slider")
-                slider = t.gameObject;
-        }
+        gearAndLevelHolder = GameObject.Find("GearAndLevelHolder");
+        slider = GameObject.Find("Slider");
 
         if (gearAndLevelHolder == null || slider == null)
         {
-            Debug.LogError("Impossibile trovare GearAndLevelHolder o Slider. Assicurati che esistano nella scena.");
+            //Debug.LogError("Impossibile trovare GearAndLevelHolder o Slider.");
         }
     }
 

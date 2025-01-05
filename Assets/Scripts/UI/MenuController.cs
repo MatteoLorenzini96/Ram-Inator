@@ -55,12 +55,19 @@ public class MenuController : MonoBehaviour
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             // Carica la scena successiva
+            ReleaseResources();
             SceneManager.LoadScene(nextSceneIndex);
         }
         else
         {
             Debug.LogWarning("Non ci sono altre scene da caricare!");
         }
+    }
+
+    public void ReleaseResources()
+    {
+        Resources.UnloadUnusedAssets();
+        System.GC.Collect();
     }
 
     public void LoadCentralHub()

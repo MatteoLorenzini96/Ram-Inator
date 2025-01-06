@@ -1,5 +1,12 @@
 fileFormatVersion: 2
-guid: a7620eecb715ccf409f41bda9e06f7cc
+guid: 01b2c033f59bc0f40939edd7beba09b8
+AssetOrigin:
+  serializedVersion: 1
+  productId: 446
+  packageName: Ball Pack
+  packageVersion: 1.0
+  assetPath: Assets/Ball Pack/Models/Textures/SplitMetalBall.png
+  uploadId: 24549
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -40,10 +47,10 @@ TextureImporter:
     wrapU: 0
     wrapV: 0
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -51,7 +58,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
+  alphaUsage: 0
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
@@ -128,10 +135,3 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 446
-  packageName: Ball Pack
-  packageVersion: 1.0
-  assetPath: Assets/Ball Pack/Models/Textures/SpikeBall.png
-  uploadId: 24549

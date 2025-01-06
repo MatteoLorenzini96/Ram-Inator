@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a7620eecb715ccf409f41bda9e06f7cc
+guid: 8f3b327bfc1af974283b0cd9941ef840
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -133,5 +133,5 @@ AssetOrigin:
   productId: 446
   packageName: Ball Pack
   packageVersion: 1.0
-  assetPath: Assets/Ball Pack/Models/Textures/SpikeBall.png
+  assetPath: Assets/Ball Pack/Models/Textures/SplitMetalBallEmissive.png
   uploadId: 24549

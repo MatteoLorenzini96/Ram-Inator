@@ -167,7 +167,7 @@ public class WreckingBallDrag : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(inputPosition);
     }
 
-    private void ResetPosition()
+    public void ResetPosition()
     {
         //Debug.Log("Chiamato il ResetPosition");
 

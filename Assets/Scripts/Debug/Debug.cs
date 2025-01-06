@@ -50,6 +50,13 @@ public class SceneReset : MonoBehaviour
         }
     }
 
+
+    public void ResetScene()
+    {
+        // Ricarica la scena attuale
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private void NextScene()
     {
         // Ottieni l'indice della scena attuale

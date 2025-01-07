@@ -431,11 +431,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8128557981379640676, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
       propertyPath: maxAttempts
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8128557981379640676, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
       propertyPath: twoStarsAttempts
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128557981379640676, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: threeStarsAttempts
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8351870276861223741, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
       propertyPath: m_AnchorMax.y

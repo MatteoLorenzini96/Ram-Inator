@@ -131,15 +131,13 @@ public class TurnManager : MonoBehaviour
 
     private void EvaluateObjects()
     {        
-         // Calcola la percentuale di oggetti rimanenti
-        int remainingObjects = objectsWithCollisionStateChanger.Count;
-        float percentage = (float)remainingObjects / initialObjectCount * 100f;
+       int remainingObjects = objectsWithCollisionStateChanger.Count;
+    float percentage = (float)remainingObjects / initialObjectCount * 100f;
 
-        // Valutazione basata sui tentativi e sugli oggetti rimasti
-        if (percentage == 100f)
-        {
-            // 100% completato
-            stars = 1;
+    // Valutazione basata sui tentativi e sugli oggetti rimasti
+    if (percentage == 0f)
+    {
+        // Completato al 100% (tutti gli oggetti distrutti)
         if (remainingAttempts >= threeStarsAttempts)
         {
             // Usa meno tentativi del massimo per 3 stelle
@@ -152,19 +150,33 @@ public class TurnManager : MonoBehaviour
             stars = 2;
             Debug.Log("2 stelle");
         }
+        else if (remainingAttempts < twoStarsAttempts )
+        {
+            // Usa più tentativi di quelli previsti per 2 stelle ma meno del massimo
+            stars = 1;
+            Debug.Log("1 stella - Tentativi superiori a quelli per 2 stelle, ma inferiori al massimo");
+        }
         else
         {
-            // Non raggiunge la soglia minima
+            // Usa più tentativi del massimo
             stars = 0;
+            Debug.Log("1 stelle - Tentativi superiori al massimo");
         }
-        }
-
-        ActivatePanel();
-
-        // Salva il punteggio nel LevelResultsManager
-
-        LevelResultsManager.Instance.SaveLevelResult(SceneManager.GetActiveScene().buildIndex, stars);
     }
+    else
+    {
+        // Se non hai completato il livello (ci sono ancora oggetti da distruggere)
+        stars = 0;  // Completamento parziale, quindi solo 1 stella
+        Debug.Log("0 stella - Completamento parziale");
+    }
+    
+
+    ActivatePanel();
+
+    // Salva il punteggio nel LevelResultsManager
+    LevelResultsManager.Instance.SaveLevelResult(SceneManager.GetActiveScene().buildIndex, stars);
+}
+
 
     private void ActivatePanel()
     {

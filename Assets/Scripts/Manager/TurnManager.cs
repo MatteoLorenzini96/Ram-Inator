@@ -17,6 +17,10 @@ public class TurnManager : MonoBehaviour
     public List<GameObject> starsUI; // Lista di stelle impostabile dall'Inspector
     public int stars = 0;
 
+    [Header("Tentativi per stelle")]
+    public int twoStarsAttempts = 3; // Tentativi massimi per ottenere 2 stelle
+    public int threeStarsAttempts = 2; // Tentativi massimi per ottenere 3 stelle
+
     private Transform cameraParent; // Variabile per il parent della telecamera
     private List<GameObject> objectsWithCollisionStateChanger;
     private int initialObjectCount;
@@ -39,7 +43,7 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Il parent della telecamera con nome 'CameraHolder' non è stato trovato!");
+            Debug.LogWarning("Il parent della telecamera con nome 'CameraHolder' non ï¿½ stato trovato!");
         }
 
         // Cerca il TimeManager
@@ -48,13 +52,13 @@ public class TurnManager : MonoBehaviour
             timeManager = FindFirstObjectByType<TimeManager>();
             if (timeManager == null)
             {
-                Debug.LogError("Non è stato trovato un oggetto con TimeManager nella scena!");
+                Debug.LogError("Non ï¿½ stato trovato un oggetto con TimeManager nella scena!");
             }
         }
 
         // Trova tutti gli oggetti con lo script "CollisionStateChanger" e crea l'indice
         objectsWithCollisionStateChanger = new List<GameObject>();
-#pragma warning disable CS0618 // Il tipo o il membro è obsoleto
+#pragma warning disable CS0618 // Il tipo o il membro ï¿½ obsoleto
         foreach (var obj in FindObjectsOfType<MonoBehaviour>())
         {
             if (obj.GetComponent<CollisionStateChanger>() != null)
@@ -62,7 +66,7 @@ public class TurnManager : MonoBehaviour
                 objectsWithCollisionStateChanger.Add(obj.gameObject);
             }
         }
-#pragma warning restore CS0618 // Il tipo o il membro è obsoleto
+#pragma warning restore CS0618 // Il tipo o il membro ï¿½ obsoleto
 
         // Salva il numero iniziale di oggetti
         initialObjectCount = objectsWithCollisionStateChanger.Count;
@@ -105,9 +109,9 @@ public class TurnManager : MonoBehaviour
 
     private void UpdateAttemptsText()
     {
-        if (attemptsText != null && attemptsText.text != "Tentativi: " + remainingAttempts)
+        if (attemptsText != null && attemptsText.text != "Lanci: " + remainingAttempts)
         {
-            attemptsText.text = "Tentativi: " + remainingAttempts;
+            attemptsText.text = "Lanci: " + remainingAttempts;
         }
     }
 
@@ -127,29 +131,32 @@ public class TurnManager : MonoBehaviour
 
     private void EvaluateObjects()
     {        
+         // Calcola la percentuale di oggetti rimanenti
         int remainingObjects = objectsWithCollisionStateChanger.Count;
         float percentage = (float)remainingObjects / initialObjectCount * 100f;
 
-
-        if (percentage > 50f)
+        // Valutazione basata sui tentativi e sugli oggetti rimasti
+        if (percentage == 0f)
         {
-            Debug.Log("fai schifo");
+            // 100% completato
+            stars = 1;
+        if (remainingAttempts >= threeStarsAttempts)
+        {
+            // Usa meno tentativi del massimo per 3 stelle
+            stars = 3;
+            Debug.Log("3 stelle");
+        }
+        else if (remainingAttempts >= twoStarsAttempts)
+        {
+            // Usa meno tentativi del massimo per 2 stelle
+            stars = 2;
+            Debug.Log("2 stelle");
+        }
+        else
+        {
+            // Non raggiunge la soglia minima
             stars = 0;
         }
-        else if (percentage <= 50f && percentage > 25f)
-        {
-            Debug.Log("meh");
-            stars = 1;
-        }
-        else if (percentage <= 25f && percentage > 0f)
-        {
-            Debug.Log("Skill Issue");
-            stars = 2;
-        }
-        else if (percentage == 0f)
-        {
-            Debug.Log("GG EZ");
-            stars = 3;
         }
 
         ActivatePanel();
@@ -170,11 +177,10 @@ public class TurnManager : MonoBehaviour
     }
 
     private void ActivateStarsUI(int stars)
-    {
-        // Assicurati che la lista non sia vuota
+    {// Assicurati che la lista non sia vuota
         if (starsUI == null || starsUI.Count == 0)
         {
-            Debug.LogWarning("La lista delle stelle UI non è configurata!");
+            Debug.LogWarning("La lista delle stelle UI non Ã¨ configurata!");
             return;
         }
 
@@ -201,7 +207,7 @@ public class TurnManager : MonoBehaviour
             cameraParent.position = new Vector3(
                 lastHitPosition.x,
                 lastHitPosition.y,
-                lastHitPosition.z - 8f // Aggiusta la profondità se necessario
+                lastHitPosition.z - 8f // Aggiusta la profonditï¿½ se necessario
             );
 
             // (Facoltativo) Riorienta la telecamera verso la posizione
@@ -214,13 +220,13 @@ public class TurnManager : MonoBehaviour
             isFocusDone = true;
 
             timeManager.slowdownFactor = 0.01f;
-            //timeManager.slowdownLength = 2f;           //Non è necessario aumentare il tempo
+            //timeManager.slowdownLength = 2f;           //Non ï¿½ necessario aumentare il tempo
             StartCoroutine(timeManager.DoSlowmotionCoroutine());
 
         }
         else
         {
-            Debug.LogWarning("cameraParent è null, impossibile spostare la telecamera.");
+            Debug.LogWarning("cameraParent ï¿½ null, impossibile spostare la telecamera.");
         }
     }
 

@@ -312,6 +312,10 @@ PrefabInstance:
       propertyPath: maxAttempts
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8128557981379640676, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: twoStarsAttempts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -327,7 +331,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4418480534618152463, guid: a9478b2240145c648b74d86aa1663192, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.9
+      value: -4.06
       objectReference: {fileID: 0}
     - target: {fileID: 4418480534618152463, guid: a9478b2240145c648b74d86aa1663192, type: 3}
       propertyPath: m_LocalPosition.y

@@ -136,7 +136,7 @@ public class TurnManager : MonoBehaviour
         float percentage = (float)remainingObjects / initialObjectCount * 100f;
 
         // Valutazione basata sui tentativi e sugli oggetti rimasti
-        if (percentage == 100f)
+        if (remainingAttempts >= 0 && remainingAttempts >= twoStarsAttempts)
         {
             // 100% completato
             stars = 1;

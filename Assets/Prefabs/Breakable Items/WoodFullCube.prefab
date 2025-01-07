@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5741003901992313246}
   m_Layer: 0
   m_Name: WoodFullCube
-  m_TagString: Untagged
+  m_TagString: DestroyOnImpact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   soundEffectIntegro: WoodTap
   soundEffectDanneggiato: WoodDamaged
   soundEffectDestroy: DestroyWood
+  soundCooldown: 0.5
   lowSpeedThreshold: 4
   highSpeedThreshold: 8
   viteoggetto: 2

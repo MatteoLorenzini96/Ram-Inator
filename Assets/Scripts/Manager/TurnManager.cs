@@ -138,19 +138,19 @@ public class TurnManager : MonoBehaviour
     if (percentage == 0f)
     {
         // Completato al 100% (tutti gli oggetti distrutti)
-        if (remainingAttempts <= threeStarsAttempts)
+        if (remainingAttempts >= threeStarsAttempts)
         {
             // Usa meno tentativi del massimo per 3 stelle
             stars = 3;
             Debug.Log("3 stelle");
         }
-        else if (remainingAttempts <= twoStarsAttempts)
+        else if (remainingAttempts >= twoStarsAttempts)
         {
             // Usa meno tentativi del massimo per 2 stelle
             stars = 2;
             Debug.Log("2 stelle");
         }
-        else if (remainingAttempts > twoStarsAttempts && remainingAttempts < maxAttempts)
+        else if (remainingAttempts < twoStarsAttempts )
         {
             // Usa più tentativi di quelli previsti per 2 stelle ma meno del massimo
             stars = 1;

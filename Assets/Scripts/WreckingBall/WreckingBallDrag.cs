@@ -1,10 +1,12 @@
 using UnityEngine;
 using System; // Necessario per gli eventi
 using System.Collections;
+using UnityEngine.UI;
 
 
 public class WreckingBallDrag : MonoBehaviour
 {
+     public Button actionButton;
     private WreckingBallController controller;
     private SpikeAttached spikeAttached;
 
@@ -46,6 +48,7 @@ public class WreckingBallDrag : MonoBehaviour
         {
             Debug.LogError("Pivot non trovato, assicurati che AutoConfigurableJoint sia configurato correttamente.");
         }
+        UpdateButtonState();
 
 
         // Cerca il SpikeAttached
@@ -140,6 +143,9 @@ public class WreckingBallDrag : MonoBehaviour
             isDragging = false;
             isSwinging = true;
 
+            // Aggiorna lo stato del bottone
+            UpdateButtonState();    
+
             // Inizia il controllo di spostamento
             resetCheckStartPosition = rb.position;
             resetCheckStartTime = Time.time;
@@ -192,12 +198,17 @@ public class WreckingBallDrag : MonoBehaviour
             //Debug.Log("Palla resettata alla posizione iniziale.");
             isSwinging = false;
 
+            // Aggiorna lo stato del bottone
+            UpdateButtonState();
+
         }
 
         if (spikeAttached.isSpikeAttached == true)
         {
             isSwinging = true;
             //Debug.Log("Palla ancora in movimento");
+            // Aggiorna lo stato del bottone
+            UpdateButtonState();
 
         }
 
@@ -221,6 +232,17 @@ public class WreckingBallDrag : MonoBehaviour
         {
             ResetPosition();
         }
+    }
+    private void UpdateButtonState()
+    {
+    if (actionButton != null)
+    {
+        actionButton.interactable = isSwinging;
+    }
+    else
+    {
+        Debug.LogWarning("Il riferimento al bottone non è stato assegnato.");
+    }
     }
 
 }

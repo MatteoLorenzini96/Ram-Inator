@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4186290800781622724}
   - component: {fileID: 957028558763787392}
   - component: {fileID: 3055768989094932960}
+  - component: {fileID: -5741003901992313246}
   m_Layer: 0
   m_Name: WoodFullCube
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3221808563429290959}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.71, y: 1.016, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -100,7 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c6952b32244ad4ca060ef1516e467d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffectName: DestroyWood
+  soundEffectIntegro: WoodTap
+  soundEffectDanneggiato: WoodDamaged
+  soundEffectDestroy: DestroyWood
   lowSpeedThreshold: 4
   highSpeedThreshold: 8
   viteoggetto: 2
@@ -129,3 +132,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5741003901992313246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221808563429290959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12f9bd8027361245bf488c2279e14a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opacityWhenDragging: 0.5

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 70fb0df88b784574f8d49edb6d0515a0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 168259
+  packageName: '[URP] Lines Shaders'
+  packageVersion: 1.0
+  assetPath: Assets/URPLinesShaders/ExampleMaterials/MovingLinesShaderMaterial.mat
+  uploadId: 380777

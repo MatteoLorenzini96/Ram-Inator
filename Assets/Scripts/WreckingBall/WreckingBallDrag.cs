@@ -1,38 +1,39 @@
 using UnityEngine;
 using System; // Necessario per gli eventi
+using System.Collections;
+
 
 public class WreckingBallDrag : MonoBehaviour
 {
     private WreckingBallController controller;
+    private SpikeAttached spikeAttached;
 
     private Vector3 lastPosition; // Ultima posizione aggiornata
     private Vector3 currentVelocity; // Velocità attuale
-    private bool isDragging = false;
+    public bool isDragging = false;
     private Rigidbody rb;
     private Transform pivot;
-    private bool noTouch = false;
     private Vector3 initialPosition; // Posizione iniziale della palla
     private Vector3 initialAnchorPosition; // Posizione iniziale del pivot
-    private bool isSwinging = false;
-    private GameObject filter;
+    public bool isSwinging = false;
+
+    private Vector3 resetCheckStartPosition; // Posizione all'inizio del controllo di spostamento
+    private float resetCheckStartTime; // Tempo all'inizio del controllo di spostamento
 
     public event Action<Vector3> OnRelease;
-    [Header("Tiper Per il reset")]
-    public float resetTime = 2.0f;
 
-    [Header("Impostazioni di Velocità")]
-    public float minVelocityToDrag = 1.0f; // Velocità minima per consentire il trascinamento
-    public float minVelocityToReset = 0.5f; // Velocità minima per considerare il reset
+    [Header("Timer Per il reset")]
+    public float resetTime = 2.0f; // Tempo di delay per il reset dopo il controllo
+
+    [Header("Impostazioni di Spostamento")]
+    public float minMovementToReset = 0.2f; // Spostamento minimo per evitare il reset
+    public float movementCheckInterval = 1.0f; // Intervallo di tempo per il controllo dello spostamento
+
+    [Header("Layer per le collisioni")]
+    public LayerMask collisionLayer; // Definisce quale layer il raycast deve rilevare
 
     void Start()
     {
-        // Cerca il GameObject "Filtro", anche se è disattivato
-        filter = GameObject.Find("Filtro") ?? FindInactiveObjectByName("Filtro");
-        if (filter == null)
-        {
-            Debug.LogError("Filtro non trovato. Assicurati che esista un oggetto chiamato 'Filtro'.");
-        }
-
         controller = GetComponent<WreckingBallController>();
         if (controller == null)
         {
@@ -46,9 +47,22 @@ public class WreckingBallDrag : MonoBehaviour
             Debug.LogError("Pivot non trovato, assicurati che AutoConfigurableJoint sia configurato correttamente.");
         }
 
-        lastPosition = transform.position;
-        initialPosition = transform.position; // Salva la posizione iniziale della palla
-        initialAnchorPosition = pivot.position; // Salva la posizione iniziale del pivot
+
+        // Cerca il SpikeAttached
+        if (spikeAttached == null)
+        {
+            spikeAttached = FindFirstObjectByType<SpikeAttached>();
+            if (spikeAttached == null)
+            {
+                Debug.LogError("Non è stato trovato un oggetto con SpikeAttached nella scena!");
+            }
+            else
+            {
+                spikeAttached.OnDetach += HandleDetach; // Iscriviti all'evento
+            }
+        }
+
+        collisionLayer = LayerMask.GetMask("Muro"); // Assicurati che il layer "Muro" esista e sia configurato in Unity
     }
 
     void Update()
@@ -57,21 +71,41 @@ public class WreckingBallDrag : MonoBehaviour
         {
             Vector3 touchPosition = GetTouchWorldPosition();
 
-            Vector3 direction = touchPosition - pivot.position;
-            if (direction.magnitude > controller.distance)
+            Vector3 direction = touchPosition - rb.position;
+            float distance = direction.magnitude;
+
+            if (Physics.Raycast(rb.position, direction.normalized, out RaycastHit hit, distance, collisionLayer))
             {
-                touchPosition = pivot.position + direction.normalized * controller.distance;
+                touchPosition = hit.point - direction.normalized * 0.1f; // Aggiungi un margine di distanza
             }
 
-            transform.position = touchPosition;
-
-            currentVelocity = (transform.position - lastPosition) / Time.deltaTime;
-
-            lastPosition = transform.position;
+            rb.MovePosition(touchPosition);
+            currentVelocity = (rb.position - lastPosition) / Time.deltaTime;
+            lastPosition = rb.position;
         }
-        else if (rb != null && rb.linearVelocity.magnitude < minVelocityToReset && isSwinging == true)
+        else if (isSwinging)
         {
-            Invoke("ResetPosition", resetTime);
+            // Controllo dello spostamento
+            if (Time.time - resetCheckStartTime > movementCheckInterval)
+            {
+                float distanceMoved = Vector3.Distance(rb.position, resetCheckStartPosition);
+
+                if (distanceMoved < minMovementToReset)
+                {
+                    //Debug.Log($"Resetting because moved only {distanceMoved} in {movementCheckInterval} seconds");
+                    if (!spikeAttached.isSpikeAttached)
+                    {
+                        isSwinging = false; // Evita ulteriori reset
+                        Invoke("ResetPosition", resetTime);
+                    }
+                }
+                else
+                {
+                    // Aggiorna i valori per un nuovo controllo
+                    resetCheckStartPosition = rb.position;
+                    resetCheckStartTime = Time.time;
+                }
+            }
         }
     }
 
@@ -87,53 +121,29 @@ public class WreckingBallDrag : MonoBehaviour
 
     private void StartDragging()
     {
-        // Controlla se la velocità attuale supera il limite
-        if (rb != null && rb.linearVelocity.magnitude > minVelocityToDrag)
+        if (!isSwinging)
         {
-            noTouch = true;
-            Debug.Log("La palla si sta muovendo troppo velocemente per essere trascinata.");
-            return; // Esci dalla funzione senza attivare il trascinamento
+            gameObject.layer = LayerMask.NameToLayer("NoContact");
+            isDragging = true;
+            lastPosition = transform.position;
+            initialPosition = transform.position;
+            initialAnchorPosition = pivot.position;
         }
-
-        if (rb != null)
-        {
-            //rb.isKinematic = true; // Disabilita la fisica per il trascinamento
-            noTouch = false;
-        }
-        
-        // Cambia il layer dell'oggetto in "NoContact"
-        gameObject.layer = LayerMask.NameToLayer("NoContact");
-
-        // Attiva il filtro
-        if (filter != null)
-        {
-            filter.SetActive(true);
-        }
-
-        isDragging = true;
-        lastPosition = transform.position;
     }
 
     public void StopDragging()
     {
-        if (rb != null && noTouch == false)
+        if (isDragging)
         {
-            //rb.isKinematic = false;
-
             OnRelease?.Invoke(currentVelocity);
+            gameObject.layer = LayerMask.NameToLayer("Default");
+            isDragging = false;
+            isSwinging = true;
+
+            // Inizia il controllo di spostamento
+            resetCheckStartPosition = rb.position;
+            resetCheckStartTime = Time.time;
         }
-
-        // Riporta il layer dell'oggetto a "Default"
-        gameObject.layer = LayerMask.NameToLayer("Default");
-
-        // Disattiva il filtro
-        if (filter != null)
-        {
-            filter.SetActive(false);
-        }
-
-        isDragging = false;
-        isSwinging = true;
     }
 
     private Vector3 GetTouchWorldPosition()
@@ -157,28 +167,60 @@ public class WreckingBallDrag : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(inputPosition);
     }
 
-    private void ResetPosition()
+    public void ResetPosition()
     {
-        transform.position = initialPosition; // Resetta la posizione della palla
-        pivot.position = initialAnchorPosition; // Resetta la posizione dell'anchor
-        rb.linearVelocity = Vector3.zero; // Resetta la velocità
-        rb.angularVelocity = Vector3.zero; // Resetta la velocità angolare
-        Debug.Log("Palla resettata alla posizione iniziale.");
+        //Debug.Log("Chiamato il ResetPosition");
 
-        isSwinging = false;
-    }
-
-    // Metodo per trovare un oggetto disattivato per nome
-    private GameObject FindInactiveObjectByName(string name)
-    {
-        Transform[] allTransforms = Resources.FindObjectsOfTypeAll<Transform>();
-        foreach (Transform t in allTransforms)
+        if (spikeAttached.isSpikeAttached == false)
         {
-            if (t.gameObject.name == name)
+            TurnManager turnManager = FindFirstObjectByType<TurnManager>();
+            if (turnManager != null)
             {
-                return t.gameObject;
+                turnManager.OnReset();
             }
+            else
+            {
+                Debug.LogWarning("TurnManager non trovato, impossibile chiamare OnStopDragging.");
+            }
+
+            transform.position = initialPosition;
+            pivot.position = initialAnchorPosition;
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            gameObject.layer = LayerMask.NameToLayer("NoContact");
+            
+            //Debug.Log("Palla resettata alla posizione iniziale.");
+            isSwinging = false;
+
         }
-        return null;
+
+        if (spikeAttached.isSpikeAttached == true)
+        {
+            isSwinging = true;
+            //Debug.Log("Palla ancora in movimento");
+
+        }
+
     }
+
+    // Aggiorna la funzione HandleDetach per non interferire con la logica originale
+    private void HandleDetach()
+    {
+        if (!isSwinging)
+        {
+            StartCoroutine(DelayedReset());
+        }
+    }
+
+    private IEnumerator DelayedReset()
+    {
+        yield return new WaitForSeconds(3.0f); // Aspetta 3 secondi o il tempo desiderato
+
+        // Solo se la velocità è minima e lo spike non è attaccato, effettua il reset
+        if (!spikeAttached.isSpikeAttached && rb.linearVelocity.magnitude < minMovementToReset)
+        {
+            ResetPosition();
+        }
+    }
+
 }

@@ -307,6 +307,6 @@ MonoBehaviour:
   musicSounds: []
   sfxSounds:
   - name: DestroyGlass
-    clip: {fileID: 8300000, guid: dd534024754f3ba48810692935e27718, type: 3}
+    clip: {fileID: 8300000, guid: dd0b0d1ef97179d429799cbef0c865c8, type: 3}
   musicSource: {fileID: 3820733313558937909}
   sfxSource: {fileID: 3045637565102947418}

@@ -1,13 +1,18 @@
 using UnityEngine;
 using EZCameraShake;
+using System.Collections.Generic;
 
 public class CollisionStateChanger : MonoBehaviour
 {
 
     private TimeManager timeManager;
+    private Dictionary<string, float> soundCooldowns = new Dictionary<string, float>();
 
-    [Header("Nome del SoundEffect da riprodurre")]
-    public string soundEffectName = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+    [Header("SoundEffect da riprodurre al cambio di stato")]
+    public string soundEffectIntegro = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+    public string soundEffectDanneggiato = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+    public string soundEffectDestroy = "DestroyGlass"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+    public float soundCooldown = 0.5f; // Tempo minimo tra due riproduzioni di qualsiasi suono
 
     [Header("Soglie di velocità")]
     // Soglie di velocità per cambiare stato
@@ -53,17 +58,15 @@ public class CollisionStateChanger : MonoBehaviour
         float relativeSpeed = collision.relativeVelocity.magnitude;
 
         // Controlla se l'oggetto che ha colpito ha il tag corretto
-        if (collision.gameObject.CompareTag("Palla")){
+        if (collision.gameObject.CompareTag("Palla"))
+        {
+            PlaySoundWithCooldown(soundEffectIntegro);
 
-            // Cerca nei figli dell'oggetto con il tag "Palla"
-            foreach (Transform child in collision.transform){
-
-                if (child.gameObject.activeSelf){
-
-                    // Controlla se il figlio attivo � nella lista dei tipi distruttivi
-                    if (System.Array.Exists(destroyableHeads, head => head == child.name)){
-
-                    // Cambia stato in base alla velocità
+            foreach (Transform child in collision.transform)
+            {
+                if (child.gameObject.activeSelf &&
+                    System.Array.Exists(destroyableHeads, head => head == child.name))
+                {
                     if (relativeSpeed < lowSpeedThreshold)
                     {
                         ChangeState(ObjectState.Idle);
@@ -71,39 +74,57 @@ public class CollisionStateChanger : MonoBehaviour
                     else if (relativeSpeed >= lowSpeedThreshold && relativeSpeed < highSpeedThreshold)
                     {
                         ChangeState(ObjectState.LowImpact);
-                        viteoggetto = viteoggetto - 1;
+                        viteoggetto -= 1;
+                        PlaySoundWithCooldown(soundEffectDanneggiato);
                     }
                     else if (relativeSpeed >= highSpeedThreshold)
                     {
-                    ChangeState(ObjectState.HighImpact);
-                    viteoggetto = viteoggetto - 2;
+                        ChangeState(ObjectState.HighImpact);
+                        viteoggetto -= 2;
+                        PlaySoundWithCooldown(soundEffectDestroy);
                     }
 
-                    //Debug.Log($"Velocità relativa: {relativeSpeed}, Nuovo stato: {currentState}, vite: {viteoggetto}");
                     if (replacementPrefab != null && viteoggetto <= 0)
-                        {
-                            Explode();
-                        }
-                        return;
+                    {
+                        Explode();
                     }
+                    return;
                 }
             }
         }
-    }
 
+    }
 
     public void Explode()
     {
-        timeManager.DoSlowmotion();  //Applica l'effetto SlowMotion
+        StartCoroutine(timeManager.DoSlowmotionCoroutine());
         CameraShaker.Instance.ShakeOnce(1.5f, 1.5f, .1f, 1f);  //Applica il CameraShake
 
-        Instantiate(replacementPrefab, transform.position, transform.rotation);
+        // Esegui la vibrazione del telefono
+        VibratePhone();
+
+        // Calcola la nuova scala proporzionale
+        float scaleFactor = 0.5f; // La proporzione tra la scala originale (0.7) e quella del prefab (0.35)
+        Vector3 newScale = transform.localScale * scaleFactor;
+
+        // Crea il prefab con la nuova scala
+        GameObject replacement = Instantiate(replacementPrefab, transform.position, transform.rotation);
+        replacement.transform.localScale = newScale;
+
         Destroy(gameObject); // Distruggi l'oggetto attuale
-        AudioManager.Instance.PlaySFX(soundEffectName); // Usa la variabile per chiamare il metodo
+        AudioManager.Instance.PlaySFX(soundEffectDestroy); // Usa la variabile per chiamare il metodo
+    }
+
+    // Metodo per far vibrare il telefono
+    private void VibratePhone()
+    {
+    #if UNITY_IOS || UNITY_ANDROID
+    Handheld.Vibrate();
+    #endif
     }
 
     // Metodo per cambiare lo stato
-    private void ChangeState(ObjectState newState)
+    public void ChangeState(ObjectState newState)
     {
     if (currentState != newState)
         {
@@ -112,4 +133,26 @@ public class CollisionStateChanger : MonoBehaviour
             //Debug.Log($"Lo stato è cambiato a: {currentState} e ha vite: {viteoggetto}");
         }
     }
+
+    private void PlaySoundWithCooldown(string soundEffect)
+    {
+        float currentTime = Time.time;
+
+        // Verifica se il suono ha già un tempo di cooldown registrato
+        if (soundCooldowns.ContainsKey(soundEffect))
+        {
+            // Controlla se il cooldown è scaduto
+            if (currentTime - soundCooldowns[soundEffect] < soundCooldown)
+            {
+                return; // Ignora se il cooldown non è scaduto
+            }
+        }
+
+        // Aggiorna il tempo dell'ultima riproduzione del suono
+        soundCooldowns[soundEffect] = currentTime;
+
+        // Riproduce il suono
+        AudioManager.Instance.PlaySFX(soundEffect);
+    }
+
 }

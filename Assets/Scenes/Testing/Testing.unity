@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5224675424215943487, guid: b18b7729ec04e384baba42b0e81b6609, type: 3}
       propertyPath: destroyableHeads.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5224675424215943487, guid: b18b7729ec04e384baba42b0e81b6609, type: 3}
       propertyPath: 'destroyableHeads.Array.data[1]'
@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5224675424215943487, guid: b18b7729ec04e384baba42b0e81b6609, type: 3}
       propertyPath: destroyableHeads.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5224675424215943487, guid: b18b7729ec04e384baba42b0e81b6609, type: 3}
       propertyPath: 'destroyableHeads.Array.data[1]'

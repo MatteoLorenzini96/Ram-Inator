@@ -6,7 +6,28 @@ public class ParentCollisionManager : MonoBehaviour
     public float forza = 10f; // La forza da applicare ai frammenti
     private float timeToReset = 1f; // Tempo in secondi prima di ripristinare il trigger
     private float timeToDestroy = 5f;
+    private Vector3 impactPoint; // Punto di impatto ricevuto
 
+
+    private void Awake()
+    {
+        // Applica la forza ai figli usando il punto di impatto
+        foreach (Transform child in transform)
+        {
+            Rigidbody rb = child.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                Vector3 direzione = (child.position - impactPoint).normalized;
+                rb.AddForce(direzione * forza, ForceMode.Impulse);
+            }
+        }
+    }
+    
+    // Metodo pubblico per impostare il punto di impatto
+    public void SetImpactPoint(Vector3 point)
+    {
+        impactPoint = point;
+    }
 
     // Funzione pubblica che gestisce i trigger
     public void GestisciTrigger(Collider other, MonoBehaviour figlio)

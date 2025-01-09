@@ -23,7 +23,7 @@ public class TimeManager : MonoBehaviour
     // Coroutine per il rallentamento del tempo
     public IEnumerator DoSlowmotionCoroutine()
     {
-        Debug.Log("Rallento il tempo");
+        //Debug.Log("Rallento il tempo");
         Time.timeScale = slowdownFactor;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
 

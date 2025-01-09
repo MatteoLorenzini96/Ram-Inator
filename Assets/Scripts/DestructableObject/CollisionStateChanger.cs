@@ -29,6 +29,8 @@ public class CollisionStateChanger : MonoBehaviour
     [Header("Tipi di Head Distruttivi")]
     public string[] destroyableHeads;
 
+    public Vector3 lastImpactPoint { get; private set; } // Punto di impatto registrato
+
     // Stato attuale dell'oggetto
     public enum ObjectState
     {
@@ -60,6 +62,8 @@ public class CollisionStateChanger : MonoBehaviour
         // Controlla se l'oggetto che ha colpito ha il tag corretto
         if (collision.gameObject.CompareTag("Palla"))
         {
+            lastImpactPoint = collision.GetContact(0).point; // Registra il punto di impatto
+
             PlaySoundWithCooldown(soundEffectIntegro);
 
             foreach (Transform child in collision.transform)
@@ -107,9 +111,16 @@ public class CollisionStateChanger : MonoBehaviour
         float scaleFactor = 0.5f; // La proporzione tra la scala originale (0.7) e quella del prefab (0.35)
         Vector3 newScale = transform.localScale * scaleFactor;
 
-        // Crea il prefab con la nuova scala
+        // Crea il prefab sostituto e passa il punto di impatto
         GameObject replacement = Instantiate(replacementPrefab, transform.position, transform.rotation);
         replacement.transform.localScale = newScale;
+
+        // Passa il punto di impatto al prefab sostituto, se contiene uno script ParentCollisionManager
+        ParentCollisionManager pcm = replacement.GetComponent<ParentCollisionManager>();
+        if (pcm != null)
+        {
+            pcm.SetImpactPoint(lastImpactPoint);
+        }
 
         Destroy(gameObject); // Distruggi l'oggetto attuale
         AudioManager.Instance.PlaySFX(soundEffectDestroy); // Usa la variabile per chiamare il metodo

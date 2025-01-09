@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic; // Per usare la lista
 using System;
+using UnityEngine.InputSystem.XR;
 
 public class SpikeAttached : MonoBehaviour
 {
     [SerializeField] private Transform parentObject; // Il parent che contiene i child
     private int activeChildIndex = 1; // L'indice del child da controllare
+    private WreckingBallDrag wreckingBallDrag;
     public string targetTag = "TargetTag"; // Il tag dell'oggetto a cui agganciarsi
     public float attachDuration = 5f; // Durata dell'attaccamento in secondi
     private Transform activeChild;
@@ -35,6 +37,12 @@ public class SpikeAttached : MonoBehaviour
         else
         {
             Debug.LogError($"Il parent non ha abbastanza child. Assicurati che ci sia un child all'indice {activeChildIndex}.");
+        }
+
+        wreckingBallDrag = GetComponent<WreckingBallDrag>();
+        if (wreckingBallDrag == null)
+        {
+            Debug.LogError("WreckingBallDrag non trovato. Aggiungilo all'oggetto.");
         }
     }
 
@@ -66,7 +74,7 @@ public class SpikeAttached : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Esegui il codice solo se lo script è attivo e il child corretto è attivo
-        if (isScriptActive && collision.gameObject.CompareTag(targetTag))
+        if (isScriptActive && collision.gameObject.CompareTag(targetTag) && wreckingBallDrag.isSwinging)
         {
             // Controlla se l'oggetto è temporaneamente bloccato
             if (temporarilyBlockedObjects.Contains(collision.gameObject))

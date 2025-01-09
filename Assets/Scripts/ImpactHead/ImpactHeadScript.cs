@@ -4,6 +4,8 @@ public class ImpactHeadScript : MonoBehaviour
 {
     [SerializeField] private Transform parentObject; // Il parent che contiene i child
     private int impactHeadIndex = 2; // L'indice del child da controllare
+    private WreckingBallDrag wreckingBallDrag;
+
     public float lowImpactSpeed = 5f; // Soglia per impatti a bassa velocità
     public float highImpactSpeed = 10f; // Soglia per impatti ad alta velocità
     public GameObject objectToSpawn; // Prefab da spawnare al momento dell'impatto
@@ -30,6 +32,13 @@ public class ImpactHeadScript : MonoBehaviour
         {
             Debug.LogError($"Il parent non ha abbastanza child. Assicurati che ci sia un child all'indice {impactHeadIndex}.");
         }
+
+        wreckingBallDrag = GetComponent<WreckingBallDrag>();
+        if (wreckingBallDrag == null)
+        {
+            Debug.LogError("WreckingBallDrag non trovato. Aggiungilo all'oggetto.");
+        }
+
     }
 
     private void Update()
@@ -66,7 +75,7 @@ public class ImpactHeadScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Esegui il codice solo se lo script è attivo
-        if (isScriptActive)
+        if (isScriptActive && wreckingBallDrag.isSwinging)
         {
             // Calcola la velocità dell'impatto
             float relativeSpeed = collision.relativeVelocity.magnitude;

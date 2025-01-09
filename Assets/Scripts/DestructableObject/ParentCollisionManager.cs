@@ -5,11 +5,14 @@ public class ParentCollisionManager : MonoBehaviour
 {
     public float forza = 10f; // La forza da applicare ai frammenti
     private float timeToReset = 1f; // Tempo in secondi prima di ripristinare il trigger
+    private float timeToDestroy = 5f;
 
 
     // Funzione pubblica che gestisce i trigger
     public void GestisciTrigger(Collider other, MonoBehaviour figlio)
     {
+        Invoke("DestroyObject", timeToDestroy);
+
         //Debug.Log("Tag dell'oggetto che entra nel trigger: " + other.tag);
 
         // Se l'oggetto che entra nel trigger è la "Palla"
@@ -90,6 +93,12 @@ public class ParentCollisionManager : MonoBehaviour
         {
             collider.isTrigger = true;
         }
+    }
+
+    void DestroyObject()
+    {
+        // Distruggere l'oggetto
+        Destroy(gameObject);
     }
 
 }

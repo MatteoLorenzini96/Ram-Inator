@@ -8,7 +8,7 @@ public class ChildCollision : MonoBehaviour
 
     private void Start()
     {
-        // Trova il componente ParentTriggerManager sul padre
+        // Trova il componente ParentCollisionManager sul padre
         padre = GetComponentInParent<ParentCollisionManager>();
 
     }
@@ -19,14 +19,6 @@ public class ChildCollision : MonoBehaviour
         {
             // Notifica il padre del trigger
             padre.GestisciTrigger(other, this);
-
-            Invoke("DestroyObject", timeToDestroy);
         }
-    }
-
-    void DestroyObject()
-    {
-        // Distruggere l'oggetto
-        Destroy(gameObject);
     }
 }

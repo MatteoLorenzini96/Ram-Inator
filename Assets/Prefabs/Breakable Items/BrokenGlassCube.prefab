@@ -655,7 +655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1850a1261ca02b744a20535869817bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forza: 50
+  forza: 25
 --- !u!1 &7245988474845624798
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,9 +24,10 @@ public class TurnManager : MonoBehaviour
     public int twoStarsAttempts = 3; // Tentativi massimi per ottenere 2 stelle
     public int threeStarsAttempts = 2; // Tentativi massimi per ottenere 3 stelle
 
-    [Header("Oggetti figli per 0 stelle")]
-    public GameObject defaultChildObject; // Oggetto figlio predefinito
-    public GameObject alternativeChildObject; // Oggetto figlio alternativo per 0 stelle
+    [Header("Testo per valutazione")]
+    //public GameObject defaultChildObject; // Oggetto figlio predefinito
+    //public GameObject alternativeChildObject; // Oggetto figlio alternativo per 0 stelle
+    public TextMeshProUGUI evaluateText;
 
     private Transform cameraParent; // Variabile per il parent della telecamera
     private List<GameObject> objectsWithCollisionStateChanger;
@@ -149,32 +150,32 @@ public class TurnManager : MonoBehaviour
         {
             // Usa meno tentativi del massimo per 3 stelle
             stars = 3;
-            Debug.Log("3 stelle");
+            //Debug.Log("3 stelle");
         }
         else if (remainingAttempts >= twoStarsAttempts)
         {
             // Usa meno tentativi del massimo per 2 stelle
             stars = 2;
-            Debug.Log("2 stelle");
+            //Debug.Log("2 stelle");
         }
         else if (remainingAttempts < twoStarsAttempts )
         {
             // Usa più tentativi di quelli previsti per 2 stelle ma meno del massimo
             stars = 1;
-            Debug.Log("1 stella - Tentativi superiori a quelli per 2 stelle, ma inferiori al massimo");
+            //Debug.Log("1 stella - Tentativi superiori a quelli per 2 stelle, ma inferiori al massimo");
         }
         else
         {
             // Usa più tentativi del massimo
             stars = 0;
-            Debug.Log("1 stelle - Tentativi superiori al massimo");
+            //Debug.Log("1 stelle - Tentativi superiori al massimo");
         }
     }
     else
     {
         // Se non hai completato il livello (ci sono ancora oggetti da distruggere)
         stars = 0;  // Completamento parziale, quindi solo 1 stella
-        Debug.Log("0 stella - Completamento parziale");
+        //Debug.Log("0 stelle - Completamento parziale");
     }
     
 
@@ -187,7 +188,7 @@ public class TurnManager : MonoBehaviour
 
     private void ActivatePanel()
     {
-        Debug.Log("Attivo il pannello di fine livello");
+        //Debug.Log("Attivo il pannello di fine livello");
 
         evaluetePanel.SetActive(true);
 
@@ -202,26 +203,53 @@ public class TurnManager : MonoBehaviour
         int inactiveStarCount = Mathf.Clamp(3 - stars, 0, inactiveStars.Count);
 
         if (stars == 0)
-    {
-        Debug.Log("Attivo l'oggetto figlio alternativo per 0 stelle.");
-        
-        if (defaultChildObject != null)
-            defaultChildObject.SetActive(false); // Disattiva l'oggetto predefinito
-            
-        if (alternativeChildObject != null)
-            alternativeChildObject.SetActive(true); // Attiva l'oggetto alternativo
-    }
-    else
-    {
-        Debug.Log("Attivo l'oggetto figlio predefinito.");
-        
-        if (defaultChildObject != null)
+        {
+            evaluateText.text = "Ritenta!";
+
+            //Debug.Log("Text 0 stelle.");
+
+            /*if (defaultChildObject != null)
+                 defaultChildObject.SetActive(false); // Disattiva l'oggetto predefinito
+
+             if (alternativeChildObject != null)
+                 alternativeChildObject.SetActive(true); // Attiva l'oggetto alternativo*/
+        }
+        if (stars == 1)
+        {
+            evaluateText.text = "Puoi fare di meglio!";
+
+            //Debug.Log("Text 1 stella.");
+
+            /*if (defaultChildObject != null)
             defaultChildObject.SetActive(true); // Attiva l'oggetto predefinito
             
-        if (alternativeChildObject != null)
-            alternativeChildObject.SetActive(false); // Disattiva l'oggetto alternativo
-    }
+            if (alternativeChildObject != null)
+            alternativeChildObject.SetActive(false); // Disattiva l'oggetto alternativo*/
+        }
+        if (stars == 2)
+        {
+            evaluateText.text = "Ci sei quasi!";
 
+            //Debug.Log("Text 2 stelle.");
+
+            /*if (defaultChildObject != null)
+            defaultChildObject.SetActive(true); // Attiva l'oggetto predefinito
+            
+            if (alternativeChildObject != null)
+            alternativeChildObject.SetActive(false); // Disattiva l'oggetto alternativo*/
+        }
+        if (stars == 3)
+        {
+            evaluateText.text = "Complimenti!";
+
+            //Debug.Log("Text 3 stelle.");
+
+            /*if (defaultChildObject != null)
+            defaultChildObject.SetActive(true); // Attiva l'oggetto predefinito
+            
+            if (alternativeChildObject != null)
+            alternativeChildObject.SetActive(false); // Disattiva l'oggetto alternativo*/
+        }
         // Attiva gli oggetti figli per le stelle non ottenute
         for (int i = 0; i < inactiveStarCount; i++)
         {

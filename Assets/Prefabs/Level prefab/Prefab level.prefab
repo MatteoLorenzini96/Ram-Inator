@@ -12275,7 +12275,6 @@ MonoBehaviour:
   - {fileID: 5130944090951753371}
   - {fileID: 1118328700272265012}
   - {fileID: 6359135012190052288}
-  buttonToDeactivate: {fileID: 1354170590058651332}
   twoStarsAttempts: 3
   threeStarsAttempts: 2
   defaultChildObject: {fileID: 6709148725336632000}
@@ -13428,7 +13427,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65.6
+  m_fontSize: 29.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -18754,7 +18753,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65.6
+  m_fontSize: 29.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -20140,7 +20139,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 67.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -20852,7 +20851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6405706538528561141
 RectTransform:
   m_ObjectHideFlags: 0

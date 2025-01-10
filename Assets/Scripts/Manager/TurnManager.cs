@@ -20,9 +20,6 @@ public class TurnManager : MonoBehaviour
     [Header("Oggetti per stelle non attive")]
     public List<GameObject> inactiveStars; // Lista di oggetti figli alternativi per stelle non attive
 
-    [Header("Pulsante da disattivare con 0 stelle")]
-    public GameObject buttonToDeactivate; // Pulsante da disattivare
-
     [Header("Tentativi per stelle")]
     public int twoStarsAttempts = 3; // Tentativi massimi per ottenere 2 stelle
     public int threeStarsAttempts = 2; // Tentativi massimi per ottenere 3 stelle
@@ -203,12 +200,6 @@ public class TurnManager : MonoBehaviour
 
         // Calcola il numero di stelle non ottenute
         int inactiveStarCount = Mathf.Clamp(3 - stars, 0, inactiveStars.Count);
-
-        // Disattiva il pulsante se non sono state ottenute stelle (0 stelle)
-    if (stars == 0 && buttonToDeactivate != null)
-    {
-        buttonToDeactivate.SetActive(false); // Disattiva il pulsante
-    }
 
         if (stars == 0)
     {

@@ -17,9 +17,19 @@ public class TurnManager : MonoBehaviour
     public List<GameObject> starsUI; // Lista di stelle impostabile dall'Inspector
     public int stars = 0;
 
+    [Header("Oggetti per stelle non attive")]
+    public List<GameObject> inactiveStars; // Lista di oggetti figli alternativi per stelle non attive
+
+    [Header("Pulsante da disattivare con 0 stelle")]
+    public GameObject buttonToDeactivate; // Pulsante da disattivare
+
     [Header("Tentativi per stelle")]
     public int twoStarsAttempts = 3; // Tentativi massimi per ottenere 2 stelle
     public int threeStarsAttempts = 2; // Tentativi massimi per ottenere 3 stelle
+
+    [Header("Oggetti figli per 0 stelle")]
+    public GameObject defaultChildObject; // Oggetto figlio predefinito
+    public GameObject alternativeChildObject; // Oggetto figlio alternativo per 0 stelle
 
     private Transform cameraParent; // Variabile per il parent della telecamera
     private List<GameObject> objectsWithCollisionStateChanger;
@@ -183,6 +193,50 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Attivo il pannello di fine livello");
 
         evaluetePanel.SetActive(true);
+
+        // Disattiva tutti gli oggetti figli delle stelle non attive inizialmente
+        foreach (var inactiveStar in inactiveStars)
+        {
+            if (inactiveStar != null)
+                inactiveStar.SetActive(false);
+        }
+
+        // Calcola il numero di stelle non ottenute
+        int inactiveStarCount = Mathf.Clamp(3 - stars, 0, inactiveStars.Count);
+
+        // Disattiva il pulsante se non sono state ottenute stelle (0 stelle)
+    if (stars == 0 && buttonToDeactivate != null)
+    {
+        buttonToDeactivate.SetActive(false); // Disattiva il pulsante
+    }
+
+        if (stars == 0)
+    {
+        Debug.Log("Attivo l'oggetto figlio alternativo per 0 stelle.");
+        
+        if (defaultChildObject != null)
+            defaultChildObject.SetActive(false); // Disattiva l'oggetto predefinito
+            
+        if (alternativeChildObject != null)
+            alternativeChildObject.SetActive(true); // Attiva l'oggetto alternativo
+    }
+    else
+    {
+        Debug.Log("Attivo l'oggetto figlio predefinito.");
+        
+        if (defaultChildObject != null)
+            defaultChildObject.SetActive(true); // Attiva l'oggetto predefinito
+            
+        if (alternativeChildObject != null)
+            alternativeChildObject.SetActive(false); // Disattiva l'oggetto alternativo
+    }
+
+        // Attiva gli oggetti figli per le stelle non ottenute
+        for (int i = 0; i < inactiveStarCount; i++)
+        {
+            if (inactiveStars[i] != null)
+                inactiveStars[i].SetActive(true);
+        }
 
         // Attiva le stelle UI in base al numero di stelle calcolato
         ActivateStarsUI(stars);

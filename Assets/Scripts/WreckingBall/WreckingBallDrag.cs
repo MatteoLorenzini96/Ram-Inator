@@ -75,9 +75,22 @@ public class WreckingBallDrag : MonoBehaviour
             Vector3 touchPosition = GetTouchWorldPosition();
 
             Vector3 direction = touchPosition - rb.position;
-            float distance = direction.magnitude;
+            float distanceToPivot = direction.magnitude;
 
-            if (Physics.Raycast(rb.position, direction.normalized, out RaycastHit hit, distance, collisionLayer))
+            // Limita il movimento in base alla distanza massima definita in WreckingBallController
+            if (controller != null)
+            {
+                float maxDistance = controller.distance;
+
+                // Se la distanza supera quella massima, aggiorniamo la posizione per non farla andare oltre
+                if (distanceToPivot > maxDistance)
+                {
+                    direction = direction.normalized * maxDistance;
+                    touchPosition = rb.position + direction;
+                }
+            }
+
+            if (Physics.Raycast(rb.position, direction.normalized, out RaycastHit hit, distanceToPivot, collisionLayer))
             {
                 touchPosition = hit.point - direction.normalized * 0.1f; // Aggiungi un margine di distanza
             }

@@ -21523,10 +21523,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massNormal: 2
   dragNormal: 0.2
+  maxSpeedNormal: 25
   massSpike: 10
   dragSpike: 0.5
+  maxSpeedSpike: 10
   massImpact: 1
   dragImpact: 0.2
+  maxSpeedImpact: 15
 --- !u!114 &8873934355622486461
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class LevelButton : MonoBehaviour
 {
     public TextMeshProUGUI levelText;
     public Image star1, star2, star3;
+    public Sprite starObtainedSprite; // Sprite per stella ottenuta
+    public Sprite starNotObtainedSprite; // Sprite per stella non ottenuta
     public Image lvShow;
 
     private int levelIndex; // Salva l'indice del livello associato a questo pulsante
@@ -30,17 +32,17 @@ public class LevelButton : MonoBehaviour
         // Ottieni il numero di stelle dal LevelResultsManager
         int stars = LevelResultsManager.Instance.GetStarsForLevel(levelIndex);
 
-        // Aggiorna le stelle
-        star1.color = stars >= 1 ? Color.white : Color.grey;
-        star2.color = stars >= 2 ? Color.white : Color.grey;
-        star3.color = stars >= 3 ? Color.white : Color.grey;
+        // Aggiorna le stelle sostituendo gli sprite
+        star1.sprite = stars >= 1 ? starObtainedSprite : starNotObtainedSprite;
+        star2.sprite = stars >= 2 ? starObtainedSprite : starNotObtainedSprite;
+        star3.sprite = stars >= 3 ? starObtainedSprite : starNotObtainedSprite;
 
         /*star1.gameObject.SetActive(stars >= 1);
         star2.gameObject.SetActive(stars >= 2);
         star3.gameObject.SetActive(stars >= 3);*/
 
         // Cambia colore se il livello è completato
-        lvShow.color = stars > 0 ? Color.white : Color.grey;
+        // lvShow.color = stars > 0 ? Color.white : Color.grey;
     }
 
     public void LoadLevel()

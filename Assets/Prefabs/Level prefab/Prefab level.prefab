@@ -6289,6 +6289,7 @@ Transform:
   - {fileID: 2369161594923177147}
   - {fileID: 7169175327960012181}
   - {fileID: 6829845743168340977}
+  - {fileID: 3236296937086238149}
   - {fileID: 7740330409876054891}
   - {fileID: 8295419854796833599}
   - {fileID: 959876109488507718}
@@ -20077,6 +20078,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7471751352102114813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8039334501866045955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3236296937086238149}
+  - component: {fileID: 1072407382829509520}
+  m_Layer: 0
+  m_Name: EffectsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3236296937086238149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039334501866045955}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7471751352102114813}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1072407382829509520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039334501866045955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67f959d3f78b43499f609789274371e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectsList:
+  - effectName: Sparks
+    effectPrefab: {fileID: 4749980201479958301, guid: 003b8e7274dc90b44a6d7f267e1b1fe2, type: 3}
 --- !u!1 &8047968899548666997
 GameObject:
   m_ObjectHideFlags: 0
@@ -21523,7 +21571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massNormal: 2
   dragNormal: 0.2
-  maxSpeedNormal: 25
+  maxSpeedNormal: 35
   massSpike: 10
   dragSpike: 0.5
   maxSpeedSpike: 10

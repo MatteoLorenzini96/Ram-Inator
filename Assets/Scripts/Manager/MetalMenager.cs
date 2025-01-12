@@ -53,7 +53,7 @@ public class MetalManager : MonoBehaviour
     void Update()
     {
         // Verifica se "isDragging" è vera
-        if (wreckingBallDrag != null && wreckingBallDrag.isDragging)
+        if (wreckingBallDrag != null && wreckingBallDrag.isDragging || !wreckingBallDrag.isSwinging)
         {
             // Controlla la distanza di ciascun oggetto "Metallo" dalla posizione del "WreckingBall"
             foreach (MetalObject metal in metalObjects)

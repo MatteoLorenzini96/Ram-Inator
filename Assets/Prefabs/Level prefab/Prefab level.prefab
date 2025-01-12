@@ -7028,7 +7028,7 @@ MonoBehaviour:
   massNormal: 2
   dragNormal: 0.2
   maxSpeedNormal: 25
-  massSpike: 10
+  massSpike: 20
   dragSpike: 0.5
   maxSpeedSpike: 15
   massImpact: 1

@@ -23,7 +23,7 @@ public class EffectsManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Mantieni l'oggetto al cambio di scena
+            //DontDestroyOnLoad(gameObject); // Mantieni l'oggetto al cambio di scena
         }
         else
         {

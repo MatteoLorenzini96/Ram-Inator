@@ -4,6 +4,7 @@ public class TrailSizeAndColorController : MonoBehaviour
 {
     private TrailRenderer trailRenderer; // Trail Renderer dell'oggetto
     private Rigidbody rb; // Rigidbody dell'oggetto
+    private WreckingBallDrag wreckingBallDrag;
 
     public float maxWidth = 0.5f; // Larghezza massima del trail
     public float minWidth = 0.13f; // Larghezza minima del trail
@@ -26,6 +27,9 @@ public class TrailSizeAndColorController : MonoBehaviour
         // Ottieni il Rigidbody dell'oggetto
         rb = GetComponent<Rigidbody>();
 
+        // Ottieni il WreckingBallDrag
+        wreckingBallDrag = GetComponent<WreckingBallDrag>();
+
         // Assicurati che il Rigidbody sia presente
         if (rb == null)
         {
@@ -37,18 +41,32 @@ public class TrailSizeAndColorController : MonoBehaviour
     {
         if (rb != null)
         {
-            // Ottieni la velocità dell'oggetto dal Rigidbody
-            float objectSpeed = rb.linearVelocity.magnitude;
+            if (wreckingBallDrag != null && wreckingBallDrag.isSwinging)
+            {
+                // Aggiorna la larghezza del trail
+                UpdateTrailWidth();
+            }
+            else
+            {
+                // Se non sta oscillando, nascondi il trail
+                trailRenderer.widthMultiplier = 0f;
+            }
 
-            // Calcola la larghezza del trail basata sulla velocità
-            float trailWidth = Mathf.Clamp(objectSpeed * speedFactor, minWidth, maxWidth);
-
-            // Aggiorna la larghezza del Trail Renderer
-            trailRenderer.widthMultiplier = trailWidth;
+            // Aggiorna sempre il colore del trail in base al figlio attivo
+            UpdateTrailColor();
         }
+    }
 
-        // Cambia il colore del trail in base al figlio attivo
-        UpdateTrailColor();
+    void UpdateTrailWidth()
+    {
+        // Ottieni la velocità dell'oggetto dal Rigidbody
+        float objectSpeed = rb.linearVelocity.magnitude; // Usa velocity.magnitude per la velocità scalare
+
+        // Calcola la larghezza del trail basata sulla velocità
+        float trailWidth = Mathf.Clamp(objectSpeed * speedFactor, minWidth, maxWidth);
+
+        // Aggiorna la larghezza del Trail Renderer
+        trailRenderer.widthMultiplier = trailWidth;
     }
 
     void UpdateTrailColor()
@@ -65,7 +83,6 @@ public class TrailSizeAndColorController : MonoBehaviour
                     {
                         // Cambia il gradiente del Trail Renderer
                         trailRenderer.colorGradient = preset.colorGradient;
-                        Debug.Log($"Colore del trail cambiato per il figlio attivo: {child.name}");
                         return;
                     }
                 }

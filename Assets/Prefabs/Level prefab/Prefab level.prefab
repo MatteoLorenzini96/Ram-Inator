@@ -1200,10 +1200,10 @@ RectTransform:
   - {fileID: 5364458560943947024}
   m_Father: {fileID: 6096637761972124621}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 0}
-  m_SizeDelta: {x: 50, y: 600}
+  m_AnchorMin: {x: 0.069282055, y: 0.155}
+  m_AnchorMax: {x: 0.10785471, y: 0.77800006}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7080163055180915211
 MonoBehaviour:
@@ -2486,7 +2486,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 40}
+  m_SizeDelta: {x: 0, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7943975508298320250
 CanvasRenderer:
@@ -7117,7 +7117,7 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.12984754
+    widthMultiplier: 0.9757101
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -7175,7 +7175,7 @@ TrailRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -7196,9 +7196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1317d2a510c4cbf4d94e209794cbb1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWidth: 0.5
-  minWidth: 0.13
-  speedFactor: 2
+  maxWidth: 0.7
+  minWidth: 0
+  speedFactor: 0.1
   childColorPresets:
   - childName: NormalHead
     colorGradient:

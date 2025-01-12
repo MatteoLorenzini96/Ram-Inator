@@ -6890,7 +6890,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: resetTime
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: actionButton
@@ -7027,13 +7027,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massNormal: 2
   dragNormal: 0.2
-  maxSpeedNormal: 35
+  maxSpeedNormal: 25
   massSpike: 10
   dragSpike: 0.5
-  maxSpeedSpike: 10
+  maxSpeedSpike: 15
   massImpact: 1
   dragImpact: 0.2
-  maxSpeedImpact: 15
+  maxSpeedImpact: 30
 --- !u!114 &8873934355622486461
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -59,10 +59,10 @@ PrefabInstance:
     - target: {fileID: -1461304994638716399, guid: 43e6ada6c4aa1b7438c28f9530a5e129, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ce4b77858ec6c0f469b07b034c21a85f, type: 2}
+      objectReference: {fileID: 2100000, guid: a6e2280faa6c7204582cef09a765d55b, type: 2}
     - target: {fileID: 919132149155446097, guid: 43e6ada6c4aa1b7438c28f9530a5e129, type: 3}
       propertyPath: m_Name
-      value: WoodenBrokenCube+Cube 1
+      value: FullWoodenCube
       objectReference: {fileID: 0}
     - target: {fileID: 3224710968982699700, guid: 43e6ada6c4aa1b7438c28f9530a5e129, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

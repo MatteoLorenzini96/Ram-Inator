@@ -5557,6 +5557,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ce4b77858ec6c0f469b07b034c21a85f, type: 2}
+    - target: {fileID: 2618553447184849599, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3404416647223233437, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: lineWidth
       value: 0.13
@@ -5624,6 +5628,10 @@ PrefabInstance:
     - target: {fileID: 8799189683525330400, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: distance
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999824287950467076, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8999824287950467076, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

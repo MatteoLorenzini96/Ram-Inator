@@ -4219,8 +4219,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectsList:
-  - effectName: Sparks
+  - effectName: SparksSmall
     effectPrefab: {fileID: 4749980201479958301, guid: 003b8e7274dc90b44a6d7f267e1b1fe2, type: 3}
+  - effectName: SparksBig
+    effectPrefab: {fileID: 4749980201479958301, guid: 74417e1b76f53d846bfa0f4940add045, type: 3}
+  - effectName: GlassDebrisSmall
+    effectPrefab: {fileID: 9082197840681682119, guid: 91adaabb0e1a0854385ed514ad92c8ca, type: 3}
+  - effectName: GlassDebrisBig
+    effectPrefab: {fileID: 9082197840681682119, guid: 65e2a4177b4d03949ba4a3cb17684651, type: 3}
+  - effectName: WoodDebrisSmall
+    effectPrefab: {fileID: 1025285306637258, guid: 2e67bf59dbd03c54d95a5528ae5ce6a2, type: 3}
+  - effectName: WoodDebrisBig
+    effectPrefab: {fileID: 1025285306637258, guid: 9c1ecd853b094ba4888985b3f6f1ab7a, type: 3}
 --- !u!1 &8047968899548666997
 GameObject:
   m_ObjectHideFlags: 0

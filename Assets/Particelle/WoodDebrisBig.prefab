@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 198220379293217532}
   - component: {fileID: 199791721206961466}
   m_Layer: 0
-  m_Name: BallDust
+  m_Name: WoodDebrisBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

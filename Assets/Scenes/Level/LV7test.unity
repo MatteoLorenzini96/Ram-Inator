@@ -261,6 +261,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2036744772827231089, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2122092215797407647, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
       propertyPath: m_Name
       value: Prefab level
@@ -279,6 +283,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3435020428834759692, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435020428834759692, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4588974642238518933, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}

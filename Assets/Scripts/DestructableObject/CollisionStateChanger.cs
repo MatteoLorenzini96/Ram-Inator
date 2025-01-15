@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class CollisionStateChanger : MonoBehaviour
 {
-
     private TimeManager timeManager;
     private Dictionary<string, float> soundCooldowns = new Dictionary<string, float>();
 
@@ -24,10 +23,16 @@ public class CollisionStateChanger : MonoBehaviour
     public float viteoggetto = 2f;
 
     [Header("Prefab di Sostituzione")]
-    public GameObject replacementPrefab;
+    private GameObject selectedPrefab;
+    public float minFragmented = 0f;
+    public GameObject lowSpeedPrefab; // Prefab da utilizzare per velocità bassa
+    public float medFragmented = 10f;
+    public GameObject mediumSpeedPrefab; // Prefab da utilizzare per velocità media
+    public float maxFragmented = 15f;
+    public GameObject highSpeedPrefab; // Prefab da utilizzare per velocità alta
 
     [Header("Tipi di Head Distruttivi")]
-    public string[] destroyableHeads;
+    public string[] destroyableHeads; // Nomi dei "Head" che possono essere distrutti
 
     public Vector3 lastImpactPoint { get; private set; } // Punto di impatto registrato
 
@@ -45,10 +50,10 @@ public class CollisionStateChanger : MonoBehaviour
     {
         if (timeManager == null)
         {
-            timeManager = FindFirstObjectByType<TimeManager>();
+            timeManager = FindFirstObjectByType<TimeManager>(); // Cerca il primo oggetto di tipo TimeManager nella scena
             if (timeManager == null)
             {
-                Debug.LogError("Non è stato trovato un oggetto con TimeManager nella scena!");
+                Debug.LogError("Non è stato trovato un oggetto con TimeManager nella scena!"); // Messaggio di errore se non trovato
             }
         }
     }
@@ -63,7 +68,6 @@ public class CollisionStateChanger : MonoBehaviour
         if (collision.gameObject.CompareTag("Palla"))
         {
             lastImpactPoint = collision.GetContact(0).point; // Registra il punto di impatto
-
             PlaySoundWithCooldown(soundEffectIntegro);
 
             foreach (Transform child in collision.transform)
@@ -78,73 +82,92 @@ public class CollisionStateChanger : MonoBehaviour
                     else if (relativeSpeed >= lowSpeedThreshold && relativeSpeed < highSpeedThreshold)
                     {
                         ChangeState(ObjectState.LowImpact);
-                        viteoggetto -= 1;
+                        viteoggetto -= 1; // Riduci di 1 il numero di vite
                         PlaySoundWithCooldown(soundEffectDanneggiato);
+                        Debug.Log("Colpito con velocità bassa, tolgo 1 vita");
                     }
                     else if (relativeSpeed >= highSpeedThreshold)
                     {
                         ChangeState(ObjectState.HighImpact);
-                        viteoggetto -= 2;
+                        viteoggetto -= 2; // Riduci di 2 il numero di vite
                         PlaySoundWithCooldown(soundEffectDestroy);
+                        Debug.Log("Colpito con velocità alta, tolgo 2 vite");
                     }
 
-                    if (replacementPrefab != null && viteoggetto <= 0)
+                    if (viteoggetto <= 0)
                     {
-                        Explode();
+                        Explode(relativeSpeed); // Chiama il metodo Explode e passa la velocità d'impatto
+                        Debug.Log("Vita finita, attivo l'esplosione");
                     }
                     return;
                 }
             }
         }
-
     }
 
-    public void Explode()
+    // Metodo chiamato per gestire l'esplosione e la sostituzione dell'oggetto
+    public void Explode(float relativeSpeed)
     {
-        StartCoroutine(timeManager.DoSlowmotionCoroutine());
-        CameraShaker.Instance.ShakeOnce(2.5f, 2.5f, .1f, 1f);  //Applica il CameraShake
+        StartCoroutine(timeManager.DoSlowmotionCoroutine()); // Avvia la modalità slow-motion
+        CameraShaker.Instance.ShakeOnce(2.5f, 2.5f, .1f, 1f); // Applica il CameraShake
+        VibratePhone(); // Esegui la vibrazione del telefono
 
-        // Esegui la vibrazione del telefono
-        VibratePhone();
-
-        // Calcola la nuova scala proporzionale
-        float scaleFactor = 0.5f; // La proporzione tra la scala originale (0.7) e quella del prefab (0.35)
-        Vector3 newScale = transform.localScale * scaleFactor;
-
-        // Crea il prefab sostituto e passa il punto di impatto
-        GameObject replacement = Instantiate(replacementPrefab, transform.position, transform.rotation);
-        replacement.transform.localScale = newScale;
-
-        // Passa il punto di impatto al prefab sostituto, se contiene uno script ParentCollisionManager
-        ParentCollisionManager pcm = replacement.GetComponent<ParentCollisionManager>();
-        if (pcm != null)
+        // Seleziona il prefab corretto in base alla velocità d'impatto
+        if (relativeSpeed >= minFragmented && relativeSpeed < medFragmented)
         {
-            pcm.SetImpactPoint(lastImpactPoint);
+            selectedPrefab = lowSpeedPrefab;
+            Debug.Log("Velocità bassa");
+        }
+        else if (relativeSpeed >= medFragmented && relativeSpeed < maxFragmented)
+        {
+            selectedPrefab = mediumSpeedPrefab;
+            Debug.Log("Velocità media");
+        }
+        else if (relativeSpeed >= maxFragmented)
+        {
+            selectedPrefab = highSpeedPrefab;
+            Debug.Log("Velocità alta");
         }
 
-        Destroy(gameObject); // Distruggi l'oggetto attuale
-        AudioManager.Instance.PlaySFX(soundEffectDestroy); // Usa la variabile per chiamare il metodo
+        if (selectedPrefab != null)
+        {
+            GameObject replacement = Instantiate(selectedPrefab, transform.position, transform.rotation); // Istanzia il prefab selezionato
+            replacement.transform.localScale = transform.localScale; // Mantieni la scala originale
+
+            Debug.Log("Spawno frammenti in base alla velocità");
+
+            // Passa il punto di impatto al prefab sostituto, se contiene uno script ParentCollisionManager
+            ParentCollisionManager pcm = replacement.GetComponent<ParentCollisionManager>();
+            if (pcm != null)
+            {
+                pcm.SetImpactPoint(lastImpactPoint);
+            }
+
+            Destroy(gameObject); // Distruggi l'oggetto attuale
+            AudioManager.Instance.PlaySFX(soundEffectDestroy); // Usa la variabile per chiamare il metodo
+        }
     }
 
     // Metodo per far vibrare il telefono
     private void VibratePhone()
     {
-    #if UNITY_IOS || UNITY_ANDROID
-    Handheld.Vibrate();
-    #endif
+#if UNITY_IOS || UNITY_ANDROID
+        Handheld.Vibrate();
+#endif
     }
 
     // Metodo per cambiare lo stato
     public void ChangeState(ObjectState newState)
     {
-    if (currentState != newState)
+        if (currentState != newState)
         {
             currentState = newState;
             // Puoi aggiungere qui il codice per gestire i cambiamenti di stato
-            //Debug.Log($"Lo stato è cambiato a: {currentState} e ha vite: {viteoggetto}");
+            // Debug.Log($"Lo stato è cambiato a: {currentState} e ha vite: {viteoggetto}");
         }
     }
 
+    // Metodo per riprodurre un suono con cooldown
     private void PlaySoundWithCooldown(string soundEffect)
     {
         float currentTime = Time.time;
@@ -165,5 +188,4 @@ public class CollisionStateChanger : MonoBehaviour
         // Riproduce il suono
         AudioManager.Instance.PlaySFX(soundEffect);
     }
-
 }

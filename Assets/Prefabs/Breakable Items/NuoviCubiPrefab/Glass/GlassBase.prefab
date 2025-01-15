@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlassBase
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
+      propertyPath: m_TagString
+      value: DestroyOnImpact
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -133,7 +137,12 @@ MonoBehaviour:
   lowSpeedThreshold: 1
   highSpeedThreshold: 5
   viteoggetto: 2
-  replacementPrefab: {fileID: 3018867290400467420, guid: 4a76fcf58ef0f314c938f9e06a607855, type: 3}
+  minFragmented: 5
+  lowSpeedPrefab: {fileID: 0}
+  medFragmented: 10
+  mediumSpeedPrefab: {fileID: 0}
+  maxFragmented: 15
+  highSpeedPrefab: {fileID: 0}
   destroyableHeads:
   - NormalHead
   - SpikeHead

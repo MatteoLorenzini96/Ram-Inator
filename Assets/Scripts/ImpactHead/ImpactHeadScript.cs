@@ -13,6 +13,9 @@ public class ImpactHeadScript : MonoBehaviour
     private Transform impactHead;
     private bool isScriptActive = false; // Stato attivazione script
 
+    [Header("Non Toccare")] 
+    public float impactHeadVelocity;
+
     private void Start()
     {
         // Assicurati che il parentObject sia assegnato
@@ -80,6 +83,8 @@ public class ImpactHeadScript : MonoBehaviour
             // Calcola la velocità dell'impatto
             float relativeSpeed = collision.relativeVelocity.magnitude;
             //Debug.Log($"Impatto rilevato con velocità: {relativeSpeed}");
+
+            impactHeadVelocity = relativeSpeed;
 
             // Controlla se l'oggetto colpito ha il tag "Metallo"
             if (collision.gameObject.CompareTag("Metallo"))

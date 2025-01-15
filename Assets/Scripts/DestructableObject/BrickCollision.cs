@@ -15,21 +15,18 @@ public class BrickCollision : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void HandleCollision(GameObject other)
     {
-        // Verifica se l'oggetto con cui si � in collisione � nel Layer "Mattoni"
-        if (other.gameObject.layer == LayerMask.NameToLayer("Mattoni"))
+        // Verifica se l'oggetto con cui si è in collisione è nel Layer "Mattoni"
+        if (other.layer == LayerMask.NameToLayer("Mattoni"))
         {
-            //Debug.Log("Collisione avvenuta");
-
-            // Calcola la velocit� relativa dell'oggetto che entra nel trigger
+            // Calcola la velocità relativa dell'oggetto che entra in collisione
             Rigidbody otherRigidbody = other.GetComponent<Rigidbody>();
             if (otherRigidbody != null)
             {
-                // Usa la velocit� dell'oggetto con cui si � in collisione
                 float relativeSpeed = otherRigidbody.linearVelocity.magnitude;
 
-                // Gestisce il cambiamento di stato come se l'oggetto fosse una "Palla"
+                // Gestisce il cambiamento di stato in base alla velocità relativa
                 if (relativeSpeed < collisionStateChanger.lowSpeedThreshold)
                 {
                     collisionStateChanger.ChangeState(CollisionStateChanger.ObjectState.Idle);
@@ -49,12 +46,19 @@ public class BrickCollision : MonoBehaviour
                 // Se le vite sono esaurite, attiva l'esplosione
                 if (collisionStateChanger.viteoggetto <= 0)
                 {
-                    if (collisionStateChanger.replacementPrefab != null)
-                    {
-                        collisionStateChanger.Explode();
-                    }
+                    collisionStateChanger.Explode(relativeSpeed);
                 }
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        HandleCollision(other.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        HandleCollision(collision.gameObject);
     }
 }

@@ -23,13 +23,13 @@ public class CollisionStateChanger : MonoBehaviour
     public float viteoggetto = 2f;
 
     [Header("Prefab di Sostituzione")]
-    private GameObject selectedPrefab;
     public float minFragmented = 0f;
     public GameObject lowSpeedPrefab; // Prefab da utilizzare per velocità bassa
     public float medFragmented = 10f;
     public GameObject mediumSpeedPrefab; // Prefab da utilizzare per velocità media
     public float maxFragmented = 15f;
     public GameObject highSpeedPrefab; // Prefab da utilizzare per velocità alta
+    private GameObject selectedPrefab;
 
     [Header("Tipi di Head Distruttivi")]
     public string[] destroyableHeads; // Nomi dei "Head" che possono essere distrutti

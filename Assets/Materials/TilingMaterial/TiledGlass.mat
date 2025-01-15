@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestMetal2
-  m_Shader: {fileID: -6465566751694194690, guid: 6e7bd5557cbcedb459666ee0d8c0b5bc, type: 3}
+  m_Name: TiledGlass
+  m_Shader: {fileID: -6465566751694194690, guid: dc1377284061a4f4788692663cb9613e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -25,23 +25,27 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Base:
-        m_Texture: {fileID: 2800000, guid: 05dde42ab17e90245a2089942eb19d1a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 111e9e1e4f87edb40810b9a811d6a20b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Metallic:
-        m_Texture: {fileID: 2800000, guid: 43711a2109b7c7b46a93059374156c1b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 38123e03f8fafca458d2515d5424ae94, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 310d1128714cb514685c5f9dbf83644f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8da71b568ac0132489636c986797fe0c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Occlusion:
-        m_Texture: {fileID: 2800000, guid: 2b6372bbf8fdf1c4ab7a0d22eb9c17a9, type: 3}
+        m_Texture: {fileID: 2800000, guid: de8c76122a5d5d34684db87e85f77a86, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Opacity:
+        m_Texture: {fileID: 2800000, guid: 97a8a976dfa5a5240acf2f5b2af55d6a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Raughness:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 613d1235fa754e542ae55a02835a3016, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -58,16 +62,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _MetallicStrenght: 3.75
-    - _NormalStrenght: 0.25
+    - _Alpha: 0
+    - _MetallicStrenght: 0
+    - _NormalStrenght: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RoughnessStrenght: 0
-    - _Tiling: 0.46
+    - _RoughnessStrenght: 1
+    - _Tiling: -0.125
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &123742793499037145
+--- !u!114 &551908226547078510
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

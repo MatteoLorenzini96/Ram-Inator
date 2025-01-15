@@ -134,19 +134,22 @@ public class Rope : MonoBehaviour
 
     private void DrawRope()
     {
-        float lineWidth = this.lineWidth;
+        if (ropeSegments.Count == 0)
+            return; // Assicurati che ci siano segmenti da disegnare
+
         lineRenderer.startWidth = lineWidth;
         lineRenderer.endWidth = lineWidth;
 
-        Vector3[] ropePositions = new Vector3[this.segmentLength];
-        for (int i = 0; i < this.segmentLength; i++)
+        Vector3[] ropePositions = new Vector3[segmentLength];
+        for (int i = 0; i < segmentLength; i++)
         {
-            ropePositions[i] = this.ropeSegments[i].posNow;
+            ropePositions[i] = ropeSegments[i].posNow;
         }
 
         lineRenderer.positionCount = ropePositions.Length;
         lineRenderer.SetPositions(ropePositions);
     }
+
 
     public struct RopeSegment
     {

@@ -49,7 +49,7 @@ public class Rope : MonoBehaviour
         if (wreckingBallController != null)
         {
             float currentDistance = wreckingBallController.distance;
-            if (Mathf.Abs(currentDistance - this.ropeSegLen * this.segmentLength) > 2f) // Tolleranza 
+            if (Mathf.Abs(currentDistance - this.ropeSegLen * this.segmentLength) > 1f) // Tolleranza 
             {
                 this.UpdateRope(currentDistance);
             }

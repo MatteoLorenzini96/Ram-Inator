@@ -232,6 +232,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5518645835838386992, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518645835838386992, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518645835838386992, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7471751352102114813, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -272,6 +284,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7708613096266468674, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e287a5a6b5b5e4144ae68323749440f7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -364,30 +380,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6916103680737867080, guid: 2e275b5a6e400ce4b8ce940250d018a7, type: 3}
-      propertyPath: maxFragmented
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6916103680737867080, guid: 2e275b5a6e400ce4b8ce940250d018a7, type: 3}
-      propertyPath: medFragmented
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6916103680737867080, guid: 2e275b5a6e400ce4b8ce940250d018a7, type: 3}
-      propertyPath: minFragmented
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6916103680737867080, guid: 2e275b5a6e400ce4b8ce940250d018a7, type: 3}
-      propertyPath: lowSpeedPrefab
-      value: 
-      objectReference: {fileID: 3018867290400467420, guid: 4a76fcf58ef0f314c938f9e06a607855, type: 3}
-    - target: {fileID: 6916103680737867080, guid: 2e275b5a6e400ce4b8ce940250d018a7, type: 3}
-      propertyPath: highSpeedPrefab
-      value: 
-      objectReference: {fileID: 22701786552837249, guid: c536c94974b83de45945042d95f3fb37, type: 3}
-    - target: {fileID: 6916103680737867080, guid: 2e275b5a6e400ce4b8ce940250d018a7, type: 3}
-      propertyPath: mediumSpeedPrefab
-      value: 
-      objectReference: {fileID: 8174179173001585471, guid: a1e3c2b6d97aecb49bdf6082445ce048, type: 3}
-    - target: {fileID: 6916103680737867080, guid: 2e275b5a6e400ce4b8ce940250d018a7, type: 3}
       propertyPath: replacementPrefab
       value: 
       objectReference: {fileID: 3018867290400467420, guid: 4a76fcf58ef0f314c938f9e06a607855, type: 3}
@@ -455,10 +447,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8985109970781979844, guid: 2e275b5a6e400ce4b8ce940250d018a7, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: c1403341d0bbb1142bcb377eb10f487e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -646,6 +634,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8985109970781979844, guid: 2b343b08424be1449b48b9568cbd572a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f648f4aaef476a4ab994143d8ef2457, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

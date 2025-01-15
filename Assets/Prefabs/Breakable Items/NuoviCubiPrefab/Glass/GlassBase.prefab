@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: cc4ab4847eb0a824eb2c671eab1452ff, type: 2}
+      objectReference: {fileID: 2100000, guid: c1403341d0bbb1142bcb377eb10f487e, type: 2}
     - target: {fileID: 919132149155446097, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
       propertyPath: m_Name
       value: GlassBase
@@ -137,12 +137,12 @@ MonoBehaviour:
   lowSpeedThreshold: 1
   highSpeedThreshold: 5
   viteoggetto: 2
-  minFragmented: 5
-  lowSpeedPrefab: {fileID: 0}
-  medFragmented: 10
-  mediumSpeedPrefab: {fileID: 0}
-  maxFragmented: 15
-  highSpeedPrefab: {fileID: 0}
+  minFragmented: 1
+  lowSpeedPrefab: {fileID: 3018867290400467420, guid: 4a76fcf58ef0f314c938f9e06a607855, type: 3}
+  medFragmented: 5
+  mediumSpeedPrefab: {fileID: 8174179173001585471, guid: a1e3c2b6d97aecb49bdf6082445ce048, type: 3}
+  maxFragmented: 10
+  highSpeedPrefab: {fileID: 22701786552837249, guid: c536c94974b83de45945042d95f3fb37, type: 3}
   destroyableHeads:
   - NormalHead
   - SpikeHead

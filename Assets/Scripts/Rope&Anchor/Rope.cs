@@ -45,8 +45,19 @@ public class Rope : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        WreckingBallController wreckingBallController = FindFirstObjectByType<WreckingBallController>();
+        if (wreckingBallController != null)
+        {
+            float currentDistance = wreckingBallController.distance;
+            if (Mathf.Abs(currentDistance - this.ropeSegLen * this.segmentLength) > 2f) // Tolleranza 
+            {
+                this.UpdateRope(currentDistance);
+            }
+        }
+
         this.DrawRope();
     }
+
 
     private void FixedUpdate()
     {
@@ -148,4 +159,27 @@ public class Rope : MonoBehaviour
             this.posOld = pos;
         }
     }
+
+    public void UpdateRope(float newDistance)
+    {
+        // Aggiorna la lunghezza della corda
+        segmentLength = Mathf.CeilToInt(newDistance / 0.25f); // Numero segmenti basato sulla nuova lunghezza
+        ropeSegLen = newDistance / segmentLength; // Lunghezza di ogni segmento
+
+        // Reinizializza i segmenti della corda
+        ropeSegments.Clear();
+        Vector2 start = startPoint.position;
+        Vector2 end = endPoint.position;
+        Vector2 direction = (end - start).normalized;
+
+        for (int i = 0; i < segmentLength; i++)
+        {
+            Vector2 segmentPosition = start + direction * (ropeSegLen * i);
+            ropeSegments.Add(new RopeSegment(segmentPosition));
+        }
+
+        // Aggiorna il LineRenderer
+        lineRenderer.positionCount = segmentLength;
+    }
+
 }

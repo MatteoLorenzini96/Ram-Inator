@@ -305,8 +305,8 @@ public class TurnManager : MonoBehaviour
             StartCoroutine(EvaluateObjectsAfterDelay(2f));
             isFocusDone = true;
 
-            timeManager.slowdownFactor = 0.01f;
-            //timeManager.slowdownLength = 2f;           //Non � necessario aumentare il tempo
+            timeManager.slowdownFactor = 0.005f;
+            timeManager.slowdownLength = 4f;           //Non � necessario aumentare il tempo
             StartCoroutine(timeManager.DoSlowmotionCoroutine());
             CameraShaker.Instance.ShakeOnce(5f, 5f, .2f, 2f);  //Applica il CameraShake
 

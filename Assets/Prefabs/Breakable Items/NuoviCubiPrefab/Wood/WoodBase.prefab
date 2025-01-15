@@ -127,7 +127,12 @@ MonoBehaviour:
   lowSpeedThreshold: 4
   highSpeedThreshold: 8
   viteoggetto: 2
-  replacementPrefab: {fileID: 6981999594600332121, guid: dc07e2fb91f62bc44860194d695ddf1f, type: 3}
+  minFragmented: 0
+  lowSpeedPrefab: {fileID: 3018867290400467420, guid: 020f62e559024bc4eb0a07805bc0e529, type: 3}
+  medFragmented: 10
+  mediumSpeedPrefab: {fileID: 8174179173001585471, guid: 25804dfa67cada24bacd8cefef3d59ac, type: 3}
+  maxFragmented: 15
+  highSpeedPrefab: {fileID: 22701786552837249, guid: 46a4a1967e2c5634dab3870af5ae8bdd, type: 3}
   destroyableHeads:
   - SpikeHead
   currentState: 0

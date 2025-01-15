@@ -84,20 +84,20 @@ public class CollisionStateChanger : MonoBehaviour
                         ChangeState(ObjectState.LowImpact);
                         viteoggetto -= 1; // Riduci di 1 il numero di vite
                         PlaySoundWithCooldown(soundEffectDanneggiato);
-                        Debug.Log("Colpito con velocità bassa, tolgo 1 vita");
+                        //Debug.Log("Colpito con velocità bassa, tolgo 1 vita");
                     }
                     else if (relativeSpeed >= highSpeedThreshold)
                     {
                         ChangeState(ObjectState.HighImpact);
                         viteoggetto -= 2; // Riduci di 2 il numero di vite
                         PlaySoundWithCooldown(soundEffectDestroy);
-                        Debug.Log("Colpito con velocità alta, tolgo 2 vite");
+                        //Debug.Log("Colpito con velocità alta, tolgo 2 vite");
                     }
 
                     if (viteoggetto <= 0)
                     {
+                        //Debug.Log("Vita finita, attivo l'esplosione");
                         Explode(relativeSpeed); // Chiama il metodo Explode e passa la velocità d'impatto
-                        Debug.Log("Vita finita, attivo l'esplosione");
                     }
                     return;
                 }
@@ -116,17 +116,17 @@ public class CollisionStateChanger : MonoBehaviour
         if (relativeSpeed >= minFragmented && relativeSpeed < medFragmented)
         {
             selectedPrefab = lowSpeedPrefab;
-            Debug.Log("Velocità bassa");
+            //Debug.Log("Velocità bassa");
         }
         else if (relativeSpeed >= medFragmented && relativeSpeed < maxFragmented)
         {
             selectedPrefab = mediumSpeedPrefab;
-            Debug.Log("Velocità media");
+            //Debug.Log("Velocità media");
         }
         else if (relativeSpeed >= maxFragmented)
         {
             selectedPrefab = highSpeedPrefab;
-            Debug.Log("Velocità alta");
+            //Debug.Log("Velocità alta");
         }
 
         if (selectedPrefab != null)
@@ -134,7 +134,7 @@ public class CollisionStateChanger : MonoBehaviour
             GameObject replacement = Instantiate(selectedPrefab, transform.position, transform.rotation); // Istanzia il prefab selezionato
             replacement.transform.localScale = transform.localScale; // Mantieni la scala originale
 
-            Debug.Log("Spawno frammenti in base alla velocità");
+            //Debug.Log("Spawno frammenti in base alla velocità");
 
             // Passa il punto di impatto al prefab sostituto, se contiene uno script ParentCollisionManager
             ParentCollisionManager pcm = replacement.GetComponent<ParentCollisionManager>();

@@ -69,16 +69,20 @@ public class SpikeCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         // Controlla se il trigger viene attivato da un oggetto con il tag "Palla"
         if (other.CompareTag("Palla"))
         {
+            Rigidbody otherRigidbody = other.GetComponent<Rigidbody>();
+            float relativeSpeed = otherRigidbody.linearVelocity.magnitude;
+
             // Porta le vite dell'oggetto a 0
             if (stateChanger != null)
             {
                 stateChanger.viteoggetto = 0;
 
                 // Attiva l'esplosione
-                stateChanger.Explode();
+                stateChanger.Explode(relativeSpeed);
             }
         }
     }

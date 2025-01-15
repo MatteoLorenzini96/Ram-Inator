@@ -4,8 +4,6 @@ public class ChildCollision : MonoBehaviour
 {
     private ParentCollisionManager padre;
 
-    public float timeToDestroy = 5f;
-
     private void Start()
     {
         // Trova il componente ParentCollisionManager sul padre

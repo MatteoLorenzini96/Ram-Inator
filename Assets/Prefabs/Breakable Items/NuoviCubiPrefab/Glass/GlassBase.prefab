@@ -133,7 +133,7 @@ MonoBehaviour:
   lowSpeedThreshold: 1
   highSpeedThreshold: 5
   viteoggetto: 2
-  replacementPrefab: {fileID: 6981999594600332121, guid: 972b74d0f4f070b40bf7b2b088e73414, type: 3}
+  replacementPrefab: {fileID: 3018867290400467420, guid: 4a76fcf58ef0f314c938f9e06a607855, type: 3}
   destroyableHeads:
   - NormalHead
   - SpikeHead

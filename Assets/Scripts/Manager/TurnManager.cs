@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using EZCameraShake;
 
 public class TurnManager : MonoBehaviour
 {
@@ -307,6 +308,7 @@ public class TurnManager : MonoBehaviour
             timeManager.slowdownFactor = 0.01f;
             //timeManager.slowdownLength = 2f;           //Non � necessario aumentare il tempo
             StartCoroutine(timeManager.DoSlowmotionCoroutine());
+            CameraShaker.Instance.ShakeOnce(5f, 5f, .2f, 2f);  //Applica il CameraShake
 
         }
         else

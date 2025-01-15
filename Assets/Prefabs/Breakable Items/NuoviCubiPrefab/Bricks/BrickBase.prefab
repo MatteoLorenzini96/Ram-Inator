@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
       propertyPath: m_LocalPosition.x
@@ -60,13 +60,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 4170c220fd620c642acd27c5eb2f7a04, type: 2}
+      objectReference: {fileID: 2100000, guid: 9fb07a8de576b00458c755c9a54cd257, type: 2}
     - target: {fileID: 919132149155446097, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
       propertyPath: m_Name
       value: BrickBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
+      propertyPath: m_TagString
+      value: DestroyOnImpact
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

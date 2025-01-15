@@ -89,6 +89,7 @@ public class ImpactHeadScript : MonoBehaviour
             // Controlla se l'oggetto colpito ha il tag "Metallo"
             if (collision.gameObject.CompareTag("Metallo"))
             {
+
                 //Debug.Log("Oggetto Metallo colpito");
 
                 // Ottieni il punto di contatto

@@ -19,6 +19,7 @@ public class ParentCollisionManager : MonoBehaviour
             {
                 Vector3 direzione = (child.position - impactPoint).normalized;
                 rb.AddForce(direzione * forza, ForceMode.Impulse);
+                //Debug.Log("Frammenti spinti nella direzione d'impatto");
             }
         }
     }
@@ -27,6 +28,7 @@ public class ParentCollisionManager : MonoBehaviour
     public void SetImpactPoint(Vector3 point)
     {
         impactPoint = point;
+        //Debug.Log("Punto d'impatto settato");
     }
 
     // Funzione pubblica che gestisce i trigger
@@ -34,6 +36,7 @@ public class ParentCollisionManager : MonoBehaviour
     {
         Invoke("DestroyObject", timeToDestroy);
 
+        /*
         //Debug.Log("Tag dell'oggetto che entra nel trigger: " + other.tag);
 
         // Se l'oggetto che entra nel trigger è la "Palla"
@@ -51,9 +54,10 @@ public class ParentCollisionManager : MonoBehaviour
 
                 // Applica la forza nella direzione calcolata
                 rb.AddForce(direzione * forza, ForceMode.Impulse);
-                //Debug.Log("Forza Applicata");
+                Debug.Log("Impatto avvenuto con la Palla, spingo nella direzione d'impatto");
             }
         }
+        */
 
         // Se l'oggetto che entra nel trigger è un "Muro"
         if (other.CompareTag("Metallo"))
@@ -62,12 +66,14 @@ public class ParentCollisionManager : MonoBehaviour
             if (figlioCollider != null)
             {
                 figlioCollider.isTrigger = false;
+                //Debug.Log("Impatto avvenuto con il Metallo, ripristino l'impatto");
 
                 // Avvia la coroutine per riabilitare il trigger dopo un certo tempo
                 StartCoroutine(ResetTrigger(figlioCollider));
             }
         }
 
+        /*
         // Se l'oggetto che entra nel trigger è un "Fragment"
         else if (other.CompareTag("Fragment"))
         {
@@ -88,10 +94,11 @@ public class ParentCollisionManager : MonoBehaviour
 
                     // Applica la forza nella direzione calcolata
                     rb.AddForce(direzione * forza, ForceMode.Impulse);
-                    //Debug.Log("Forza dei Fragment applicata");
+                    Debug.Log("Impatto avvenuto con il tag Fragment. Applico la forza nella direzione d'impatto della Palla");
                 }
             }
         }
+        */
     }
 
     // Aggiungi OnTriggerEnter per chiamare GestisciTrigger quando un oggetto entra nel trigger

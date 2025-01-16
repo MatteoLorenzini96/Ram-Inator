@@ -400,6 +400,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4213224976297692022, guid: 2e275b5a6e400ce4b8ce940250d018a7, type: 3}
+      propertyPath: opacityWhenDragging
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6916103680737867080, guid: 2e275b5a6e400ce4b8ce940250d018a7, type: 3}
       propertyPath: replacementPrefab
       value: 

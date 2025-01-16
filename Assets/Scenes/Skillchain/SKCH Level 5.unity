@@ -147,6 +147,18 @@ PrefabInstance:
       propertyPath: distance
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1201739772882271456, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: musicSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201739772882271456, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: musicSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f342ea7addd30c749a95165a55f7e45e, type: 3}
+    - target: {fileID: 1201739772882271456, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
+      propertyPath: musicSounds.Array.data[0].name
+      value: MainTheme
+      objectReference: {fileID: 0}
     - target: {fileID: 1782607877721855909, guid: 6b6f5c0e46635bf4eaf143a27d98f684, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.74999994

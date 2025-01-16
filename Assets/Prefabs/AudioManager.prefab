@@ -42,12 +42,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f342ea7addd30c749a95165a55f7e45e, type: 3}
+  m_Resource: {fileID: 8300000, guid: f342ea7addd30c749a95165a55f7e45e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -304,9 +304,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e0589759764074dad529efa0900628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSounds: []
+  musicSounds:
+  - name: MainTheme
+    clip: {fileID: 8300000, guid: f342ea7addd30c749a95165a55f7e45e, type: 3}
   sfxSounds:
+  - name: GlassTap
+    clip: {fileID: 8300000, guid: 94050ecd5b01383469163279fe16a223, type: 3}
   - name: DestroyGlass
     clip: {fileID: 8300000, guid: dd0b0d1ef97179d429799cbef0c865c8, type: 3}
+  - name: NormalStar
+    clip: {fileID: 8300000, guid: b64cdfd357813c24f9cd188083dac907, type: 3}
+  - name: SpikeStar
+    clip: {fileID: 8300000, guid: cd9c4c42b1183114ba328ed5d9e4aebf, type: 3}
+  - name: ImpactStar
+    clip: {fileID: 8300000, guid: 4166b9893b9ceb0408175c977c9d6ce4, type: 3}
+  - name: WoodTap
+    clip: {fileID: 8300000, guid: 2a2abfe62dfdcdf4284a7b392499bd68, type: 3}
+  - name: WoodDamaged
+    clip: {fileID: 8300000, guid: 1239615a43ea7214796edeac9a1b19cb, type: 3}
+  - name: DestroyWood
+    clip: {fileID: 8300000, guid: aab9d369015d17a489687041297b545a, type: 3}
+  - name: MetalTap
+    clip: {fileID: 8300000, guid: e102e1d3e8fcf3d4fa2beea0c2718b36, type: 3}
+  - name: MetalCrash
+    clip: {fileID: 8300000, guid: 4f3557730a3fb664b9031d34178994bb, type: 3}
+  - name: MetalWiggle
+    clip: {fileID: 8300000, guid: 21d7b28ad2aa9594189cd6257830acc7, type: 3}
+  - name: BrickTap
+    clip: {fileID: 8300000, guid: 68f88e29229361a439d7748eff1c668e, type: 3}
+  - name: BrickDamaged
+    clip: {fileID: 8300000, guid: 92c6366aed5930e41ad9811a1bfcbabe, type: 3}
+  - name: BrickDestroy
+    clip: {fileID: 8300000, guid: b79d2b029b2ada84592d2480f3c8cabd, type: 3}
   musicSource: {fileID: 3820733313558937909}
   sfxSource: {fileID: 3045637565102947418}

@@ -46,30 +46,33 @@ public class EffectsManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Instanzia un effetto in una posizione specifica con una rotazione specifica.
+    /// Instanzia un effetto in una posizione specifica con una rotazione specifica e restituisce l'oggetto istanziato.
     /// </summary>
     /// <param name="effectName">Nome dell'effetto.</param>
     /// <param name="position">Posizione dove istanziare l'effetto.</param>
     /// <param name="rotation">Rotazione dell'effetto.</param>
-    public void SpawnEffect(string effectName, Vector3 position, Quaternion rotation)
+    /// <returns>Il GameObject istanziato.</returns>
+    public GameObject SpawnEffect(string effectName, Vector3 position, Quaternion rotation)
     {
         if (effectsDictionary.TryGetValue(effectName, out var effectPrefab))
         {
-            Instantiate(effectPrefab, position, rotation);
+            return Instantiate(effectPrefab, position, rotation); // Restituisci l'oggetto istanziato
         }
         else
         {
             Debug.LogError($"Effetto non trovato: {effectName}. Assicurati che il nome sia corretto e che l'effetto sia aggiunto alla lista.");
+            return null; // Restituisci null se l'effetto non è trovato
         }
     }
 
     /// <summary>
-    /// Instanzia un effetto nella posizione e rotazione predefinita (identity).
+    /// Instanzia un effetto nella posizione e rotazione predefinita (identity) e restituisce l'oggetto istanziato.
     /// </summary>
     /// <param name="effectName">Nome dell'effetto.</param>
     /// <param name="position">Posizione dove istanziare l'effetto.</param>
-    public void SpawnEffect(string effectName, Vector3 position)
+    /// <returns>Il GameObject istanziato.</returns>
+    public GameObject SpawnEffect(string effectName, Vector3 position)
     {
-        SpawnEffect(effectName, position, Quaternion.identity);
+        return SpawnEffect(effectName, position, Quaternion.identity); // Chiama la versione con rotazione predefinita
     }
 }

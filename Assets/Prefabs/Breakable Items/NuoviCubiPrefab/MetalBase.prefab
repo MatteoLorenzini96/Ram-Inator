@@ -141,3 +141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagEffectList: []
+  pallaEffectList:
+  - headName: NormalHead
+    effectName: SparksBig
+  - headName: SpikeHead
+    effectName: GlassDebrisBig
+  - headName: ImpactHead
+    effectName: WoodDebrisBig

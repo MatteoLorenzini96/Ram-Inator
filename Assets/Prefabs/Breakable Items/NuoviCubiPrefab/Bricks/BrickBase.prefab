@@ -89,6 +89,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1597212981814757651}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4432645525921325841}
   m_SourcePrefab: {fileID: 100100000, guid: 4476c99f77eb9a248ae1b1418cc03044, type: 3}
 --- !u!1 &7471886959030854929 stripped
 GameObject:
@@ -157,3 +160,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   opacityWhenDragging: 0.5
+--- !u!114 &-4432645525921325841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471886959030854929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1239e1552f6dc0545811a7b75cb0b27d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagEffectList: []

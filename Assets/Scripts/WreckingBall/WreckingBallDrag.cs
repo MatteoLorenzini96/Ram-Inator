@@ -3,10 +3,9 @@ using System; // Necessario per gli eventi
 using System.Collections;
 using UnityEngine.UI;
 
-
 public class WreckingBallDrag : MonoBehaviour
 {
-     public Button actionButton;
+    public Button actionButton;
     private WreckingBallController controller;
     private SpikeAttached spikeAttached;
 
@@ -34,6 +33,12 @@ public class WreckingBallDrag : MonoBehaviour
     [Header("Layer per le collisioni")]
     public LayerMask collisionLayer; // Definisce quale layer il raycast deve rilevare
 
+    [Header("Impostazioni di Setting")]
+    public float initialSettingDuration = 4.0f; // Durata della finestra temporale per il setting iniziale
+    public string settingEffectName; // Nome dell'effetto da instanziare quando finisce la finestra
+
+    private bool isSetting = false; // Indica se siamo nella finestra di setting iniziale
+
     void Start()
     {
         controller = GetComponent<WreckingBallController>();
@@ -49,7 +54,6 @@ public class WreckingBallDrag : MonoBehaviour
             Debug.LogError("Pivot non trovato, assicurati che AutoConfigurableJoint sia configurato correttamente.");
         }
         UpdateButtonState();
-
 
         // Cerca il SpikeAttached
         if (spikeAttached == null)
@@ -144,6 +148,10 @@ public class WreckingBallDrag : MonoBehaviour
             lastPosition = transform.position;
             initialPosition = transform.position;
             initialAnchorPosition = pivot.position;
+
+            // Avvia la finestra di setting iniziale
+            isSetting = true;
+            Invoke("EndInitialSetting", initialSettingDuration);
         }
     }
 
@@ -151,17 +159,25 @@ public class WreckingBallDrag : MonoBehaviour
     {
         if (isDragging)
         {
-            OnRelease?.Invoke(currentVelocity);
-            gameObject.layer = LayerMask.NameToLayer("Default");
-            isDragging = false;
-            isSwinging = true;
+            if (isSetting)
+            {
+                ResetPosition();
+                isSetting = false; // Fine del setting iniziale
+            }
+            else
+            {
+                OnRelease?.Invoke(currentVelocity);
+                gameObject.layer = LayerMask.NameToLayer("Default");
+                isDragging = false;
+                isSwinging = true;
 
-            // Aggiorna lo stato del bottone
-            UpdateButtonState();    
+                // Aggiorna lo stato del bottone
+                UpdateButtonState();
 
-            // Inizia il controllo di spostamento
-            resetCheckStartPosition = rb.position;
-            resetCheckStartTime = Time.time;
+                // Inizia il controllo di spostamento
+                resetCheckStartPosition = rb.position;
+                resetCheckStartTime = Time.time;
+            }
         }
     }
 
@@ -188,9 +204,14 @@ public class WreckingBallDrag : MonoBehaviour
 
     public void ResetPosition()
     {
-        //Debug.Log("Chiamato il ResetPosition");
+        // Annulla e riavvia il timer della finestra di setting iniziale
+        if (isSetting)
+        {
+            CancelInvoke("EndInitialSetting"); // Annulla il timer corrente
+            Invoke("EndInitialSetting", initialSettingDuration); // Riavvia il timer
+        }
 
-        if (spikeAttached.isSpikeAttached == false)
+        if (!spikeAttached.isSpikeAttached)
         {
             TurnManager turnManager = FindFirstObjectByType<TurnManager>();
             if (turnManager != null)
@@ -199,7 +220,7 @@ public class WreckingBallDrag : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("TurnManager non trovato, impossibile chiamare OnStopDragging.");
+                Debug.LogWarning("TurnManager non trovato, impossibile chiamare OnReset.");
             }
 
             transform.position = initialPosition;
@@ -207,24 +228,17 @@ public class WreckingBallDrag : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             gameObject.layer = LayerMask.NameToLayer("NoContact");
-            
-            //Debug.Log("Palla resettata alla posizione iniziale.");
+
             isSwinging = false;
 
             // Aggiorna lo stato del bottone
             UpdateButtonState();
-
         }
-
-        if (spikeAttached.isSpikeAttached == true)
+        else
         {
             isSwinging = true;
-            //Debug.Log("Palla ancora in movimento");
-            // Aggiorna lo stato del bottone
             UpdateButtonState();
-
         }
-
     }
 
     // Aggiorna la funzione HandleDetach per non interferire con la logica originale
@@ -246,16 +260,27 @@ public class WreckingBallDrag : MonoBehaviour
             ResetPosition();
         }
     }
+
     private void UpdateButtonState()
     {
-    if (actionButton != null)
-    {
-        actionButton.interactable = isSwinging;
-    }
-    else
-    {
-        Debug.LogWarning("Il riferimento al bottone non è stato assegnato.");
-    }
+        if (actionButton != null)
+        {
+            actionButton.interactable = isSwinging;
+        }
+        else
+        {
+            Debug.LogWarning("Il riferimento al bottone non è stato assegnato.");
+        }
     }
 
+    private void EndInitialSetting()
+    {
+        isSetting = false;
+
+        // Instanzia l'effetto quando finisce il setting iniziale
+        if (!string.IsNullOrEmpty(settingEffectName))
+        {
+            EffectsManager.Instance?.SpawnEffect(settingEffectName, transform.position);
+        }
+    }
 }

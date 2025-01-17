@@ -5920,6 +5920,10 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: settingEffectName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: minMovementToReset
       value: 0.2
       objectReference: {fileID: 0}
@@ -5934,6 +5938,10 @@ PrefabInstance:
     - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: movementCheckInterval
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: initialSettingDuration
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1814656833695752560, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

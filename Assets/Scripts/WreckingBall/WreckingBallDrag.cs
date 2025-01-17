@@ -214,11 +214,11 @@ public class WreckingBallDrag : MonoBehaviour
         if (!spikeAttached.isSpikeAttached)
         {
             TurnManager turnManager = FindFirstObjectByType<TurnManager>();
-            if (turnManager != null)
+            if (turnManager != null && !isSetting)
             {
                 turnManager.OnReset();
             }
-            else
+            if (turnManager = null)
             {
                 Debug.LogWarning("TurnManager non trovato, impossibile chiamare OnReset.");
             }

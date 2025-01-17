@@ -60,19 +60,23 @@ public class MaterialOpacityController : MonoBehaviour
         // Controlla lo stato di isDragging e slideAncor e modifica l'emissione
         if (wreckingBallDrag.isDragging || slideAncor.anchorMoving)
         {
-            // Imposta il colore di emissione desiderato
-            objectMaterial.SetColor("_EmissionColor", draggingEmissionColor);
-
-            // Attiva l'emissione nel materiale (se non è già attiva)
-            objectMaterial.EnableKeyword("_EMISSION");
+            ChangeColor();
         }
         else
         {
-            // Ripristina il colore di emissione originale
-            objectMaterial.SetColor("_EmissionColor", originalEmissionColor);
-
-            // Attiva l'emissione per garantire che il materiale torni allo stato originale
-            objectMaterial.EnableKeyword("_EMISSION");
+            ResetColor();
         }
+    }
+
+    void ChangeColor()
+    {
+        // Imposta il colore di emissione desiderato
+        objectMaterial.SetColor("_EmissionColor", draggingEmissionColor);
+    }
+
+    public void ResetColor()
+    {
+        // Ripristina il colore di emissione originale
+        objectMaterial.SetColor("_EmissionColor", originalEmissionColor);
     }
 }

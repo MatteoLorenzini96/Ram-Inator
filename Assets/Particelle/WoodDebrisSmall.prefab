@@ -4925,6 +4925,30 @@ PrefabInstance:
       propertyPath: stopAction
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2321123470220542311, guid: 778872ac61c525f4a88f4817337344b2, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321123470220542311, guid: 778872ac61c525f4a88f4817337344b2, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321123470220542311, guid: 778872ac61c525f4a88f4817337344b2, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321123470220542311, guid: 778872ac61c525f4a88f4817337344b2, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321123470220542311, guid: 778872ac61c525f4a88f4817337344b2, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2321123470220542311, guid: 778872ac61c525f4a88f4817337344b2, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 2514689856299975903, guid: 778872ac61c525f4a88f4817337344b2, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.1

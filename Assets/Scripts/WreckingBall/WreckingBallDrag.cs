@@ -209,6 +209,7 @@ public class WreckingBallDrag : MonoBehaviour
         {
             CancelInvoke("EndInitialSetting"); // Annulla il timer corrente
             Invoke("EndInitialSetting", initialSettingDuration); // Riavvia il timer
+            isDragging = false;
         }
 
         if (!spikeAttached.isSpikeAttached)

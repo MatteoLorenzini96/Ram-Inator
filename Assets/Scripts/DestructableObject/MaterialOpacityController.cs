@@ -2,20 +2,14 @@ using UnityEngine;
 
 public class MaterialOpacityController : MonoBehaviour
 {
-    // Riferimento al componente WreckingBallDrag
     private WreckingBallDrag wreckingBallDrag;
     private SlideAncor slideAncor;
-
-    // Materiale originale e colore iniziale
     private Material objectMaterial;
     private Color originalEmissionColor;
-
-    // Colore di emissione desiderato durante il drag
     private Color draggingEmissionColor = new Color(70f / 255f, 70f / 255f, 70f / 255f); // Convertito in scala 0–1
 
     void Start()
     {
-        // Cerca automaticamente lo script SlideAncor
         slideAncor = FindFirstObjectByType<SlideAncor>();
         if (slideAncor == null)
         {
@@ -23,7 +17,6 @@ public class MaterialOpacityController : MonoBehaviour
             return;
         }
 
-        // Cerca automaticamente lo script WreckingBallDrag
         wreckingBallDrag = FindFirstObjectByType<WreckingBallDrag>();
         if (wreckingBallDrag == null)
         {
@@ -31,13 +24,14 @@ public class MaterialOpacityController : MonoBehaviour
             return;
         }
 
-        // Ottieni il materiale dell'oggetto
+        // Iscriviti all'evento OnResetPosition
+        wreckingBallDrag.OnResetPosition += HandleResetPosition;
+
         Renderer renderer = GetComponent<Renderer>();
         if (renderer != null)
         {
             objectMaterial = renderer.material;
 
-            // Controlla che il materiale supporti emissione
             if (objectMaterial.HasProperty("_EmissionColor"))
             {
                 originalEmissionColor = objectMaterial.GetColor("_EmissionColor");
@@ -57,7 +51,6 @@ public class MaterialOpacityController : MonoBehaviour
     {
         if (wreckingBallDrag == null || objectMaterial == null || slideAncor == null) return;
 
-        // Controlla lo stato di isDragging e slideAncor e modifica l'emissione
         if (wreckingBallDrag.isDragging || slideAncor.anchorMoving)
         {
             ChangeColor();
@@ -70,13 +63,27 @@ public class MaterialOpacityController : MonoBehaviour
 
     void ChangeColor()
     {
-        // Imposta il colore di emissione desiderato
         objectMaterial.SetColor("_EmissionColor", draggingEmissionColor);
     }
 
     public void ResetColor()
     {
-        // Ripristina il colore di emissione originale
         objectMaterial.SetColor("_EmissionColor", originalEmissionColor);
+    }
+
+    private void HandleResetPosition()
+    {
+        // Azione da eseguire quando viene chiamata ResetPosition
+        Debug.Log("ResetPosition chiamato - Ripristino il colore.");
+        ResetColor();
+    }
+
+    private void OnDestroy()
+    {
+        // Rimuovi l'iscrizione all'evento per evitare memory leak
+        if (wreckingBallDrag != null)
+        {
+            wreckingBallDrag.OnResetPosition -= HandleResetPosition;
+        }
     }
 }

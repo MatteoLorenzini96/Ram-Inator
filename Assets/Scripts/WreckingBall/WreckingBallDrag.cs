@@ -1,5 +1,5 @@
 using UnityEngine;
-using System; // Necessario per gli eventi
+using System;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -22,6 +22,7 @@ public class WreckingBallDrag : MonoBehaviour
     private float resetCheckStartTime; // Tempo all'inizio del controllo di spostamento
 
     public event Action<Vector3> OnRelease;
+    public event Action OnResetPosition;
 
     [Header("Timer Per il reset")]
     public float resetTime = 2.0f; // Tempo di delay per il reset dopo il controllo
@@ -245,6 +246,9 @@ public class WreckingBallDrag : MonoBehaviour
             isSwinging = true;
             UpdateButtonState();
         }
+
+        // Invoca l'evento
+        OnResetPosition?.Invoke();
     }
 
     // Aggiorna la funzione HandleDetach per non interferire con la logica originale

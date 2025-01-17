@@ -8,6 +8,7 @@ public class WreckingBallDrag : MonoBehaviour
     public Button actionButton;
     private WreckingBallController controller;
     private SpikeAttached spikeAttached;
+    private GameObject spawnedEffect;
 
     private Vector3 lastPosition; // Ultima posizione aggiornata
     private Vector3 currentVelocity; // Velocità attuale
@@ -41,7 +42,7 @@ public class WreckingBallDrag : MonoBehaviour
     public string settingEffectName; // Nome dell'effetto da instanziare quando finisce la finestra
 
     [Header("SoundEffect da riprodurre")]
-    public string soundEffectActivate = "Cling"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+    public string soundEffectActivate; // Variabile pubblica per modificare il nome del suono dall'Inspector
 
     private bool isSetting = false; // Indica se siamo nella finestra di setting iniziale
 
@@ -158,6 +159,13 @@ public class WreckingBallDrag : MonoBehaviour
             // Avvia la finestra di setting iniziale
             isSetting = true;
             Invoke("EndInitialSetting", initialSettingDuration);
+
+            // Spawna l'effetto nella posizione corrente e lo assegna come figlio dell'oggetto corrente
+            spawnedEffect = EffectsManager.Instance?.SpawnEffect(settingEffectName, transform.position);
+            if (spawnedEffect != null)
+            {
+                spawnedEffect.transform.SetParent(this.transform, true); // Imposta come figlio mantenendo la posizione mondiale
+            }
         }
     }
 
@@ -214,6 +222,13 @@ public class WreckingBallDrag : MonoBehaviour
         if (isSetting)
         {
             CancelInvoke("EndInitialSetting"); // Annulla il timer corrente
+
+            // Distruggi l'effetto se esiste
+            if (spawnedEffect != null)
+            {
+                Destroy(spawnedEffect);
+            }
+
             Invoke("EndInitialSetting", initialSettingDuration); // Riavvia il timer
             isDragging = false;
         }
@@ -291,7 +306,6 @@ public class WreckingBallDrag : MonoBehaviour
         if (!string.IsNullOrEmpty(settingEffectName))
         {
             AudioManager.Instance.PlaySFX(soundEffectActivate);
-            EffectsManager.Instance?.SpawnEffect(settingEffectName, transform.position);
         }
     }
 }

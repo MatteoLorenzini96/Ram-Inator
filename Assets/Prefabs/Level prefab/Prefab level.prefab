@@ -4721,6 +4721,8 @@ MonoBehaviour:
     effectPrefab: {fileID: 1025285306637258, guid: 9c1ecd853b094ba4888985b3f6f1ab7a, type: 3}
   - effectName: Cling
     effectPrefab: {fileID: 2517987975639730923, guid: 6c22ecc462959194fbf4cfd12621dfc2, type: 3}
+  - effectName: BallCharged
+    effectPrefab: {fileID: 8209504295523486166, guid: 95b0f15eaec334f4b8dea2aafe2cca0e, type: 3}
 --- !u!1 &8047968899548666997
 GameObject:
   m_ObjectHideFlags: 0
@@ -5263,8 +5265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RequiresDepthTextureOption: 1
+  m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
@@ -5923,7 +5925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: settingEffectName
-      value: Cling
+      value: BallCharged
       objectReference: {fileID: 0}
     - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: minMovementToReset
@@ -5935,7 +5937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: soundEffectActivate
-      value: 
+      value: Cling
       objectReference: {fileID: 0}
     - target: {fileID: 1000898872943258689, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: collisionLayer.m_Bits

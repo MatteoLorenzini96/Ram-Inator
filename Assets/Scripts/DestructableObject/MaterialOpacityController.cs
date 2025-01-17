@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class MaterialOpacityController : MonoBehaviour
 {
-    // Campo per impostare l'opacità desiderata dall'inspector
-    [Range(0f, 1f)] public float opacityWhenDragging = 0.5f;
-
     // Riferimento al componente WreckingBallDrag
     private WreckingBallDrag wreckingBallDrag;
     private SlideAncor slideAncor;
 
     // Materiale originale e colore iniziale
     private Material objectMaterial;
-    private Color originalColor;
+    private Color originalEmissionColor;
+
+    // Colore di emissione desiderato durante il drag
+    private Color draggingEmissionColor = new Color(70f / 255f, 70f / 255f, 70f / 255f); // Convertito in scala 0–1
 
     void Start()
     {
@@ -36,7 +36,16 @@ public class MaterialOpacityController : MonoBehaviour
         if (renderer != null)
         {
             objectMaterial = renderer.material;
-            originalColor = objectMaterial.color;
+
+            // Controlla che il materiale supporti emissione
+            if (objectMaterial.HasProperty("_EmissionColor"))
+            {
+                originalEmissionColor = objectMaterial.GetColor("_EmissionColor");
+            }
+            else
+            {
+                Debug.LogError("Il materiale non supporta la proprietà _EmissionColor.");
+            }
         }
         else
         {
@@ -46,18 +55,24 @@ public class MaterialOpacityController : MonoBehaviour
 
     void Update()
     {
-        if (wreckingBallDrag == null || objectMaterial == null || slideAncor ==null) return;
+        if (wreckingBallDrag == null || objectMaterial == null || slideAncor == null) return;
 
-        // Controlla lo stato di isDragging e slideAncor e modifica il colore
-        if (wreckingBallDrag.isDragging || slideAncor.anchorMoving == true)
+        // Controlla lo stato di isDragging e slideAncor e modifica l'emissione
+        if (wreckingBallDrag.isDragging || slideAncor.anchorMoving)
         {
-            // Imposta il colore con l'opacità ridotta
-            objectMaterial.color = new Color(originalColor.r * 0.5f, originalColor.g * 0.5f, originalColor.b * 0.5f, opacityWhenDragging);
+            // Imposta il colore di emissione desiderato
+            objectMaterial.SetColor("_EmissionColor", draggingEmissionColor);
+
+            // Attiva l'emissione nel materiale (se non è già attiva)
+            objectMaterial.EnableKeyword("_EMISSION");
         }
         else
         {
-            // Ripristina il colore originale
-            objectMaterial.color = originalColor;
+            // Ripristina il colore di emissione originale
+            objectMaterial.SetColor("_EmissionColor", originalEmissionColor);
+
+            // Attiva l'emissione per garantire che il materiale torni allo stato originale
+            objectMaterial.EnableKeyword("_EMISSION");
         }
     }
 }

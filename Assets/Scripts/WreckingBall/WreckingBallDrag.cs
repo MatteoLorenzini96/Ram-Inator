@@ -35,7 +35,12 @@ public class WreckingBallDrag : MonoBehaviour
 
     [Header("Impostazioni di Setting")]
     public float initialSettingDuration = 4.0f; // Durata della finestra temporale per il setting iniziale
+
+    [Header("VFX da riprodurre")]
     public string settingEffectName; // Nome dell'effetto da instanziare quando finisce la finestra
+
+    [Header("SoundEffect da riprodurre")]
+    public string soundEffectActivate = "Cling"; // Variabile pubblica per modificare il nome del suono dall'Inspector
 
     private bool isSetting = false; // Indica se siamo nella finestra di setting iniziale
 
@@ -281,6 +286,7 @@ public class WreckingBallDrag : MonoBehaviour
         // Instanzia l'effetto quando finisce il setting iniziale
         if (!string.IsNullOrEmpty(settingEffectName))
         {
+            AudioManager.Instance.PlaySFX(soundEffectActivate);
             EffectsManager.Instance?.SpawnEffect(settingEffectName, transform.position);
         }
     }

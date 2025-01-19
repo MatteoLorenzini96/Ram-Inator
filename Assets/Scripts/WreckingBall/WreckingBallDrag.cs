@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class WreckingBallDrag : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class WreckingBallDrag : MonoBehaviour
 
     public event Action<Vector3> OnRelease;
     public event Action OnResetPosition;
+
+    private Queue<Vector3> positionHistory = new Queue<Vector3>();
+    private int maxHistorySize = 5;
 
     [Header("Timer Per il reset")]
     public float resetTime = 2.0f; // Tempo di delay per il reset dopo il controllo
@@ -127,22 +131,23 @@ public class WreckingBallDrag : MonoBehaviour
 
     void HandleDragging()
     {
+        // Ottieni la posizione del tocco o del mouse nel mondo
         Vector3 touchPosition = GetTouchWorldPosition();
         Vector3 direction = touchPosition - rb.position;
         float distanceToPivot = Vector3.Distance(touchPosition, pivot.position);
 
+        // Limita la posizione della palla alla distanza massima (se necessario)
         if (controller != null)
         {
             float maxDistance = controller.distance;
             if (distanceToPivot > maxDistance)
             {
-                // Limita la posizione della palla alla distanza massima
                 direction = (touchPosition - pivot.position).normalized * maxDistance;
                 touchPosition = pivot.position + direction;
             }
         }
 
-        // Raycast solo se necessario
+        // Raycast per evitare collisioni con il layer specificato
         if (distanceToPivot > 0.1f)
         {
             if (Physics.Raycast(rb.position, direction.normalized, out RaycastHit hit, distanceToPivot, collisionLayer))
@@ -151,8 +156,32 @@ public class WreckingBallDrag : MonoBehaviour
             }
         }
 
+        // Sposta la palla nella posizione calcolata
         rb.MovePosition(touchPosition);
-        currentVelocity = (rb.position - lastPosition) / Time.deltaTime;
+
+        // Salva la posizione corrente nel buffer
+        positionHistory.Enqueue(rb.position);
+        if (positionHistory.Count > maxHistorySize)
+        {
+            positionHistory.Dequeue();
+        }
+
+        // Calcola la velocità media basata sulle ultime posizioni
+        Vector3 averageVelocity = Vector3.zero;
+        if (positionHistory.Count > 1)
+        {
+            Vector3[] positions = positionHistory.ToArray();
+            for (int i = 1; i < positions.Length; i++)
+            {
+                averageVelocity += (positions[i] - positions[i - 1]) / Time.deltaTime;
+            }
+            averageVelocity /= (positionHistory.Count - 1);
+        }
+
+        // Aggiorna la velocità corrente
+        currentVelocity = averageVelocity;
+
+        // Salva la posizione attuale come ultima posizione
         lastPosition = rb.position;
     }
 
@@ -217,18 +246,28 @@ public class WreckingBallDrag : MonoBehaviour
 
     private Vector3 GetTouchWorldPosition()
     {
-        if (Input.touchCount > 0 || Input.GetMouseButton(0))
-        {
-            Vector3 inputPosition = Input.touchCount > 0
-                ? Input.GetTouch(0).position
-                : Input.mousePosition;
+        Vector3 inputPosition;
 
-            inputPosition.z = mainCamera.WorldToScreenPoint(transform.position).z;
-            return mainCamera.ScreenToWorldPoint(inputPosition);
+        if (Input.touchCount > 0)
+        {
+            // Usa la posizione del primo tocco attivo
+            inputPosition = Input.GetTouch(0).position;
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            // Fallback al mouse per il debug su PC
+            inputPosition = Input.mousePosition;
+        }
+        else
+        {
+            return transform.position; // Se non ci sono input, restituisci la posizione corrente
         }
 
-        return transform.position;
+        // Converti la posizione dello schermo in posizione nel mondo
+        inputPosition.z = mainCamera.WorldToScreenPoint(transform.position).z; // Mantieni la profondità
+        return mainCamera.ScreenToWorldPoint(inputPosition);
     }
+
 
     public void ResetPosition()
     {

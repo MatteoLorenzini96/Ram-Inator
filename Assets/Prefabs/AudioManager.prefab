@@ -336,5 +336,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 92c6366aed5930e41ad9811a1bfcbabe, type: 3}
   - name: BrickDestroy
     clip: {fileID: 8300000, guid: b79d2b029b2ada84592d2480f3c8cabd, type: 3}
+  - name: Cling
+    clip: {fileID: 8300000, guid: a96f1b0d616d3054f921772bb1913d96, type: 3}
   musicSource: {fileID: 3820733313558937909}
   sfxSource: {fileID: 3045637565102947418}

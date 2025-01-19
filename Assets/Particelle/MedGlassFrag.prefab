@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2321123470220542311}
   - component: {fileID: 2319800245413368691}
   m_Layer: 0
-  m_Name: Cling
+  m_Name: MedGlassFrag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

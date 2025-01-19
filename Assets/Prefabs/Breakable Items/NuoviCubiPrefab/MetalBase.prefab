@@ -143,8 +143,8 @@ MonoBehaviour:
   tagEffectList: []
   pallaEffectList:
   - headName: NormalHead
-    effectName: WoodDebrisSmall
+    effectName: TinyDustExplosion
   - headName: SpikeHead
     effectName: SparksBig
   - headName: ImpactHead
-    effectName: SparksBig
+    effectName: SparksSmall

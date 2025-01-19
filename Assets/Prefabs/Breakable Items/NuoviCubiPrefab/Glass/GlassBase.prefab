@@ -205,18 +205,18 @@ MonoBehaviour:
   - headName: SpikeHead
     effectName: 
   - headName: ImpactHead
-    effectName: 
+    effectName: TinyGlassFrag
   halfLifeEffects:
   - headName: NormalHead
     effectName: MedGlassFrag
   - headName: SpikeHead
     effectName: 
   - headName: ImpactHead
-    effectName: 
+    effectName: MedGlassFrag
   explodeEffects:
   - headName: NormalHead
     effectName: BigGlassFrag
   - headName: SpikeHead
-    effectName: 
+    effectName: BigGlassFrag
   - headName: ImpactHead
-    effectName: 
+    effectName: BigGlassFrag

@@ -79,7 +79,7 @@ public class WreckingBallDrag : MonoBehaviour
         collisionLayer = LayerMask.GetMask("Muro"); // Assicurati che il layer "Muro" esista e sia configurato in Unity
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isDragging)
         {

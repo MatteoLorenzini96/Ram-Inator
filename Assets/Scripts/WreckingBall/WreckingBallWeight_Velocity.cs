@@ -32,7 +32,7 @@ public class WreckingBallWeight_Velocity : MonoBehaviour
         child2 = transform.childCount > 2 ? transform.GetChild(2) : null;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Controlla lo stato di attivazione dei figli ogni frame e modifica le proprietà del Rigidbody
         if (child0 != null && child0.gameObject.activeSelf)

@@ -21,13 +21,13 @@ MonoBehaviour:
   m_DefaultRendererIndex: 0
   m_RequireDepthTexture: 1
   m_RequireOpaqueTexture: 1
-  m_OpaqueDownsampling: 0
+  m_OpaqueDownsampling: 1
   m_SupportsTerrainHoles: 1
   m_SupportsHDR: 1
   m_HDRColorBufferPrecision: 0
   m_MSAA: 1
-  m_RenderScale: 0.8
-  m_UpscalingFilter: 3
+  m_RenderScale: 1
+  m_UpscalingFilter: 0
   m_FsrOverrideSharpness: 0
   m_FsrSharpness: 0.92
   m_EnableLODCrossFade: 1
@@ -80,9 +80,9 @@ MonoBehaviour:
   m_ColorGradingLutSize: 32
   m_AllowPostProcessAlphaOutput: 0
   m_UseFastSRGBLinearConversion: 1
-  m_SupportDataDrivenLensFlare: 1
-  m_SupportScreenSpaceLensFlare: 1
-  m_GPUResidentDrawerMode: 0
+  m_SupportDataDrivenLensFlare: 0
+  m_SupportScreenSpaceLensFlare: 0
+  m_GPUResidentDrawerMode: 1
   m_SmallMeshScreenPercentage: 0
   m_GPUResidentDrawerEnableOcclusionCullingInCameras: 0
   m_ShadowType: 1
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_PrefilterXRKeywords: 1
   m_PrefilteringModeForwardPlus: 2
   m_PrefilteringModeDeferredRendering: 0
-  m_PrefilteringModeScreenSpaceOcclusion: 2
+  m_PrefilteringModeScreenSpaceOcclusion: 0
   m_PrefilterDebugKeywords: 1
   m_PrefilterWriteRenderingLayers: 1
   m_PrefilterHDROutput: 1
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_PrefilterSoftShadows: 0
   m_PrefilterScreenCoord: 1
   m_PrefilterNativeRenderPass: 1
-  m_PrefilterUseLegacyLightmaps: 0
+  m_PrefilterUseLegacyLightmaps: 1
   m_ShaderVariantLogLevel: 0
   m_ShadowCascades: 0
   m_Textures:

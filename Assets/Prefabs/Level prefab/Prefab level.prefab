@@ -4875,6 +4875,12 @@ MonoBehaviour:
     effectPrefab: {fileID: 8209504295523486166, guid: 95b0f15eaec334f4b8dea2aafe2cca0e, type: 3}
   - effectName: TinyDustExplosion
     effectPrefab: {fileID: 1025285306637258, guid: 0d383271401d1cf47941ecb201da7adc, type: 3}
+  - effectName: TinyGlassFrag
+    effectPrefab: {fileID: 2517987975639730923, guid: 4c2b37193bf911444942e3d1e46c709e, type: 3}
+  - effectName: MedGlassFrag
+    effectPrefab: {fileID: 2517987975639730923, guid: 6c22ecc462959194fbf4cfd12621dfc2, type: 3}
+  - effectName: BigGlassFrag
+    effectPrefab: {fileID: 2517987975639730923, guid: 384c5a852c2144d47b55f43a738edff5, type: 3}
 --- !u!1 &8047968899548666997
 GameObject:
   m_ObjectHideFlags: 0

@@ -6173,6 +6173,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8205731920481335583, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: m_Drag
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205731920481335583, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8799189683525330400, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: distance
       value: 3
@@ -6230,15 +6238,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845cd5f029a86024aac61d211beec569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  massNormal: 2
-  dragNormal: 0.2
-  maxSpeedNormal: 25
-  massSpike: 20
-  dragSpike: 0.5
-  maxSpeedSpike: 15
-  massImpact: 1
-  dragImpact: 0.2
-  maxSpeedImpact: 30
+  normalHeadConfig:
+    mass: 2
+    drag: 0.2
+    maxSpeed: 25
+  spikeHeadConfig:
+    mass: 20
+    drag: 0.5
+    maxSpeed: 15
+  impactHeadConfig:
+    mass: 1
+    drag: 0.2
+    maxSpeed: 30
 --- !u!114 &8873934355622486461
 MonoBehaviour:
   m_ObjectHideFlags: 0

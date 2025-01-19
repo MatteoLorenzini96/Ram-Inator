@@ -49,6 +49,16 @@ public class WreckingBallDrag : MonoBehaviour
 
     void Start()
     {
+        SearchSpriptsAndRb();
+        UpdateButtonState();
+
+        collisionLayer = LayerMask.GetMask("Muro"); // Assicurati che il layer "Muro" esista e sia configurato in Unity
+    }
+
+    private void SearchSpriptsAndRb()
+    {
+        rb = GetComponent<Rigidbody>();
+
         mainCamera = Camera.main;
 
         controller = GetComponent<WreckingBallController>();
@@ -56,14 +66,6 @@ public class WreckingBallDrag : MonoBehaviour
         {
             Debug.LogError("WreckingBallController non trovato. Aggiungilo all'oggetto.");
         }
-
-        rb = GetComponent<Rigidbody>();
-        pivot = GetComponentInParent<AutoConfigurableJoint>().pivot;
-        if (pivot == null)
-        {
-            Debug.LogError("Pivot non trovato, assicurati che AutoConfigurableJoint sia configurato correttamente.");
-        }
-        UpdateButtonState();
 
         // Cerca il SpikeAttached
         if (spikeAttached == null)
@@ -79,10 +81,14 @@ public class WreckingBallDrag : MonoBehaviour
             }
         }
 
-        collisionLayer = LayerMask.GetMask("Muro"); // Assicurati che il layer "Muro" esista e sia configurato in Unity
+        pivot = GetComponentInParent<AutoConfigurableJoint>().pivot;
+        if (pivot == null)
+        {
+            Debug.LogError("Pivot non trovato, assicurati che AutoConfigurableJoint sia configurato correttamente.");
+        }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isDragging)
         {
@@ -123,15 +129,16 @@ public class WreckingBallDrag : MonoBehaviour
     {
         Vector3 touchPosition = GetTouchWorldPosition();
         Vector3 direction = touchPosition - rb.position;
-        float distanceToPivot = direction.magnitude;
+        float distanceToPivot = Vector3.Distance(touchPosition, pivot.position);
 
         if (controller != null)
         {
             float maxDistance = controller.distance;
             if (distanceToPivot > maxDistance)
             {
-                direction = direction.normalized * maxDistance;
-                touchPosition = rb.position + direction;
+                // Limita la posizione della palla alla distanza massima
+                direction = (touchPosition - pivot.position).normalized * maxDistance;
+                touchPosition = pivot.position + direction;
             }
         }
 
@@ -148,7 +155,6 @@ public class WreckingBallDrag : MonoBehaviour
         currentVelocity = (rb.position - lastPosition) / Time.deltaTime;
         lastPosition = rb.position;
     }
-
 
     void OnMouseDown()
     {

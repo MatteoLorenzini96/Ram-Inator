@@ -2,62 +2,40 @@ using UnityEngine;
 
 public class AttivaFiglioOnCollision : MonoBehaviour
 {
-    public int indiceFiglioDaAttivare = 0; // Indice del figlio da attivare (modificabile nell'Inspector)
+    public int indiceFiglioDaAttivare = 0; // Indice del figlio da attivare
+    public string soundEffectName = "SpikeStar"; // Nome del sound effect
+    private Transform oggettoColliso;
 
-    [Header("Nome del SoundEffect da riprodurre")]
-    public string soundEffectName = "SpikeStar"; // Variabile pubblica per modificare il nome del suono dall'Inspector
+    // Riferimento allo script WreckingBallWeight_Velocity
+    private WreckingBallWeight_Velocity weightVelocityManager;
 
-    private GameObject[] figli; // Lista dinamica dei figli dell'oggetto con cui si collide
+    private void Start()
+    {
+        weightVelocityManager = FindFirstObjectByType<WreckingBallWeight_Velocity>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Controlla se l'oggetto con cui collide ha il tag "Palla"
         if (other.CompareTag("Palla"))
         {
-            // Ottieni tutti i figli dell'oggetto con cui c'è stata la collisione
-            Transform oggettoColliso = other.transform;
-            figli = new GameObject[oggettoColliso.childCount];
+            oggettoColliso = other.transform;
 
+            // Disattiva tutti i figli tranne il quarto
             for (int i = 0; i < oggettoColliso.childCount; i++)
             {
-                figli[i] = oggettoColliso.GetChild(i).gameObject;
+                var child = oggettoColliso.GetChild(i).gameObject;
+                child.SetActive(i == indiceFiglioDaAttivare || i == 3);
             }
 
-            //Debug.Log($"Figli trovati nell'oggetto colliso: {figli.Length}");
-
-            // Assicurati che l'indice sia valido
-            if (indiceFiglioDaAttivare >= 0 && indiceFiglioDaAttivare < figli.Length)
+            // Notifica il cambiamento al WreckingBallWeight_Velocity
+            if (weightVelocityManager != null)
             {
-                // Disattiva tutti i figli
-                foreach (GameObject figlio in figli)
-                {
-                    //Debug.Log("Spenti tutti i figli dell'oggetto colliso");
-                    if (figlio != null)
-                        figlio.SetActive(false);
-                }
-
-                // Attiva il figlio specificato
-                if (figli[indiceFiglioDaAttivare] != null)
-                {
-                    //Debug.Log("Accendo il figlio corretto dell'oggetto colliso");
-                    figli[indiceFiglioDaAttivare].SetActive(true);
-                }
-
-                if (figli[3] != null)
-                {
-                    // Lascia sempre attivo il quarto figlio
-                    //Debug.Log("Lasciando attivo il figlio con indice 4");
-                    figli[3].SetActive(true);
-                }
-
-                // Distrugge l'oggetto a cui è assegnato lo script
-                AudioManager.Instance.PlaySFX(soundEffectName); // Usa la variabile per chiamare il metodo
-                Destroy(gameObject); // Distrugge l'oggetto corrente
+                weightVelocityManager.UpdateRigidbodyProperties(indiceFiglioDaAttivare);
             }
-            else
-            {
-                Debug.LogWarning("Indice del figlio da attivare non valido!");
-            }
+
+            // Riproduci suono e distruggi l'oggetto corrente
+            AudioManager.Instance.PlaySFX(soundEffectName);
+            Destroy(gameObject);
         }
     }
 }

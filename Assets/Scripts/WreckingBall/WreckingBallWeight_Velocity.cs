@@ -1,70 +1,89 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WreckingBallWeight_Velocity : MonoBehaviour
 {
     private Rigidbody rb;
-    private Transform child0, child1, child2;
+    private Transform[] children;
 
-    [Header("Valori NormalHead")]
-    public float massNormal = 2f;
-    public float dragNormal = 0.2f;
-    public float maxSpeedNormal = 10f;
+    // Configurazione per i diversi tipi di teste
+    [System.Serializable]
+    public class HeadConfiguration
+    {
+        public float mass;
+        public float drag;
+        public float maxSpeed;
+    }
 
-    [Header("Valori SpikeHead")]
-    public float massSpike = 10f;
-    public float dragSpike = 0.5f;
-    public float maxSpeedSpike = 10f;
+    [Header("Configurazioni delle teste")]
+    public HeadConfiguration normalHeadConfig;
+    public HeadConfiguration spikeHeadConfig;
+    public HeadConfiguration impactHeadConfig;
 
-    [Header("Valori ImpactHead")]
-    public float massImpact = 1f;
-    public float dragImpact = 0f;
-    public float maxSpeedImpact = 10f;
+    private Dictionary<int, HeadConfiguration> headConfigs;
 
+    private HeadConfiguration currentConfig;
 
     void Start()
     {
-        // Ottieni il componente Rigidbody sull'oggetto
+        // Ottieni il Rigidbody
         rb = GetComponent<Rigidbody>();
 
-        // Controlla i figli di questo oggetto una sola volta, all'inizio
-        child0 = transform.childCount > 0 ? transform.GetChild(0) : null;
-        child1 = transform.childCount > 1 ? transform.GetChild(1) : null;
-        child2 = transform.childCount > 2 ? transform.GetChild(2) : null;
+        // Ottieni tutti i figli
+        int childCount = transform.childCount;
+        children = new Transform[childCount];
+        for (int i = 0; i < childCount; i++)
+        {
+            children[i] = transform.GetChild(i);
+        }
+
+        // Mappa configurazioni agli indici
+        headConfigs = new Dictionary<int, HeadConfiguration>
+        {
+            { 0, normalHeadConfig },
+            { 1, spikeHeadConfig },
+            { 2, impactHeadConfig }
+        };
+
+        // Imposta la configurazione iniziale
+        ApplyHeadConfiguration(normalHeadConfig);
     }
 
-    void FixedUpdate()
+    // Metodo pubblico per aggiornare le proprietà del Rigidbody
+    public void UpdateRigidbodyProperties(int activeChildIndex)
     {
-        // Controlla lo stato di attivazione dei figli ogni frame e modifica le proprietà del Rigidbody
-        if (child0 != null && child0.gameObject.activeSelf)
+        if (headConfigs.ContainsKey(activeChildIndex))
         {
-            // Modifica le proprietà del Rigidbody se NormalHead è attivo
-            rb.mass = massNormal;
-            rb.linearDamping = dragNormal;
-            LimitSpeed(maxSpeedNormal);
+            var config = headConfigs[activeChildIndex];
+            ApplyHeadConfiguration(config);
         }
-        else if (child1 != null && child1.gameObject.activeSelf)
+        else
         {
-            // Modifica le proprietà del Rigidbody se SpikeHead è attivo
-            rb.mass = massSpike;
-            rb.linearDamping = dragSpike;
-            LimitSpeed(maxSpeedSpike);
-        }
-        else if (child2 != null && child2.gameObject.activeSelf)
-        {
-            // Modifica le proprietà del Rigidbody se ImpactHead è attivo
-            rb.mass = massImpact;
-            rb.linearDamping = dragImpact;
-            LimitSpeed(maxSpeedImpact);
+            Debug.LogWarning("Indice del figlio attivato non valido!");
         }
     }
 
-    // Funzione per limitare la velocità del Rigidbody
-    void LimitSpeed(float maxSpeed)
+    // Applica la configurazione al Rigidbody
+    private void ApplyHeadConfiguration(HeadConfiguration config)
+    {
+        currentConfig = config; // Salva la configurazione attuale
+        rb.mass = config.mass;
+        rb.linearDamping = config.drag;
+        LimitSpeed(config.maxSpeed);
+    }
+
+    // Metodo pubblico per ottenere la velocità massima attuale
+    public float GetCurrentMaxSpeed()
+    {
+        return currentConfig != null ? currentConfig.maxSpeed : 0f;
+    }
+
+    // Limita la velocità del Rigidbody
+    private void LimitSpeed(float maxSpeed)
     {
         if (rb.linearVelocity.magnitude > maxSpeed)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
     }
-
 }

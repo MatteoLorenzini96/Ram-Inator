@@ -74,7 +74,7 @@ public class MaterialOpacityController : MonoBehaviour
     private void HandleResetPosition()
     {
         // Azione da eseguire quando viene chiamata ResetPosition
-        Debug.Log("ResetPosition chiamato - Ripristino il colore.");
+        //Debug.Log("ResetPosition chiamato - Ripristino il colore.");
         ResetColor();
     }
 

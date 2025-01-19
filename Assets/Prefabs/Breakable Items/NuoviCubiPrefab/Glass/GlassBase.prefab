@@ -163,7 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12f9bd8027361245bf488c2279e14a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opacityWhenDragging: 0.585
 --- !u!114 &-2345458019288486489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,22 +201,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleEffects:
   - headName: NormalHead
-    effectName: 
+    effectName: TinyGlassFrag
   - headName: SpikeHead
     effectName: 
   - headName: ImpactHead
-    effectName: 
+    effectName: TinyGlassFrag
   halfLifeEffects:
   - headName: NormalHead
-    effectName: 
+    effectName: MedGlassFrag
   - headName: SpikeHead
     effectName: 
   - headName: ImpactHead
-    effectName: 
+    effectName: MedGlassFrag
   explodeEffects:
   - headName: NormalHead
-    effectName: 
+    effectName: BigGlassFrag
   - headName: SpikeHead
-    effectName: 
+    effectName: BigGlassFrag
   - headName: ImpactHead
-    effectName: 
+    effectName: BigGlassFrag

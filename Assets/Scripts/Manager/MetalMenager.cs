@@ -50,7 +50,7 @@ public class MetalManager : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Verifica se "isDragging" è vera
         if (wreckingBallDrag != null && wreckingBallDrag.isDragging || !wreckingBallDrag.isSwinging)

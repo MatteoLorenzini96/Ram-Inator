@@ -21,6 +21,7 @@ public class WreckingBallDrag : MonoBehaviour
 
     private Vector3 resetCheckStartPosition; // Posizione all'inizio del controllo di spostamento
     private float resetCheckStartTime; // Tempo all'inizio del controllo di spostamento
+    private Camera mainCamera;
 
     public event Action<Vector3> OnRelease;
     public event Action OnResetPosition;
@@ -48,6 +49,8 @@ public class WreckingBallDrag : MonoBehaviour
 
     void Start()
     {
+        mainCamera = Camera.main;
+
         controller = GetComponent<WreckingBallController>();
         if (controller == null)
         {
@@ -79,62 +82,73 @@ public class WreckingBallDrag : MonoBehaviour
         collisionLayer = LayerMask.GetMask("Muro"); // Assicurati che il layer "Muro" esista e sia configurato in Unity
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (isDragging)
         {
-            Vector3 touchPosition = GetTouchWorldPosition();
-
-            Vector3 direction = touchPosition - rb.position;
-            float distanceToPivot = direction.magnitude;
-
-            // Limita il movimento in base alla distanza massima definita in WreckingBallController
-            if (controller != null)
-            {
-                float maxDistance = controller.distance;
-
-                // Se la distanza supera quella massima, aggiorniamo la posizione per non farla andare oltre
-                if (distanceToPivot > maxDistance)
-                {
-                    direction = direction.normalized * maxDistance;
-                    touchPosition = rb.position + direction;
-                }
-            }
-
-            if (Physics.Raycast(rb.position, direction.normalized, out RaycastHit hit, distanceToPivot, collisionLayer))
-            {
-                touchPosition = hit.point - direction.normalized * 0.1f; // Aggiungi un margine di distanza
-            }
-
-            rb.MovePosition(touchPosition);
-            currentVelocity = (rb.position - lastPosition) / Time.deltaTime;
-            lastPosition = rb.position;
+            HandleDragging();
         }
         else if (isSwinging)
         {
             // Controllo dello spostamento
             if (Time.time - resetCheckStartTime > movementCheckInterval)
             {
-                float distanceMoved = Vector3.Distance(rb.position, resetCheckStartPosition);
-
-                if (distanceMoved < minMovementToReset)
-                {
-                    //Debug.Log($"Resetting because moved only {distanceMoved} in {movementCheckInterval} seconds");
-                    if (!spikeAttached.isSpikeAttached)
-                    {
-                        isSwinging = false; // Evita ulteriori reset
-                        Invoke("ResetPosition", resetTime);
-                    }
-                }
-                else
-                {
-                    // Aggiorna i valori per un nuovo controllo
-                    resetCheckStartPosition = rb.position;
-                    resetCheckStartTime = Time.time;
-                }
+                CheckSwingReset();
             }
         }
     }
+
+    private void CheckSwingReset()
+    {
+        float distanceMoved = Vector3.Distance(rb.position, resetCheckStartPosition);
+
+        if (distanceMoved < minMovementToReset)
+        {
+            //Debug.Log($"Resetting because moved only {distanceMoved} in {movementCheckInterval} seconds");
+            if (!spikeAttached.isSpikeAttached)
+            {
+                isSwinging = false; // Evita ulteriori reset
+                Invoke("ResetPosition", resetTime);
+            }
+        }
+        else
+        {
+            // Aggiorna i valori per un nuovo controllo
+            resetCheckStartPosition = rb.position;
+            resetCheckStartTime = Time.time;
+        }
+    }
+
+    void HandleDragging()
+    {
+        Vector3 touchPosition = GetTouchWorldPosition();
+        Vector3 direction = touchPosition - rb.position;
+        float distanceToPivot = direction.magnitude;
+
+        if (controller != null)
+        {
+            float maxDistance = controller.distance;
+            if (distanceToPivot > maxDistance)
+            {
+                direction = direction.normalized * maxDistance;
+                touchPosition = rb.position + direction;
+            }
+        }
+
+        // Raycast solo se necessario
+        if (distanceToPivot > 0.1f)
+        {
+            if (Physics.Raycast(rb.position, direction.normalized, out RaycastHit hit, distanceToPivot, collisionLayer))
+            {
+                touchPosition = hit.point - direction.normalized * 0.1f;
+            }
+        }
+
+        rb.MovePosition(touchPosition);
+        currentVelocity = (rb.position - lastPosition) / Time.deltaTime;
+        lastPosition = rb.position;
+    }
+
 
     void OnMouseDown()
     {
@@ -197,23 +211,17 @@ public class WreckingBallDrag : MonoBehaviour
 
     private Vector3 GetTouchWorldPosition()
     {
-        Vector3 inputPosition;
+        if (Input.touchCount > 0 || Input.GetMouseButton(0))
+        {
+            Vector3 inputPosition = Input.touchCount > 0
+                ? Input.GetTouch(0).position
+                : Input.mousePosition;
 
-        if (Input.touchCount > 0)
-        {
-            inputPosition = Input.GetTouch(0).position;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            inputPosition = Input.mousePosition;
-        }
-        else
-        {
-            return transform.position;
+            inputPosition.z = mainCamera.WorldToScreenPoint(transform.position).z;
+            return mainCamera.ScreenToWorldPoint(inputPosition);
         }
 
-        inputPosition.z = Camera.main.WorldToScreenPoint(transform.position).z;
-        return Camera.main.ScreenToWorldPoint(inputPosition);
+        return transform.position;
     }
 
     public void ResetPosition()

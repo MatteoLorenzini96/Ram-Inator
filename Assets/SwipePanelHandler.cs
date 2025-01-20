@@ -55,14 +55,13 @@ public class SwipePanelHandler : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     private void OnSwipeRight()
     {
-        Debug.Log("Swipe verso destra!");
+        //Debug.Log("Swipe verso destra!");
         levelManager.PreviousPage();
     }
 
     private void OnSwipeLeft()
     {
-        Debug.Log("Swipe verso sinistra!");
+        //Debug.Log("Swipe verso sinistra!");
         levelManager.NextPage();
-        
     }
 }

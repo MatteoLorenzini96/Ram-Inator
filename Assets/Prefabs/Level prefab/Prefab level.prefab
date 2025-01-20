@@ -4710,7 +4710,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lanci: 1'
+  m_text: 'Throws: 1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d8828f8cd4dea74c966da7634ee6584, type: 2}
   m_sharedMaterial: {fileID: 7402084705642715705, guid: 6d8828f8cd4dea74c966da7634ee6584, type: 2}
@@ -4737,8 +4737,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68
-  m_fontSizeBase: 68
+  m_fontSize: 63
+  m_fontSizeBase: 63
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

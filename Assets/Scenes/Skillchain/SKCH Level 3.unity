@@ -414,10 +414,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 485984262}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.1482906, y: 0.5}
-  m_AnchorMax: {x: 0.35757264, y: 0.63066673}
-  m_AnchoredPosition: {x: -129.5, y: 48}
-  m_SizeDelta: {x: -258.85022, y: -77.80524}
+  m_AnchorMin: {x: 0.14828205, y: 0.32877776}
+  m_AnchorMax: {x: 0.35970092, y: 0.47322223}
+  m_AnchoredPosition: {x: -132, y: 52.5}
+  m_SizeDelta: {x: -263.85022, y: -92.80524}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1979610579
 MonoBehaviour:
@@ -448,8 +448,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -466,14 +466,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.45
+  m_fontSize: 47.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 16
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

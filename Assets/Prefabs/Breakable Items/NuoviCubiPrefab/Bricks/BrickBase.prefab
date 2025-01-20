@@ -175,9 +175,9 @@ MonoBehaviour:
   - headName: NormalHead
     effectName: TinyDustExplosion
   - headName: SpikeHead
-    effectName: 
+    effectName: TinyBrickFrag
   - headName: ImpactHead
-    effectName: 
+    effectName: TinyBrickFrag
   halfLifeEffects:
   - headName: NormalHead
     effectName: 

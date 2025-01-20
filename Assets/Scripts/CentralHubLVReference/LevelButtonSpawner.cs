@@ -62,7 +62,7 @@ public class LevelButtonSpawner : MonoBehaviour
         nextButton.interactable = currentPage < totalPages - 1;
     }
 
-    private void NextPage()
+    public void NextPage()
     {
         if (currentPage < totalPages - 1)
         {
@@ -71,7 +71,7 @@ public class LevelButtonSpawner : MonoBehaviour
         }
     }
 
-    private void PreviousPage()
+    public void PreviousPage()
     {
         if (currentPage > 0)
         {

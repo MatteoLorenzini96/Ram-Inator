@@ -5699,6 +5699,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7471751352102114813}
     m_Modifications:
+    - target: {fileID: 4500485142731020390, guid: fa274c83ee3bce446882a4bc9ad750b7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 48cc450a773270841bdecddf6b9a782a, type: 2}
     - target: {fileID: 4897138999983514440, guid: fa274c83ee3bce446882a4bc9ad750b7, type: 3}
       propertyPath: puntoAObject
       value: 

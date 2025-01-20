@@ -10,6 +10,7 @@ public class WreckingBallDrag : MonoBehaviour
     private WreckingBallController controller;
     private SpikeAttached spikeAttached;
     private GameObject spawnedEffect;
+    private WreckingBallWeight_Velocity wreckingBallVelocityManager;
 
     private Vector3 lastPosition; // Ultima posizione aggiornata
     private Vector3 currentVelocity; // Velocità attuale
@@ -90,6 +91,8 @@ public class WreckingBallDrag : MonoBehaviour
         {
             Debug.LogError("Pivot non trovato, assicurati che AutoConfigurableJoint sia configurato correttamente.");
         }
+
+        wreckingBallVelocityManager = FindFirstObjectByType<WreckingBallWeight_Velocity>();
     }
 
     void FixedUpdate()
@@ -131,59 +134,41 @@ public class WreckingBallDrag : MonoBehaviour
 
     void HandleDragging()
     {
-        // Ottieni la posizione del tocco o del mouse nel mondo
+        // Ottieni la posizione del mouse/tocco nel mondo
         Vector3 touchPosition = GetTouchWorldPosition();
-        Vector3 direction = touchPosition - rb.position;
-        float distanceToPivot = Vector3.Distance(touchPosition, pivot.position);
 
-        // Limita la posizione della palla alla distanza massima (se necessario)
-        if (controller != null)
+        // Direzione e distanza dal pivot
+        Vector3 direction = touchPosition - pivot.position;
+        float distanceToPivot = direction.magnitude;
+
+        // Limita la distanza massima dal pivot
+        if (controller != null && distanceToPivot > controller.distance)
         {
-            float maxDistance = controller.distance;
-            if (distanceToPivot > maxDistance)
-            {
-                direction = (touchPosition - pivot.position).normalized * maxDistance;
-                touchPosition = pivot.position + direction;
-            }
+            direction = direction.normalized * controller.distance;
+            touchPosition = pivot.position + direction;
         }
 
-        // Raycast per evitare collisioni con il layer specificato
-        if (distanceToPivot > 0.1f)
+        // Calcola la posizione desiderata
+        Vector3 targetPosition = touchPosition;
+
+        // Calcola la velocità basata sulla posizione target
+        Vector3 desiredVelocity = (targetPosition - rb.position) / Time.fixedDeltaTime;
+
+        // Limita la velocità per evitare movimenti eccessivi
+        float maxSpeed = wreckingBallVelocityManager.GetCurrentMaxSpeed(); // Definisci una velocità massima nel controller
+        if (desiredVelocity.magnitude > maxSpeed)
         {
-            if (Physics.Raycast(rb.position, direction.normalized, out RaycastHit hit, distanceToPivot, collisionLayer))
-            {
-                touchPosition = hit.point - direction.normalized * 0.1f;
-            }
+            desiredVelocity = desiredVelocity.normalized * maxSpeed;
         }
 
-        // Sposta la palla nella posizione calcolata
-        rb.MovePosition(touchPosition);
+        // Applica la velocità al Rigidbody
+        rb.linearVelocity = desiredVelocity;
 
-        // Salva la posizione corrente nel buffer
-        positionHistory.Enqueue(rb.position);
-        if (positionHistory.Count > maxHistorySize)
-        {
-            positionHistory.Dequeue();
-        }
-
-        // Calcola la velocità media basata sulle ultime posizioni
-        Vector3 averageVelocity = Vector3.zero;
-        if (positionHistory.Count > 1)
-        {
-            Vector3[] positions = positionHistory.ToArray();
-            for (int i = 1; i < positions.Length; i++)
-            {
-                averageVelocity += (positions[i] - positions[i - 1]) / Time.deltaTime;
-            }
-            averageVelocity /= (positionHistory.Count - 1);
-        }
-
-        // Aggiorna la velocità corrente
-        currentVelocity = averageVelocity;
-
-        // Salva la posizione attuale come ultima posizione
+        // Aggiorna posizione e velocità per altre logiche
+        currentVelocity = rb.linearVelocity;
         lastPosition = rb.position;
     }
+
 
     void OnMouseDown()
     {

@@ -1,35 +1,35 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic; // Per usare la lista
+using System.Collections.Generic;
 using System;
-using UnityEngine.InputSystem.XR;
 
 public class SpikeAttached : MonoBehaviour
 {
-    [SerializeField] private Transform parentObject; // Il parent che contiene i child
-    private int activeChildIndex = 1; // L'indice del child da controllare
+    [SerializeField] private Transform parentObject;
+    private int activeChildIndex = 1;
     private WreckingBallDrag wreckingBallDrag;
-    public string targetTag = "TargetTag"; // Il tag dell'oggetto a cui agganciarsi
-    public float attachDuration = 5f; // Durata dell'attaccamento in secondi
+
+    public string targetTag = "TargetTag";
+    public float attachDuration = 5f;
     private Transform activeChild;
-    private bool isScriptActive = false; // Stato di attivazione script
+    private bool isScriptActive = false;
     private Coroutine attachCoroutine;
     public bool isSpikeAttached = false;
-    public event Action OnDetach; // Evento da chiamare quando lo spike si stacca
+    public event Action OnDetach;
 
-    private HashSet<GameObject> temporarilyBlockedObjects = new HashSet<GameObject>(); // Oggetti temporaneamente bloccati
-    public float reattachCooldown = 3f; // Tempo di attesa prima di potersi riattaccare
+    private HashSet<GameObject> temporarilyBlockedObjects = new HashSet<GameObject>();
+    public float reattachCooldown = 3f;
+
+    [SerializeField] private string noCollisionLayerName = "NoCollision"; // Nome del layer NoCollision
 
     private void Start()
     {
-        // Assicurati che il parentObject sia assegnato
         if (parentObject == null)
         {
             Debug.LogError("Parent Object non assegnato! Assegna un parent nel campo 'Parent Object' nell'Inspector.");
             return;
         }
 
-        // Ottieni il child al determinato indice
         if (parentObject.childCount > activeChildIndex)
         {
             activeChild = parentObject.GetChild(activeChildIndex);
@@ -65,18 +65,19 @@ public class SpikeAttached : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.Log("Active child non trovato o è null.");
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Esegui il codice solo se lo script è attivo e il child corretto è attivo
+        // Controlla se l'oggetto è nel layer NoCollision
+        if (gameObject.layer == LayerMask.NameToLayer(noCollisionLayerName))
+        {
+            Debug.Log("Oggetto nel layer NoCollision, nessuna azione eseguita.");
+            return;
+        }
+
         if (isScriptActive && collision.gameObject.CompareTag(targetTag) && wreckingBallDrag.isSwinging)
         {
-            // Controlla se l'oggetto è temporaneamente bloccato
             if (temporarilyBlockedObjects.Contains(collision.gameObject))
             {
                 Debug.Log("Oggetto temporaneamente bloccato, impossibile attaccarsi.");
@@ -90,10 +91,6 @@ public class SpikeAttached : MonoBehaviour
                     attachCoroutine = StartCoroutine(AttachToTarget(collision.gameObject));
                 }
             }
-            else
-            {
-                Debug.LogWarning("Il child attivo non è quello corretto. Nessun attaccamento eseguito.");
-            }
         }
     }
 
@@ -101,7 +98,6 @@ public class SpikeAttached : MonoBehaviour
     {
         Rigidbody rb = GetComponent<Rigidbody>();
 
-        // Salva la posizione e rotazione relative iniziali
         Vector3 initialPositionOffset = transform.position - target.transform.position;
         Quaternion initialRotationOffset = Quaternion.Inverse(target.transform.rotation) * transform.rotation;
 
@@ -112,11 +108,9 @@ public class SpikeAttached : MonoBehaviour
 
             if (rb != null)
             {
-                // Disattiva la fisica durante l'attaccamento
                 rb.isKinematic = true;
             }
 
-            // Mantieni la posizione e la rotazione relative durante l'attaccamento
             transform.position = target.transform.position + initialPositionOffset;
             transform.rotation = target.transform.rotation * initialRotationOffset;
 
@@ -126,18 +120,15 @@ public class SpikeAttached : MonoBehaviour
 
         if (rb != null)
         {
-            // Riattiva la fisica
             rb.isKinematic = false;
         }
 
-        // Disattiva l'agganciamento dopo il tempo specificato
         attachCoroutine = null;
         isSpikeAttached = false;
 
-        // Blocca temporaneamente l'oggetto
         TemporarilyBlockObject(target);
 
-        OnDetach?.Invoke(); // Emetti l'evento
+        OnDetach?.Invoke();
     }
 
     private void TemporarilyBlockObject(GameObject target)
@@ -156,7 +147,6 @@ public class SpikeAttached : MonoBehaviour
         if (temporarilyBlockedObjects.Contains(target))
         {
             temporarilyBlockedObjects.Remove(target);
-            Debug.Log($"Oggetto sbloccato: {target.name}");
         }
     }
 }

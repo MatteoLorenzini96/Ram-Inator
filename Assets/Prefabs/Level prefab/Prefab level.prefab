@@ -2283,7 +2283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6829845743168340977
 Transform:
   m_ObjectHideFlags: 0
@@ -2306,7 +2306,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3957042528265273789}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 519eafb957750d4458f65a14c1d650ec, type: 3}
   m_Name: 
@@ -6286,6 +6286,7 @@ MonoBehaviour:
   objectToSpawn: {fileID: 1883021650381340479, guid: 675369171bd2af54db778704452356a4, type: 3}
   spawnDistance: -2
   impactHeadVelocity: 0
+  noCollisionLayerName: NoCollision
 --- !u!114 &5824020606269869474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6303,6 +6304,7 @@ MonoBehaviour:
   attachDuration: 3
   isSpikeAttached: 0
   reattachCooldown: 3
+  noCollisionLayerName: NoCollision
 --- !u!96 &2812715733444925274
 TrailRenderer:
   serializedVersion: 3

@@ -13,17 +13,24 @@ public class Rope : MonoBehaviour
     public Transform startPoint; // Assegna il punto Start dalla scena
     public Transform endPoint;   // Assegna il punto End dalla scena
 
+    private WreckingBallController wreckingBallController;
+
     // Use this for initialization
     void Start()
     {
         // Recupera la variabile "distance" dallo script WreckingBallController
-        WreckingBallController wreckingBallController = FindFirstObjectByType<WreckingBallController>();
+        wreckingBallController = FindFirstObjectByType<WreckingBallController>();
         if (wreckingBallController == null)
         {
             Debug.LogError("WreckingBallController non trovato nella scena.");
             return;
         }
 
+        UpdateRope(wreckingBallController);
+    }
+
+    private void UpdateRope(WreckingBallController wreckingBallController)
+    {
         float distance = wreckingBallController.distance;
         segmentLength = Mathf.CeilToInt(distance / 0.25f); // Numero segmenti basato sulla lunghezza della corda
         ropeSegLen = distance / segmentLength; // Lunghezza di ogni segmento
@@ -46,6 +53,7 @@ public class Rope : MonoBehaviour
     void Update()
     {
         this.DrawRope();
+        UpdateRope(wreckingBallController);
     }
 
     private void FixedUpdate()
@@ -56,7 +64,7 @@ public class Rope : MonoBehaviour
     private void Simulate()
     {
         // SIMULATION
-        Vector2 forceGravity = new Vector2(0f, -1.5f);
+        Vector2 forceGravity = new Vector2(0f, -1f);
 
         for (int i = 1; i < this.segmentLength; i++)
         {

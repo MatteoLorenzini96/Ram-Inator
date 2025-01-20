@@ -182,9 +182,9 @@ MonoBehaviour:
   - headName: NormalHead
     effectName: 
   - headName: SpikeHead
-    effectName: 
+    effectName: MedBrickFrag
   - headName: ImpactHead
-    effectName: 
+    effectName: MedBrickFrag
   explodeEffects:
   - headName: NormalHead
     effectName: 

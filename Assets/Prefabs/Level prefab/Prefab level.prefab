@@ -4884,7 +4884,7 @@ MonoBehaviour:
   - effectName: TinyBrickFrag
     effectPrefab: {fileID: 8916883425756478688, guid: 282e57181cd8eb5419e1ca43b814cf1e, type: 3}
   - effectName: MedBrickFrag
-    effectPrefab: {fileID: 8916883425756478688, guid: 282e57181cd8eb5419e1ca43b814cf1e, type: 3}
+    effectPrefab: {fileID: 8916883425756478688, guid: 9feef6f7d4a9bea418350a35068dcaab, type: 3}
   - effectName: BigBrickFrag
     effectPrefab: {fileID: 2517987975639730923, guid: bc9b944ecdb9dcb4fa02aa82d69a27e6, type: 3}
   - effectName: MedWoodFrag

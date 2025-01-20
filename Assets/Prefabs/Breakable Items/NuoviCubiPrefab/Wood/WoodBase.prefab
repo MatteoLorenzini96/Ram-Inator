@@ -167,20 +167,20 @@ MonoBehaviour:
   - headName: NormalHead
     effectName: TinyDustExplosion
   - headName: SpikeHead
-    effectName: 
+    effectName: TinyDustExplosion
   - headName: ImpactHead
-    effectName: 
+    effectName: TinyDustExplosion
   halfLifeEffects:
   - headName: NormalHead
     effectName: 
   - headName: SpikeHead
-    effectName: 
+    effectName: MedWoodFrag
   - headName: ImpactHead
     effectName: 
   explodeEffects:
   - headName: NormalHead
     effectName: 
   - headName: SpikeHead
-    effectName: 
+    effectName: BigWoodFrag
   - headName: ImpactHead
     effectName: 

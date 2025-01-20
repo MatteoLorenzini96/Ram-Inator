@@ -189,6 +189,6 @@ MonoBehaviour:
   - headName: NormalHead
     effectName: 
   - headName: SpikeHead
-    effectName: 
+    effectName: BigBrickFrag
   - headName: ImpactHead
-    effectName: 
+    effectName: BigBrickFrag

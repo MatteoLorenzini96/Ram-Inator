@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8752987759245735788}
   - component: {fileID: 8754721192369464696}
   m_Layer: 0
-  m_Name: BigBrickFrag
+  m_Name: BigWoodFrag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +252,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 0.05
-      minScalar: 0.07
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -462,7 +462,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.7853981
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -521,7 +521,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 9.81
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2

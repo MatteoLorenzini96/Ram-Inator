@@ -4,10 +4,20 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     public Slider _musicSlider, _sfxSlider;
+    private bool _isMusicPlaying = true; // Tiene traccia dello stato della musica
 
     public void ToggleMusic()
     {
-        AudioManager.Instance.ToggleMusic();
+        if (_isMusicPlaying)
+        {
+            AudioManager.Instance.ToggleMusic();
+        }
+        else
+        {
+            AudioManager.Instance.PlayMusic("MainTheme");
+        }
+
+        _isMusicPlaying = !_isMusicPlaying; // Alterna lo stato
     }
 
     public void ToggleSFX()

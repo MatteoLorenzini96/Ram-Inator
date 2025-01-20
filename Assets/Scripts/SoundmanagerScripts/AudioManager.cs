@@ -10,6 +10,9 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
 
+    private float initialSFXPitch; // Memorizza il pitch iniziale degli SFX
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -21,6 +24,9 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        initialSFXPitch = sfxSource.pitch;
+
     }
 
     private void Start()
@@ -35,7 +41,7 @@ public class AudioManager : MonoBehaviour
 
         if (s == null)
         {
-            Debug.Log("Music Not Found");
+            //Debug.Log("Music Not Found");
         }
 
         else
@@ -63,16 +69,21 @@ public class AudioManager : MonoBehaviour
 
             // Riproduce il suono
             sfxSource.PlayOneShot(s.clip);
+
+            sfxSource.pitch = initialSFXPitch;
         }
     }
 
 
     public void ToggleMusic()
     {
-        musicSource.mute = !musicSource.mute;
-        if (musicSource.mute)
+        if (musicSource.isPlaying)
         {
-            musicSource.Stop();  // Ferma la musica quando viene mutata
+            musicSource.Pause();  // Ferma la musica quando viene mutata
+        }
+        else
+        {
+            musicSource.Play();
         }
         //Debug.Log("Musica Mutata");
     }

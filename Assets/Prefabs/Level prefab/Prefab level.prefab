@@ -6137,7 +6137,7 @@ PrefabInstance:
       objectReference: {fileID: 7657297758542834822}
     - target: {fileID: 4111379826654058271, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: releaseForceMultiplier
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5780090640153959816, guid: 4b166ea68a1b9c4499070a2b7cc0c0c5, type: 3}
       propertyPath: pivot

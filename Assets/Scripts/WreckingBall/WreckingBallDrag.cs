@@ -28,9 +28,6 @@ public class WreckingBallDrag : MonoBehaviour
     public event Action<Vector3> OnRelease;
     public event Action OnResetPosition;
 
-    private Queue<Vector3> positionHistory = new Queue<Vector3>();
-    private int maxHistorySize = 5;
-
     [Header("Timer Per il reset")]
     public float resetTime = 2.0f; // Tempo di delay per il reset dopo il controllo
 

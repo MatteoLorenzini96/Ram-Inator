@@ -4886,11 +4886,11 @@ MonoBehaviour:
   - effectName: MedBrickFrag
     effectPrefab: {fileID: 8916883425756478688, guid: 9feef6f7d4a9bea418350a35068dcaab, type: 3}
   - effectName: BigBrickFrag
-    effectPrefab: {fileID: 2517987975639730923, guid: bc9b944ecdb9dcb4fa02aa82d69a27e6, type: 3}
+    effectPrefab: {fileID: 8916883425756478688, guid: 27d668c5ecb412345b1987ff99b15365, type: 3}
   - effectName: MedWoodFrag
-    effectPrefab: {fileID: 1025285306637258, guid: 3a43aaeab67af5946a5de31d71da35c7, type: 3}
+    effectPrefab: {fileID: 8916883425756478688, guid: 46d708bbbb6b1a54a97da33d20438e8e, type: 3}
   - effectName: BigWoodFrag
-    effectPrefab: {fileID: 1025285306637258, guid: f590231a4702e5d41a15be66c5939521, type: 3}
+    effectPrefab: {fileID: 8916883425756478688, guid: e2e47c17441d2cc4f964e6b1af946a3d, type: 3}
 --- !u!1 &8047968899548666997
 GameObject:
   m_ObjectHideFlags: 0

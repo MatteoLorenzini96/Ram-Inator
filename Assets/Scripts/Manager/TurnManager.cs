@@ -118,9 +118,9 @@ public class TurnManager : MonoBehaviour
 
     private void UpdateAttemptsText()
     {
-        if (attemptsText != null && attemptsText.text != "Lanci: " + remainingAttempts)
+        if (attemptsText != null && attemptsText.text != "Throws: " + remainingAttempts)
         {
-            attemptsText.text = "Lanci: " + remainingAttempts;
+            attemptsText.text = "Throws: " + remainingAttempts;
         }
     }
 
@@ -205,7 +205,7 @@ public class TurnManager : MonoBehaviour
 
         if (stars == 0)
         {
-            evaluateText.text = "Ritenta!";
+            evaluateText.text = "Try again!";
 
             //Debug.Log("Text 0 stelle.");
 
@@ -217,7 +217,7 @@ public class TurnManager : MonoBehaviour
         }
         if (stars == 1)
         {
-            evaluateText.text = "Puoi fare di meglio!";
+            evaluateText.text = "You can do it better!";
 
             //Debug.Log("Text 1 stella.");
 
@@ -229,7 +229,7 @@ public class TurnManager : MonoBehaviour
         }
         if (stars == 2)
         {
-            evaluateText.text = "Ci sei quasi!";
+            evaluateText.text = "You are close!";
 
             //Debug.Log("Text 2 stelle.");
 
@@ -241,7 +241,7 @@ public class TurnManager : MonoBehaviour
         }
         if (stars == 3)
         {
-            evaluateText.text = "Complimenti!";
+            evaluateText.text = "Awesome!";
 
             //Debug.Log("Text 3 stelle.");
 
